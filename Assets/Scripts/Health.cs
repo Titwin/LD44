@@ -2,13 +2,15 @@
 
 public class Health : MonoBehaviour
 {
-    public float startValue;
+    public int startValue;
 
-    public float decreasePerSecond;
+    public int secondsToDecrement;
 
-    public float StartValue { get { return startValue; } }
+    public int StartValue { get { return startValue; } }
 
-    public float Value { get; set; }
+    public int Value { get; set; }
+
+    protected float lastDecrementDuration;
 
     protected virtual void Awake()
     {
@@ -17,6 +19,11 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        Value -= decreasePerSecond * Time.deltaTime;
+        lastDecrementDuration += Time.deltaTime;
+        if (lastDecrementDuration >= secondsToDecrement)
+        {
+            Value--;
+            lastDecrementDuration = 0;
+        }
     }
 }
