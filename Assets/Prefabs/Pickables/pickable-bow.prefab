@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8166525941815158639}
   - component: {fileID: 1576247856087357081}
   - component: {fileID: 191016143755873709}
+  - component: {fileID: 7026024016393092383}
   m_Layer: 0
   m_Name: pickable-bow
   m_TagString: Untagged
@@ -109,4 +110,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95613f6b351183d4c8644388ccda90ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectType: 3
+  objectToPick: {fileID: 7026024016393092383}
+--- !u!114 &7026024016393092383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8166525941815158625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88819219f349e4488f92ac6c51e73a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damages: 2
+  healthModifier: -1

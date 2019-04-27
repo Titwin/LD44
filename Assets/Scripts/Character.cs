@@ -1,18 +1,27 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(Health))]
 public abstract class Character : MonoBehaviour
 {
+    public Health health;
+
+    public Weapon weapon;
+
     public AttackCollider attackCollider;
 
     public bool showTriggerDebug;
 
-    public Health Health { get; private set; }
-
     protected virtual void Awake()
     {
-        Health = GetComponent<Health>();
+        if (health == null)
+        {
+            Debug.LogError(name + " has no health");
+        }
+
+        if (weapon == null)
+        {
+            Debug.LogError(name + " has no weapon");
+        }
     }
 
     protected virtual void Update()
@@ -21,6 +30,14 @@ public abstract class Character : MonoBehaviour
         {
             var inRangeCharacterNames = attackCollider.InRange.Select(character => character.name).ToArray();
             Debug.Log(gameObject.name + " is triggering [" + string.Join(", ", inRangeCharacterNames) + "]");
+        }
+    }
+
+    public virtual void Attack()
+    {
+        foreach (var character in attackCollider.InRange)
+        {
+            character.health.Value -= weapon.damages;
         }
     }
 }
