@@ -125,3 +125,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damages: 3
   healthModifier: -2
+  type: 0

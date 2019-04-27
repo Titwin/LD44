@@ -7,6 +7,7 @@ using UnityEngine;
 public class CharacterController2D : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public AnimationController ac;
 
     public Vector2 size;
     public float speed = 1;
@@ -17,27 +18,18 @@ public class CharacterController2D : MonoBehaviour
     private IEnumerator cooldownCoroutine;
 
     private float distToGround;
-
-    [Header("Animations")]
-    private SpriteRenderer sr;
-    public int animIndex;
-    public float animationTime;
-    private Sprite[] lastAnim;
-    public Sprite[] animationIdle;
-    public Sprite[] animationWalking;
-    public Sprite[] animationDucking;
-    public Sprite[] animationInAir;
-    public Sprite[] animationAttack;
-
+    
     int contactCount = 0;
     private ContactPoint2D[] contacts = new ContactPoint2D[32];
     [Header("State flags")]
+
     // these flags are serialized only for debug reasons
     [SerializeField] bool contactDown = false;
     [SerializeField] bool contactUp = false;
     [SerializeField] bool contactLeft = false;
     [SerializeField] bool contactRight = false;
     [SerializeField] int direction = 1;
+
     // these values are resetted at the end of the frame, do not use after LateUpdate()
     float movementX = 0;
     bool jump = false;
@@ -49,7 +41,6 @@ public class CharacterController2D : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         distToGround = GetComponent<CapsuleCollider2D>().bounds.extents.y + 0.1f;
-        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -62,14 +53,14 @@ public class CharacterController2D : MonoBehaviour
         CheckContacts();
         if(!canAttack)
         {
-            playAnimation(animationAttack, attackCooldownTime/animationAttack.Length);
+            ac.playAnimation(AnimationController.AnimationType.ATTACK);//, attackCooldownTime/animationAttack.Length);
         }
         else if (attack && canAttack)
         {
             cooldownCoroutine = AttackCooldown(attackCooldownTime);
             StartCoroutine(cooldownCoroutine);
             canAttack = false;
-            playAnimation(animationAttack, attackCooldownTime / animationAttack.Length);
+            ac.playAnimation(AnimationController.AnimationType.ATTACK);//, attackCooldownTime / animationAttack.Length);
         }
         else if(canAttack)
         {
@@ -90,27 +81,27 @@ public class CharacterController2D : MonoBehaviour
                 if(jump)
                 {
                     rb.velocity = new Vector2(dx, jumpSpeed);
-                    playAnimation(animationInAir, 0.2f);
+                    ac.playAnimation(AnimationController.AnimationType.INAIR);//, 0.2f);
                 }
                 else if(duck)
                 {
                     rb.velocity = new Vector2(dx / 2, 0);
-                    playAnimation(animationDucking, 0.2f);
+                    ac.playAnimation(AnimationController.AnimationType.DUCKING);//, 0.2f);
                 }
                 else if(dx != 0)
                 {
                     rb.velocity = new Vector2(dx, 0);
-                    playAnimation(animationWalking, 0.1f);
+                    ac.playAnimation(AnimationController.AnimationType.WALKING);//, 0.1f);
                 }
                 else
                 {
-                    playAnimation(animationIdle, 0.9f);
+                    ac.playAnimation(AnimationController.AnimationType.IDLE);//, 0.9f);
                 }
             }
             else
             {
                 rb.velocity = new Vector2(dx, rb.velocity.y);
-                playAnimation(animationInAir, 0.2f);
+                ac.playAnimation(AnimationController.AnimationType.INAIR);//, 0.2f);
             }
             
             if (dx > 0)
@@ -181,31 +172,6 @@ public class CharacterController2D : MonoBehaviour
         }
         return false;
         //return contactDown || (contactLeft && contactRight);
-    }
-    void playAnimation(Sprite[] animation, float t, bool flipped = false)
-    {
-        if (animation.Length == 0)
-            return;
-
-        if (animation != lastAnim)
-        {
-            lastAnim = animation;
-            animationTime = 0.0f;
-            animIndex = 0;
-
-            sr.sprite = animation[animIndex];
-            sr.flipX = flipped;
-        }
-
-        
-        if (animationTime >= t)
-        {
-            animationTime -= t;
-            animIndex = (animIndex + 1) % animation.Length;
-            sr.sprite = animation[animIndex];
-            sr.flipX = flipped;
-        }
-        animationTime += Time.deltaTime;
     }
     public bool IsBlocked(int direction)
     {
