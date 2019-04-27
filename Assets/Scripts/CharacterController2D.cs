@@ -74,7 +74,19 @@ public class CharacterController2D : MonoBehaviour
         else if(canAttack)
         {
             float dx = movementX * speed;
-            float dy = 0.0f;
+
+            if (dx > 0)
+            {
+                direction = 1;
+                this.transform.localEulerAngles = new Vector3(0, 0, 0);
+            }
+            else if (dx < 0)
+            {
+                direction = -1;
+                this.transform.localEulerAngles = new Vector3(0, 180, 0);
+            }
+
+            //float dy = 0.0f;
             if (contactLeft && dx < 0)
             {
                 dx = 0;
@@ -111,18 +123,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 rb.velocity = new Vector2(dx, rb.velocity.y);
                 playAnimation(animationInAir, 0.2f);
-            }
-            
-            if (dx > 0)
-            {
-                direction = 1;
-                this.transform.localEulerAngles = new Vector3(0, 0, 0);
-            }
-            if (dx < 0)
-            {
-                direction = -1;
-                this.transform.localEulerAngles = new Vector3(0, 180, 0);
-            }
+            }           
         }
 
         // reset controls
