@@ -190,6 +190,12 @@ public class CharacterController2D : MonoBehaviour
         return false;
         //return contactDown || (contactLeft && contactRight);
     }
+    public bool IsBlocked(int direction)
+    {
+        if (direction == 1) return contactRight;
+        else if (direction == -1) return contactLeft;
+        else return false;
+    }
 
     private IEnumerator AttackCooldown(float time)
     {

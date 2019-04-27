@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323ed53b95572874e8ac8baed01588be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxValue: 3
+  maxValue: 10
   secondsToDecrement: 0
 --- !u!114 &1329843974
 MonoBehaviour:
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 0.5, y: 0.5}
-  speed: 2.5
+  speed: 3.5
   jumpSpeed: 3
   canAttack: 1
   attackCooldownTime: 1
@@ -224,6 +224,7 @@ MonoBehaviour:
   contactUp: 0
   contactLeft: 0
   contactRight: 0
+  direction: 1
 --- !u!114 &6171127777966537826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,28 +245,39 @@ MonoBehaviour:
   speed: 0
   floating: 0
   transparent: 1
-  jumpiness: 0.007
+  jumpiness: 0.25
+  thinkTime: 0.5
   pursuitRange: 5
+  patrolRange: 3
   agressionCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: 2
+      outSlope: 2
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -275,7 +287,13 @@ MonoBehaviour:
   inPursuitRange: 0
   state: 0
   nextState: 0
+  dx: 0
+  currentDX: 0
+  doAttack: 0
+  doJump: 0
   startPoint: {x: 0, y: 0, z: 0}
+  patrolDirection: 0
+  t: 0
 --- !u!1 &3221463688646554934
 GameObject:
   m_ObjectHideFlags: 0
