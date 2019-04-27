@@ -2,6 +2,7 @@
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] ParticleSystem blood;
     public int maxValue;
 
     public int secondsToDecrement;
@@ -14,7 +15,20 @@ public class Health : MonoBehaviour
     public int Value
     {
         get { return value; }
-        set { this.value = Mathf.Clamp(value, 0, maxValue); }
+        set {
+            if (value < this.value)
+            {
+                if (blood != null)
+                {
+                    blood.Emit(10);
+                }
+                else
+                {
+                    Debug.LogWarning(this.gameObject.name + " does not have a blood emitter");
+                }
+            }
+            this.value = Mathf.Clamp(value, 0, maxValue);
+        }
     }
 
     protected virtual void Awake()
@@ -47,15 +61,15 @@ public class Health : MonoBehaviour
     {
         float r = Ratio;
         Gizmos.color = Color.gray;
-        Gizmos.DrawCube(this.transform.position + new Vector3(0, 1, 0), new Vector3(1, 0.1f, 0.1f));
-        Gizmos.color = this.gameObject.layer == 10/*"Player"*/? Color.blue:Color.red;
-        Gizmos.DrawCube(this.transform.position + new Vector3(-0.5f + (r) / 2, 1, 0), new Vector3(r, 0.1f, 0.1f));
+        Gizmos.DrawCube(this.transform.position - new Vector3(0, 0.5f, 0), new Vector3(1, 0.1f, 0.1f));
+        Gizmos.color = this.gameObject.layer == 10/*"Player"*/? Color.red:Color.magenta;
+        Gizmos.DrawCube(this.transform.position - new Vector3(-0.5f + (r) / 2, 0.5f, 0), new Vector3(r, 0.1f, 0.1f));
         //Gizmos.DrawCube(this.transform.position + new Vector3(-0.5f +(1- r) / 2, 1, 0), new Vector3(1 - r, 0.1f, 0.1f));
         //Gizmos.DrawCube(this.transform.position + new Vector3(-Ratio / 2, 1, 0), new Vector3(Ratio, 0.1f, 0.1f));
         //Gizmos.color = Color.red;
         //Gizmos.DrawCube(this.transform.position + new Vector3(-0.5f + r / 2, 1, 0), new Vector3(r, 0.1f, 0.1f));
         Gizmos.color = Color.white;
-        Gizmos.DrawWireCube(this.transform.position + new Vector3(0, 1, 0), new Vector3(1, 0.1f, 0.1f));
+        Gizmos.DrawWireCube(this.transform.position - new Vector3(0, 0.5f, 0), new Vector3(1, 0.1f, 0.1f));
     }
 
 }
