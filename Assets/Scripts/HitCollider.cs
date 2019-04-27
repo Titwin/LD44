@@ -10,7 +10,7 @@ public class HitCollider : TriggerCollider
 
         if (character == null)
         {
-            Debug.LogWarning("character is null on HitBox on GameObject " + gameObject.name);
+            Debug.LogError("character is null on HitBox on GameObject " + gameObject.name);
         }
     }
 }

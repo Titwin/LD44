@@ -27,12 +27,12 @@ public class HUD : MonoBehaviour
 
     protected virtual void UpdateHealthBar()
     {
-        float healthPercentage = Mathf.Clamp01(game.Player.Health.Value / (float)game.Player.Health.Max);
+        float healthPercentage = Mathf.Clamp01(game.Player.health.Value / (float)game.Player.health.Max);
 
         var healthBarScale = healthBar.transform.localScale;
         healthBarScale.x = healthBarStartScale.x * healthPercentage;
         healthBar.transform.localScale = healthBarScale;
 
-        healthText.text = game.Player.Health.Value.ToString("00");
+        healthText.text = game.Player.health.Value.ToString("00");
     }
 }

@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class AttackCollider : TriggerCollider
 {
-    public List<IAttackable> InRange { get; private set; }
+    public List<Attackable> InRange { get; private set; }
     public LayerMask attackableMask;
     protected override void Awake()
     {
         base.Awake();
 
-        InRange = new List<IAttackable>();
+        InRange = new List<Attackable>();
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)

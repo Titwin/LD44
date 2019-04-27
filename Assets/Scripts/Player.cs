@@ -16,24 +16,50 @@ public class Player : Character
         thePlayer = this;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         // set the movement actions
         float movementX = Input.GetAxis("Horizontal");
         bool jump = Input.GetButtonDown("Jump");
         bool duck = Input.GetButton("Duck");
         bool attack = Input.GetButtonDown("Fire1");
         Controller.Move(movementX, jump, attack, duck);
+
+        if (Controller.canAttack && attack)
+        {
+            Attack();
+        }
     }
 
-    internal bool OnPickObject(PickableObject pickableObject)
+    public bool TryPick(Pickable pickableObject)
     {
         // TODO: implement picking behaviour
         // - check pickableObject.pickableType
         // - if object picked:
         // --  do the action associated to picking
         // - return true in case the object was picked
-        Debug.Log("Pick " + pickableObject.name + "(" + pickableObject.objectType+")");
+
+        var weapon = pickableObject.item as Weapon;
+        if (weapon != null)
+        {
+            SetWeapon(weapon);
+        }
+
+        var consumable = pickableObject.item as ConsumableItem;
+        if (consumable != null)
+        {
+            health.Value += consumable.healthModifier;
+        }
+
+        Debug.Log(name + " has picked " + pickableObject.name + "(" + pickableObject.item.GetType() + ")");
         return true;
+    }
+
+    protected virtual void SetWeapon(Weapon weapon)
+    {
+        this.weapon.damages = weapon.damages;
+        health.Value += weapon.healthModifier - this.weapon.healthModifier;
     }
 }

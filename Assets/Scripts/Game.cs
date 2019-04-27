@@ -19,7 +19,7 @@ public class Game : MonoBehaviour
     {
         if (!IsOver)
         {
-            if (Player.Health.Value <= 0)
+            if (Player.health.Value <= 0)
             {
                 StartCoroutine(Over());
             }

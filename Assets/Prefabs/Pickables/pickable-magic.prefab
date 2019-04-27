@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8193870618883085905}
   - component: {fileID: 7167649433261221314}
   - component: {fileID: 1644457598322073512}
+  - component: {fileID: 3875183673332791516}
   m_Layer: 0
   m_Name: pickable-magic
   m_TagString: Untagged
@@ -109,4 +110,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95613f6b351183d4c8644388ccda90ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectType: 4
+  item: {fileID: 3875183673332791516}
+--- !u!114 &3875183673332791516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193870618883085935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88819219f349e4488f92ac6c51e73a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damages: 4
+  healthModifier: -3
