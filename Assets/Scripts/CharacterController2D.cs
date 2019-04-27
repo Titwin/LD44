@@ -1,4 +1,4 @@
-﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +28,12 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] bool contactLeft = false;
     [SerializeField] bool contactRight = false;
 
+    // these values are resetted at the end of the frame, do not use after LateUpdate()
+    float movementX = 0;
+    bool jump = false;
+    bool duck = false;
+    bool attack = false;
+
     // animator hash values
     int idleHash;
     int walkingHash;
@@ -36,7 +42,8 @@ public class CharacterController2D : MonoBehaviour
     int inAirHash;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         distToGround = GetComponent<CapsuleCollider2D>().bounds.extents.y + 0.1f;
@@ -50,9 +57,13 @@ public class CharacterController2D : MonoBehaviour
         duckingHash = Animator.StringToHash("ducking");
         inAirHash = Animator.StringToHash("inAir");
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    private void LateUpdate()
     {
         animator.ResetTrigger(idleHash);
         animator.ResetTrigger(walkingHash);
@@ -62,22 +73,22 @@ public class CharacterController2D : MonoBehaviour
 
         CheckContacts();
         {
-            float dx = Input.GetAxis("Horizontal") * speed;
-            if(contactLeft && dx < 0)
+            float dx = movementX * speed;
+            if (contactLeft && dx < 0)
             {
                 dx = 0;
 
             }
-            else if(contactRight && dx > 0)
+            else if (contactRight && dx > 0)
             {
                 dx = 0;
             }
-            if (IsGrounded() && Input.GetButtonDown("Jump"))
+            if (IsGrounded() && jump)
             {
                 rb.velocity = new Vector2(dx, jumpSpeed);
                 animator.SetTrigger(inAirHash);
             }
-            else if (IsGrounded() && Input.GetButton("Duck"))
+            else if (IsGrounded() && duck)
             {
                 rb.velocity = new Vector2(dx / 2, 0);
                 animator.SetTrigger(duckingHash);
@@ -85,7 +96,7 @@ public class CharacterController2D : MonoBehaviour
             else
             {
                 rb.velocity = new Vector2(dx, rb.velocity.y);
-                if(rb.velocity == new Vector2(0,0))
+                if (rb.velocity == new Vector2(0, 0))
                 {
                     animator.SetTrigger(idleHash);
                 }
@@ -100,19 +111,31 @@ public class CharacterController2D : MonoBehaviour
             animator.SetTrigger(inAirHash);
             //rb.velocity = new Vector2(dx, rb.velocity.y);
         }*/
-
-        if (Input.GetButtonDown("Fire1") && canAttack)
+        if (attack && canAttack)
         {
             cooldownCoroutine = AttackCooldown(attackCooldownTime);
             StartCoroutine(cooldownCoroutine);
             canAttack = false;
         }
-        if(!canAttack)
+        if (!canAttack)
         {
             animator.SetTrigger(attackingHash);
         }
+
+        // reset controls
+        movementX = 0;
+        jump = false;
+        duck = false;
+        attack = false;
     }
 
+    public void Move(float movementX, bool jump, bool attack, bool duck)
+    {
+        this.movementX = movementX;
+        this.jump = jump;
+        this.attack = attack;
+        this.duck = duck;
+    }
     void CheckContacts()
     {
         contactDown = false;
@@ -185,11 +208,11 @@ public class CharacterController2D : MonoBehaviour
         }
         if (contactRight)
         {
-            Gizmos.DrawSphere(this.transform.position + new Vector3(0.5f, 0,0), 0.1f);
+            Gizmos.DrawSphere(this.transform.position + new Vector3(0.5f, 0, 0), 0.1f);
         }
         if (contactLeft)
         {
-            Gizmos.DrawSphere(this.transform.position - new Vector3(0.5f, 0,0), 0.1f);
+            Gizmos.DrawSphere(this.transform.position - new Vector3(0.5f, 0, 0), 0.1f);
         }
     }
 }
