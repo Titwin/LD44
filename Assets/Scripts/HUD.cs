@@ -28,7 +28,7 @@ public class HUD : MonoBehaviour
 
     protected virtual void UpdateHealthBar()
     {
-        float healthPercentage = game.Health.Value / game.Health.StartValue;
+        float healthPercentage = game.Player.Health.Value / game.Player.Health.StartValue;
 
         var healthBarScale = healthBar.transform.localScale;
         healthBarScale.x = healthBarStartScale.x * healthPercentage;

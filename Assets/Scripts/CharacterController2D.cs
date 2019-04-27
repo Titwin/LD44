@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 // This script moves the character controller forward
 // and sideways based on the arrow keys.
@@ -7,6 +6,7 @@ using System.Collections;
 // Make sure to attach a character controller to the same game object.
 // It is recommended that you make only one call to Move or SimpleMove per frame.
 
+[RequireComponent(typeof(CharacterController2D))]
 public class CharacterController2D : MonoBehaviour
 {
     CharacterController characterController;

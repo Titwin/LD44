@@ -6,23 +6,20 @@ public class Game : MonoBehaviour
 {
     public float gameOverDuration;
 
-    public Health Health { get; private set; }
-
-    public CharacterController2D Character { get; private set; }
+    public Player Player { get; private set; }
 
     public bool IsOver { get; private set; }
 
     protected virtual void Start()
     {
-        Health = FindObjectOfType<Health>();
-        Character = FindObjectOfType<CharacterController2D>();
+        Player = FindObjectOfType<Player>();
     }
 
     protected virtual void LateUpdate()
     {
         if (!IsOver)
         {
-            if (Health.Value <= 0)
+            if (Player.Health.Value <= 0)
             {
                 StartCoroutine(Over());
             }
