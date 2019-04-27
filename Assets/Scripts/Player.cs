@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController2D))]
@@ -42,7 +43,7 @@ public class Player : Character
         }
     }
 
-    public bool TryPick(Pickable pickableObject)
+    public bool TryPick(MonoBehaviour item)
     {
         // TODO: implement picking behaviour
         // - check pickableObject.pickableType
@@ -50,19 +51,19 @@ public class Player : Character
         // --  do the action associated to picking
         // - return true in case the object was picked
 
-        var weapon = pickableObject.item as Weapon;
+        var weapon = item as Weapon;
         if (weapon != null)
         {
             SetWeapon(weapon);
         }
 
-        var consumable = pickableObject.item as ConsumableItem;
+        var consumable = item as ConsumableItem;
         if (consumable != null)
         {
             health.Value += consumable.healthModifier;
         }
 
-        Debug.Log(name + " has picked " + pickableObject.name + "(" + pickableObject.item.GetType() + ")");
+        Debug.Log(name + " has picked " + item.name + "(" + item.GetType() + ")");
         return true;
     }
 

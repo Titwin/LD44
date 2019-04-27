@@ -12,7 +12,7 @@ public class Pickable : MonoBehaviour
         Player player = other.gameObject.GetComponent<Player>();
         if (player != null)
         {
-            bool picked = player.TryPick(this);
+            bool picked = player.TryPick(item);
             if (picked)
             {
                 Destroy();

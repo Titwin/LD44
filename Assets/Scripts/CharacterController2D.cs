@@ -9,13 +9,17 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D rb;
     public AnimationController ac;
 
+    private Character character;
+
     public Vector2 size;
     public float speed = 1;
     public float jumpSpeed = 1.0f;
 
     public bool canAttack = true;
+    public bool isInteracting = false;
     public float attackCooldownTime = 1;
     private IEnumerator cooldownCoroutine;
+    [SerializeField] Interactable interactable;
 
     private float distToGround;
     
@@ -41,6 +45,7 @@ public class CharacterController2D : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         distToGround = GetComponent<CapsuleCollider2D>().bounds.extents.y + 0.1f;
+        character = GetComponent<Character>();
     }
 
     // Update is called once per frame
@@ -65,7 +70,19 @@ public class CharacterController2D : MonoBehaviour
         else if(canAttack)
         {
             float dx = movementX * speed;
-            float dy = 0.0f;
+
+            if (dx > 0)
+            {
+                direction = 1;
+                this.transform.localEulerAngles = new Vector3(0, 0, 0);
+            }
+            else if (dx < 0)
+            {
+                direction = -1;
+                this.transform.localEulerAngles = new Vector3(0, 180, 0);
+            }
+
+            //float dy = 0.0f;
             if (contactLeft && dx < 0)
             {
                 dx = 0;
@@ -87,6 +104,11 @@ public class CharacterController2D : MonoBehaviour
                 {
                     rb.velocity = new Vector2(dx / 2, 0);
                     ac.playAnimation(AnimationController.AnimationType.DUCKING);//, 0.2f);
+
+                    if(interactable!= null && interactable.CanInteract(this.character))
+                    {
+                        StartCoroutine(DoInteraction(interactable));
+                    }
                 }
                 else if(dx != 0)
                 {
@@ -184,6 +206,27 @@ public class CharacterController2D : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         canAttack = true;
+    }
+    private IEnumerator DoInteraction(Interactable interactable)
+    {
+        if (!isInteracting)
+        {
+            isInteracting = true;
+            interactable.DoInteract(character);
+            yield return new WaitForSeconds(interactable.interactionDuration);
+            isInteracting = false;
+        }
+    }
+    internal void ExitedInteractable(Interactable _interactable)
+    {
+        if (this.interactable == _interactable)
+            interactable = null;
+    }
+
+    internal void EnteredInteractable(Interactable _interactable)
+    {
+        this.interactable = _interactable;
+       
     }
 
     private void OnDrawGizmos()
