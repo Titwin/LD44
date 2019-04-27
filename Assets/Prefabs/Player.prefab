@@ -234,10 +234,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7191536729198759038}
   - component: {fileID: 7191536729198759033}
-  - component: {fileID: 7191536729198759032}
   - component: {fileID: 7191536729198759037}
   - component: {fileID: 7191536729198759026}
-  - component: {fileID: 7191536729198759039}
   - component: {fileID: 7191536729198759036}
   - component: {fileID: 5584389806026396461}
   - component: {fileID: 1142639815982257688}
@@ -314,25 +312,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7191536729198759032
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7191536729198759035}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 773503a5a6ff9684ea082137c4cec100, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!50 &7191536729198759037
 Rigidbody2D:
   serializedVersion: 4
@@ -370,32 +349,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.06}
   m_Size: {x: 0.54, y: 0.94}
   m_Direction: 0
---- !u!61 &7191536729198759039
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7191536729198759035}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.61, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &7191536729198759036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,11 +361,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da78ac09814107b40ab2ca83f36b7e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 0, y: 0}
+  size: {x: 1, y: 1}
   speed: 4.5
   jumpSpeed: 17
   canAttack: 1
-  attackCooldownTime: 0.5
+  attackCooldownTime: 0.2
+  animIndex: 0
+  animationTime: 0
+  animationIdle:
+  - {fileID: 21300000, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300002, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  animationWalking:
+  - {fileID: 21300046, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300048, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300050, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300052, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  animationDucking:
+  - {fileID: 21300004, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300006, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  animationInAir:
+  - {fileID: 21300008, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300010, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  animationAttack:
+  - {fileID: 21300022, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300024, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300026, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
   contactDown: 0
   contactUp: 0
   contactLeft: 0

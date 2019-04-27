@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323ed53b95572874e8ac8baed01588be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxValue: 10
+  maxValue: 3
   secondsToDecrement: 0
 --- !u!114 &1329843974
 MonoBehaviour:
@@ -220,6 +220,13 @@ MonoBehaviour:
   jumpSpeed: 3
   canAttack: 1
   attackCooldownTime: 1
+  animIndex: 0
+  animationTime: 0
+  animationIdle: []
+  animationWalking: []
+  animationDucking: []
+  animationInAir: []
+  animationAttack: []
   contactDown: 0
   contactUp: 0
   contactLeft: 0
