@@ -28,7 +28,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] bool contactUp = false;
     [SerializeField] bool contactLeft = false;
     [SerializeField] bool contactRight = false;
-
+    [SerializeField] int direction = 1;
     // these values are resetted at the end of the frame, do not use after LateUpdate()
     float movementX = 0;
     bool jump = false;
@@ -105,6 +105,16 @@ public class CharacterController2D : MonoBehaviour
                 {
                     animator.SetTrigger(walkingHash);
                 }
+            }
+            if (dx > 0)
+            {
+                direction = 1;
+                this.transform.localEulerAngles = new Vector3(0, 0, 0);
+            }
+            if (dx < 0)
+            {
+                direction = -1;
+                this.transform.localEulerAngles = new Vector3(0, 180, 0);
             }
         }
         /*else

@@ -24,11 +24,38 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        lastDecrementDuration += Time.deltaTime;
-        if (lastDecrementDuration >= secondsToDecrement)
+        if (secondsToDecrement > 0)
         {
-            Value--;
-            lastDecrementDuration = 0;
+            lastDecrementDuration += Time.deltaTime;
+            if (lastDecrementDuration >= secondsToDecrement)
+            {
+                Value--;
+                lastDecrementDuration = 0;
+            }
         }
     }
+
+    public float Ratio
+    {
+        get
+        {
+            return ((float)this.value) / maxValue;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        float r = Ratio;
+        Gizmos.color = Color.gray;
+        Gizmos.DrawCube(this.transform.position + new Vector3(0, 1, 0), new Vector3(1, 0.1f, 0.1f));
+        Gizmos.color = this.gameObject.layer == 10/*"Player"*/? Color.blue:Color.red;
+        Gizmos.DrawCube(this.transform.position + new Vector3(-0.5f + (r) / 2, 1, 0), new Vector3(r, 0.1f, 0.1f));
+        //Gizmos.DrawCube(this.transform.position + new Vector3(-0.5f +(1- r) / 2, 1, 0), new Vector3(1 - r, 0.1f, 0.1f));
+        //Gizmos.DrawCube(this.transform.position + new Vector3(-Ratio / 2, 1, 0), new Vector3(Ratio, 0.1f, 0.1f));
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawCube(this.transform.position + new Vector3(-0.5f + r / 2, 1, 0), new Vector3(r, 0.1f, 0.1f));
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireCube(this.transform.position + new Vector3(0, 1, 0), new Vector3(1, 0.1f, 0.1f));
+    }
+
 }

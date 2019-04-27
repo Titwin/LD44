@@ -43,7 +43,7 @@ public class Enemy : Character
         float distanceToPlayer = Vector2.Distance(this.transform.position, Player.thePlayer.transform.position);
         //AIState nextState;
 
-        scared = false;
+        scared = Random.value > agressionCurve.Evaluate(health.Ratio);
         inAttackRange = attackCollider.InRange.Contains(Player.thePlayer);
         inPursuitRange = distanceToPlayer < pursuitRange;
         
@@ -65,14 +65,13 @@ public class Enemy : Character
             // pursuit
             nextState = AIState.pursuit;
             bool jump = Player.thePlayer.transform.position.y > this.transform.position.x && Random.value < jumpiness;
-            controller.Move(Mathf.Sign(Player.thePlayer.transform.position.x - this.transform.position.x), jump, false, false);
+            float moveNoise = Random.Range(0.8f, 1.2f);
+            controller.Move(Mathf.Sign(Player.thePlayer.transform.position.x - this.transform.position.x)* moveNoise, jump, false, false);
         }
         else
         {
             // patrol
             nextState = AIState.patrol;
         }
-
-        
     }
 }

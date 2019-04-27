@@ -36,7 +36,7 @@ public abstract class Character : Attackable
     {
         foreach (var character in attackCollider.InRange)
         {
-            character.DoDamage(weapon.damages);
+            character.DoDamage(this,weapon.damages);
         }
     }
 }
