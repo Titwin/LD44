@@ -79,7 +79,7 @@ public class CharacterController2D : MonoBehaviour
         else
         {
             animator.SetTrigger(inAirHash);
-            rb.velocity = new Vector2(dx, rb.velocity.y);
+            //rb.velocity = new Vector2(dx, rb.velocity.y);
         }
 
         if (Input.GetButtonDown("Fire1") && canAttack)
