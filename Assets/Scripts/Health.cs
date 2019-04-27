@@ -2,11 +2,11 @@
 
 public class Health : MonoBehaviour
 {
-    public int startValue;
+    public int maxValue;
 
     public int secondsToDecrement;
 
-    public int StartValue { get { return startValue; } }
+    public int Max { get { return maxValue; } }
 
     public int Value { get; set; }
 
@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Value = startValue;
+        Value = maxValue;
     }
 
     void Update()
