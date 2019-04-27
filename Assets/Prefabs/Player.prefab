@@ -142,10 +142,10 @@ GameObject:
   - component: {fileID: 7191536729198759038}
   - component: {fileID: 7191536729198759033}
   - component: {fileID: 7191536729198759032}
-  - component: {fileID: 7191536729198759036}
   - component: {fileID: 7191536729198759037}
   - component: {fileID: 7191536729198759026}
   - component: {fileID: 7191536729198759039}
+  - component: {fileID: 7191536729198759036}
   - component: {fileID: 5584389806026396461}
   - component: {fileID: 4946876684217720536}
   m_Layer: 0
@@ -239,22 +239,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7191536729198759036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7191536729198759035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da78ac09814107b40ab2ca83f36b7e4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  jumpSpeed: 5.4
-  canAttack: 1
-  attackCooldownTime: 0.5
 --- !u!50 &7191536729198759037
 Rigidbody2D:
   serializedVersion: 4
@@ -318,6 +302,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.61, y: 0.95}
   m_EdgeRadius: 0
+--- !u!114 &7191536729198759036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191536729198759035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da78ac09814107b40ab2ca83f36b7e4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  jumpSpeed: 5.4
+  canAttack: 1
+  attackCooldownTime: 0.5
 --- !u!114 &5584389806026396461
 MonoBehaviour:
   m_ObjectHideFlags: 0
