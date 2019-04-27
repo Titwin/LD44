@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(Animator))]
 public class CharacterController2D : MonoBehaviour
 {
@@ -29,7 +29,7 @@ public class CharacterController2D : MonoBehaviour
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        distToGround = GetComponent<CircleCollider2D>().bounds.extents.y + 0.1f;
+        distToGround = GetComponent<CapsuleCollider2D>().bounds.extents.y + 0.1f;
 
         int jumpHash = Animator.StringToHash("Jump");
         int runStateHash = Animator.StringToHash("Base Layer.Run");
