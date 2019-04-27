@@ -12,7 +12,9 @@ public class Enemy : Character
     [SerializeField] bool transparent = true;
     [SerializeField] float jumpiness = 0;
     [Header("Decision parameters")]
+    [SerializeField] float thinkTime = 0.01f;
     [SerializeField] float pursuitRange = 0;
+    [SerializeField] float patrolRange = 0;
     [SerializeField] AnimationCurve agressionCurve;
 
     [Header("Decision flags (debug)")]
@@ -25,12 +27,16 @@ public class Enemy : Character
     {
         idle, patrol, pursuit, attack, scape, heal
     }
-    [Header("Init and state values")]
+    [Header("Init and state values (debug)")]
     [SerializeField] AIState state = AIState.idle;
     [SerializeField] AIState nextState;
-
+    [SerializeField] float dx = 0;
+    [SerializeField] float currentDX = 0;
+    [SerializeField] bool doAttack = false;
+    [SerializeField] bool doJump = false;
     [SerializeField] Vector3 startPoint;
-
+    [SerializeField] int patrolDirection;
+    [SerializeField] float t;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,39 +46,77 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        float distanceToPlayer = Vector2.Distance(this.transform.position, Player.thePlayer.transform.position);
-        //AIState nextState;
-
-        scared = false;
-        inAttackRange = attackCollider.InRange.Contains(Player.thePlayer);
-        inPursuitRange = distanceToPlayer < pursuitRange;
-        
-        // if it is a coward, it will try to  move away
-        if (scared)
+        t += Time.deltaTime*Random.Range(0.7f,1.3f);
+        if(t>= thinkTime)
         {
-            // move away
-            nextState = AIState.scape;
-        }
-        // if it can attack, it will attack
-        else if (inAttackRange && controller.canAttack)
-        {
-            // attack
-            nextState = AIState.attack;
-        }
-        // if it cannot attack, but the player is in range, it will chase it up if it makes sense
-        else if (inPursuitRange)
-        {
-            // pursuit
-            nextState = AIState.pursuit;
-            bool jump = Player.thePlayer.transform.position.y > this.transform.position.x && Random.value < jumpiness;
-            controller.Move(Mathf.Sign(Player.thePlayer.transform.position.x - this.transform.position.x), jump, false, false);
+            t -= thinkTime;
+            Think();
         }
         else
         {
+            currentDX = Mathf.MoveTowards(currentDX, dx, Time.deltaTime*5);
+        }
+        controller.Move(currentDX, doJump, doAttack, false);
+    }
+
+    void Think()
+    {
+        float signedDistanceX = Player.thePlayer.transform.position.x - this.transform.position.x;
+        float distanceToPlayerXY = Vector2.Distance(this.transform.position, Player.thePlayer.transform.position);
+
+        scared = Random.value > agressionCurve.Evaluate(health.Ratio);
+        inAttackRange = attackCollider.InRange.Contains(Player.thePlayer);
+        inPursuitRange = distanceToPlayerXY < pursuitRange;
+
+        dx = 0;
+        doAttack = false;
+        doJump = false;
+        if (inPursuitRange)
+        {
+            // if it is a coward, it will try to  move away
+            if (scared || Mathf.Abs(signedDistanceX) < attackCollider.transform.localScale.x / 2)
+            {
+                // move away
+                nextState = AIState.scape;
+                dx = -Mathf.Sign(signedDistanceX);
+            }
+            // if it can attack, it will attack
+            else if (inAttackRange && controller.canAttack)
+            {
+                // attack
+                nextState = AIState.attack;
+                dx = 0;
+                doAttack = true;
+            }
+            // if it cannot attack, but the player is in range, it will chase it up if it makes sense
+            else
+            {
+
+                // pursuit
+                nextState = AIState.pursuit;
+                doJump = Player.thePlayer.transform.position.y-Player.thePlayer.Controller.size.y/2 > this.transform.position.x - this.controller.size.y / 2 && Random.value < jumpiness;
+                dx = Mathf.Sign(signedDistanceX);
+            }
+        }
+        else
+        {
+            if (state != AIState.patrol)
+            {
+                startPoint = this.transform.position;
+                patrolDirection = Random.value > 0.5f ? 1 : -1;
+            }
             // patrol
             nextState = AIState.patrol;
+            if (Mathf.Abs(this.transform.position.x - startPoint.x) >= patrolRange)
+            {
+                patrolDirection = -patrolDirection;
+            }
+            dx = patrolDirection;
         }
+        doJump |= controller.IsBlocked((int)Mathf.Sign(dx));
+        dx *= Random.Range(0.8f, 1.2f);
+       
 
-        
+        state = nextState;
     }
 }
