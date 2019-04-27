@@ -11,6 +11,7 @@ public class Player : Character
     protected override void Awake()
     {
         base.Awake();
+
         Controller = GetComponent<CharacterController2D>();
         thePlayer = this;
     }

@@ -2,21 +2,28 @@
 
 public class Health : MonoBehaviour
 {
-    public float startValue;
+    public int maxValue;
 
-    public float decreasePerSecond;
+    public int secondsToDecrement;
 
-    public float StartValue { get { return startValue; } }
+    public int Max { get { return maxValue; } }
 
-    public float Value { get; set; }
+    public int Value { get; set; }
+
+    protected float lastDecrementDuration;
 
     protected virtual void Awake()
     {
-        Value = startValue;
+        Value = maxValue;
     }
 
     void Update()
     {
-        Value -= decreasePerSecond * Time.deltaTime;
+        lastDecrementDuration += Time.deltaTime;
+        if (lastDecrementDuration >= secondsToDecrement)
+        {
+            Value--;
+            lastDecrementDuration = 0;
+        }
     }
 }
