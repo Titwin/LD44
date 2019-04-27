@@ -60,79 +60,88 @@ public class CharacterController2D : MonoBehaviour
     {
         
     }
+
+    int justJumped = 0;
     private void LateUpdate()
     {
         CheckContacts();
-        if(!canAttack)
+        if (justJumped>0)
         {
-            playAnimation(animationAttack, attackCooldownTime/animationAttack.Length);
+            justJumped --;
         }
-        else if (attack && canAttack)
-        {
-            cooldownCoroutine = AttackCooldown(attackCooldownTime);
-            StartCoroutine(cooldownCoroutine);
-            canAttack = false;
-            playAnimation(animationAttack, attackCooldownTime / animationAttack.Length);
-        }
-        else if(canAttack)
-        {
-            float dx = movementX * speed;
-
-            if (dx > 0)
+        else { 
+            if (!canAttack)
             {
-                direction = 1;
-                this.transform.localEulerAngles = new Vector3(0, 0, 0);
+                playAnimation(animationAttack, attackCooldownTime / animationAttack.Length);
             }
-            else if (dx < 0)
+            else if (attack && canAttack)
             {
-                direction = -1;
-                this.transform.localEulerAngles = new Vector3(0, 180, 0);
+                cooldownCoroutine = AttackCooldown(attackCooldownTime);
+                StartCoroutine(cooldownCoroutine);
+                canAttack = false;
+                playAnimation(animationAttack, attackCooldownTime / animationAttack.Length);
             }
-
-            //float dy = 0.0f;
-            if (contactLeft && dx < 0)
+            else if (canAttack)
             {
-                dx = 0;
-            }
-            else if (contactRight && dx > 0)
-            {
-                dx = 0;
-            }
+                float dx = movementX * speed;
 
-
-            if(IsGrounded())
-            {
-                if(jump)
+                if (dx > 0)
                 {
-                    rb.velocity = new Vector2(dx, jumpSpeed);
-                    playAnimation(animationInAir, 0.2f);
+                    direction = 1;
+                    this.transform.localEulerAngles = new Vector3(0, 0, 0);
                 }
-                else if(duck)
+                else if (dx < 0)
                 {
-                    rb.velocity = new Vector2(dx / 2, 0);
-                    playAnimation(animationDucking, 0.2f);
-                    if(interactable!= null && interactable.CanInteract(this.character))
+                    direction = -1;
+                    this.transform.localEulerAngles = new Vector3(0, 180, 0);
+                }
+
+                //float dy = 0.0f;
+                if (contactLeft && dx < 0)
+                {
+                    dx = 0;
+                }
+                else if (contactRight && dx > 0)
+                {
+                    dx = 0;
+                }
+
+
+                if (IsGrounded())
+                {
+                    if (jump)
                     {
-                        StartCoroutine(DoInteraction(interactable));
+                        rb.velocity = new Vector2(dx, jumpSpeed);
+                        playAnimation(animationInAir, 0.2f);
+                        justJumped = 5;
                     }
-                }
-                else if(dx != 0)
-                {
-                    rb.velocity = new Vector2(dx, 0);
-                    playAnimation(animationWalking, 0.1f);
+                    else if (duck)
+                    {
+                        rb.velocity = new Vector2(dx / 2, 0);
+                        playAnimation(animationDucking, 0.2f);
+                        if (interactable != null && interactable.CanInteract(this.character))
+                        {
+                            StartCoroutine(DoInteraction(interactable));
+                        }
+                    }
+                    else if (dx != 0)
+                    {
+                        rb.velocity = new Vector2(dx, 0);
+                        playAnimation(animationWalking, 0.1f);
+                    }
+                    else
+                    {
+                        playAnimation(animationIdle, 0.9f);
+                    }
                 }
                 else
                 {
-                    playAnimation(animationIdle, 0.9f);
+                    rb.velocity = new Vector2(dx, rb.velocity.y);
+                    playAnimation(animationInAir, 0.2f);
                 }
             }
-            else
-            {
-                rb.velocity = new Vector2(dx, rb.velocity.y);
-                playAnimation(animationInAir, 0.2f);
-            }           
-        }
 
+        }
         // reset controls
         movementX = 0;
         jump = false;
@@ -157,10 +166,12 @@ public class CharacterController2D : MonoBehaviour
         contactCount = rb.GetContacts(contacts);
         for (int c = 0; c < contactCount; ++c)
         {
-            if (contacts[c].collider.gameObject != this.gameObject)
+            
+            if ((contacts[c].collider.attachedRigidbody == null || contacts[c].collider.attachedRigidbody  != rb) && !contacts[c].collider.isTrigger)
             {
                 if (contacts[c].point.y < transform.position.y - size.y/2+0.01f)
                 {
+                    Debug.Log("floor:" + contacts[c].collider.name);
                     contactDown = true;
                 }
                 else if (contacts[c].point.y > transform.position.y + size.y / 2 - 0.01f)
@@ -182,13 +193,13 @@ public class CharacterController2D : MonoBehaviour
     public bool IsGrounded()
     {
         //return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position - Vector3.up* distToGround, -Vector2.up, 0.1f);
+        /*RaycastHit2D hit = Physics2D.Raycast(transform.position - Vector3.up* distToGround, -Vector2.up, 0.1f);
         if (hit.collider != null && hit.collider.gameObject!=this.gameObject)
         {
             return true;
         }
-        return false;
-        //return contactDown || (contactLeft && contactRight);
+        return false;*/
+        return contactDown || (contactLeft && contactRight);
     }
     void playAnimation(Sprite[] animation, float t, bool flipped = false)
     {
@@ -258,7 +269,8 @@ public class CharacterController2D : MonoBehaviour
             if (contacts[c].collider.gameObject != this.gameObject)
             {
                 Gizmos.DrawSphere(contacts[c].point, 0.1f);
-               // Gizmos.DrawLine(contacts[c].collider.transform.position, this.transform.position);
+                Gizmos.DrawWireSphere(contacts[c].point, 0.5f);
+                // Gizmos.DrawLine(contacts[c].collider.transform.position, this.transform.position);
             }
         }
         Gizmos.color = Color.red;
