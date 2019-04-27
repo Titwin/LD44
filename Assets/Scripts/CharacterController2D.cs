@@ -177,7 +177,7 @@ public class CharacterController2D : MonoBehaviour
             return true;
         }
         return false;*/
-        return contactDown;
+        return contactDown || (contactLeft && contactRight);
     }
 
     private IEnumerator AttackCooldown(float time)
