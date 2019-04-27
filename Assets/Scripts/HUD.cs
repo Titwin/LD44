@@ -18,6 +18,16 @@ public class HUD : MonoBehaviour
 
     protected virtual void LateUpdate()
     {
+        if (!game.IsOver)
+        {
+            UpdateHealthBar();
+        }
+
+        gameOverScreen.gameObject.SetActive(game.IsOver);
+    }
+
+    protected virtual void UpdateHealthBar()
+    {
         float healthPercentage = game.Health.Value / game.Health.StartValue;
 
         var healthBarScale = healthBar.transform.localScale;
