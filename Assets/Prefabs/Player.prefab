@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 4946876684217720536}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,6 +318,10 @@ MonoBehaviour:
   jumpSpeed: 5.4
   canAttack: 1
   attackCooldownTime: 0.5
+  contactDown: 0
+  contactUp: 0
+  contactLeft: 0
+  contactRight: 0
 --- !u!114 &5584389806026396461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startValue: 10
-  secondsToDecrement: 1
+  secondsToDecrement: 5
 --- !u!114 &4946876684217720536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 2106818717187214646}
+  showTriggerDebug: 0
 --- !u!1 &7191536729617224054
 GameObject:
   m_ObjectHideFlags: 0
