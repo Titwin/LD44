@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7191536729198759039}
   - component: {fileID: 7191536729198759036}
   - component: {fileID: 5584389806026396461}
+  - component: {fileID: 4896218109829806862}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -184,6 +185,10 @@ MonoBehaviour:
   jumpSpeed: 5.4
   canAttack: 1
   attackCooldownTime: 0.5
+  contactDown: 0
+  contactUp: 0
+  contactLeft: 0
+  contactRight: 0
 --- !u!114 &5584389806026396461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +203,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startValue: 2
   decreasePerSecond: 0.2
+--- !u!114 &4896218109829806862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7191536729198759035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b84759f3ccbb4e74d8ed25228495e324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7191536729617224054
 GameObject:
   m_ObjectHideFlags: 0
