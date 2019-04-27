@@ -977,6 +977,11 @@ PrefabInstance:
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 311
       objectReference: {fileID: 0}
+    - target: {fileID: 7523213993654582332, guid: 977536c15060d314c8b34a60822ede40,
+        type: 3}
+      propertyPath: ac
+      value: 
+      objectReference: {fileID: 1682235276}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 977536c15060d314c8b34a60822ede40, type: 3}
 --- !u!1 &1656330311
@@ -1061,6 +1066,18 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1682235276 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2205573553649715535, guid: 977536c15060d314c8b34a60822ede40,
+    type: 3}
+  m_PrefabInstance: {fileID: 1641443885}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995fd6ca5a3611546b3754c69e5472a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1697724019
 PrefabInstance:
   m_ObjectHideFlags: 0

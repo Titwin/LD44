@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damages: 1
   healthModifier: 0
+  type: 0
 --- !u!1 &2643653521363503397
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,9 +74,9 @@ GameObject:
   - component: {fileID: 2643653521363503399}
   - component: {fileID: 8391064439834085293}
   - component: {fileID: 351005029545633635}
-  - component: {fileID: 5425403830551240499}
   - component: {fileID: 7523213993654582332}
   - component: {fileID: 6171127777966537826}
+  - component: {fileID: 2205573553649715535}
   m_Layer: 9
   m_Name: enemy-blood-imp
   m_TagString: Untagged
@@ -186,25 +187,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!95 &5425403830551240499
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2643653521363503397}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &7523213993654582332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da78ac09814107b40ab2ca83f36b7e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ac: {fileID: 2205573553649715535}
   size: {x: 0.5, y: 0.5}
   speed: 3.5
   jumpSpeed: 3
@@ -224,13 +207,6 @@ MonoBehaviour:
   isInteracting: 0
   attackCooldownTime: 1
   interactable: {fileID: 0}
-  animIndex: 0
-  animationTime: 0
-  animationIdle: []
-  animationWalking: []
-  animationDucking: []
-  animationInAir: []
-  animationAttack: []
   contactDown: 0
   contactUp: 0
   contactLeft: 0
@@ -305,6 +281,34 @@ MonoBehaviour:
   startPoint: {x: 0, y: 0, z: 0}
   patrolDirection: 0
   t: 0
+--- !u!114 &2205573553649715535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2643653521363503397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995fd6ca5a3611546b3754c69e5472a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: 0
+  timeIdle: 0.1
+  animationIdle:
+  - {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
+  timeWalking: 0.1
+  animationWalking:
+  - {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
+  timeDucking: 0.1
+  animationDucking:
+  - {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
+  timeInAir: 0.1
+  animationInAir:
+  - {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
+  timeAttack: 0.1
+  animationAttack:
+  - {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
 --- !u!1 &3221463688646554934
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,10 +460,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2643653521363503398}
     m_Modifications:
-    - target: {fileID: 3161829659025088983, guid: 354cdea73841b0649a9d8ef282435dbc,
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
-      propertyPath: m_Name
-      value: bleeding
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088980, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
@@ -516,15 +525,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+    - target: {fileID: 3161829659025088983, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
-      propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 0
+      propertyPath: m_Name
+      value: bleeding
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 354cdea73841b0649a9d8ef282435dbc, type: 3}
