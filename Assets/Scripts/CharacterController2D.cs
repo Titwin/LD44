@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController2D : MonoBehaviour {
-
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(Animator))]
+public class CharacterController2D : MonoBehaviour
+{
     private Rigidbody2D rb;
     private Animator animator;
 
