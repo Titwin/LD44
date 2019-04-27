@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -28,13 +29,6 @@ public class Game : MonoBehaviour
         }
     }
 
-    protected virtual void Restart()
-    {
-        Health.Restart();
-
-        IsOver = false;
-    }
-
     protected IEnumerator Over()
     {
         IsOver = true;
@@ -45,6 +39,6 @@ public class Game : MonoBehaviour
             yield return null;
         }
 
-        Restart();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

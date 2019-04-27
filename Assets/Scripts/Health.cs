@@ -12,16 +12,11 @@ public class Health : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Restart();
+        Value = startValue;
     }
 
     void Update()
     {
         Value -= decreasePerSecond * Time.deltaTime;
-    }
-
-    public void Restart()
-    {
-        Value = startValue;
     }
 }
