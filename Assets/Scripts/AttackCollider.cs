@@ -3,34 +3,39 @@ using UnityEngine;
 
 public class AttackCollider : TriggerCollider
 {
-    public List<Character> InRange { get; private set; }
-
+    public List<IAttackable> InRange { get; private set; }
+    public LayerMask attackableMask;
     protected override void Awake()
     {
         base.Awake();
 
-        InRange = new List<Character>();
+        InRange = new List<IAttackable>();
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
 
-        var hitBox = other.GetComponent<HitCollider>();
-        if (hitBox != null)
+        if (attackableMask == (attackableMask | (1 << other.gameObject.layer)))
         {
-            InRange.Add(hitBox.character);
+            var hitBox = other.GetComponent<HitCollider>();
+            if (hitBox != null)
+            {
+                InRange.Add(hitBox.character);
+            }
         }
     }
 
     protected override void OnTriggerExit2D(Collider2D other)
     {
         base.OnTriggerExit2D(other);
-
-        var hitBox = other.GetComponent<HitCollider>();
-        if (hitBox != null)
+        if (attackableMask == (attackableMask | (1 << other.gameObject.layer)))
         {
-            InRange.Remove(hitBox.character);
+            var hitBox = other.GetComponent<HitCollider>();
+            if (hitBox != null)
+            {
+                InRange.Remove(hitBox.character);
+            }
         }
     }
 }

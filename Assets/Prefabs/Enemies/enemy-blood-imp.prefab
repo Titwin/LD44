@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2643653521363503397}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.15, y: 10.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -122,7 +122,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &5425403830551240499
 Animator:
   serializedVersion: 3
@@ -154,7 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da78ac09814107b40ab2ca83f36b7e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  size: {x: 0.5, y: 0.5}
+  speed: 2
   jumpSpeed: 1
   canAttack: 1
   attackCooldownTime: 1
@@ -180,14 +181,38 @@ MonoBehaviour:
   speed: 0
   floating: 0
   transparent: 1
-  pursuitRange: 0
+  jumpiness: 0.007
+  pursuitRange: 2
   agressionCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  scared: 0
+  inAttackRange: 0
+  inPursuitRange: 0
   state: 0
+  nextState: 0
+  startPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &3221463688646554934
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,3 +354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37636ef8e236a9a47abc9e179b8fd8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackableMask:
+    serializedVersion: 2
+    m_Bits: 1024

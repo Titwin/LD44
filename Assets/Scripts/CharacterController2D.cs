@@ -10,6 +10,7 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
+    public Vector2 size;
     public float speed = 1;
     public float jumpSpeed = 1.0f;
 
@@ -148,11 +149,11 @@ public class CharacterController2D : MonoBehaviour
         {
             if (contacts[c].collider.gameObject != this.gameObject)
             {
-                if (contacts[c].point.y < transform.position.y - 0.49f)
+                if (contacts[c].point.y < transform.position.y - size.y/2+0.01f)
                 {
                     contactDown = true;
                 }
-                else if (contacts[c].point.y > transform.position.y + 0.49f)
+                else if (contacts[c].point.y > transform.position.y + size.y / 2 - 0.01f)
                 {
                     contactUp = true;
                 }
@@ -171,13 +172,13 @@ public class CharacterController2D : MonoBehaviour
     public bool IsGrounded()
     {
         //return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1);
-        /*RaycastHit2D hit = Physics2D.Raycast(transform.position - Vector3.up* distToGround, -Vector2.up, 0.1f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position - Vector3.up* distToGround, -Vector2.up, 0.1f);
         if (hit.collider != null && hit.collider.gameObject!=this.gameObject)
         {
             return true;
         }
-        return false;*/
-        return contactDown || (contactLeft && contactRight);
+        return false;
+        //return contactDown || (contactLeft && contactRight);
     }
 
     private IEnumerator AttackCooldown(float time)
@@ -188,13 +189,14 @@ public class CharacterController2D : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Gizmos.DrawWireCube(this.transform.position, size);
         Gizmos.color = Color.green;
         for (int c = 0; c < contactCount; ++c)
         {
             if (contacts[c].collider.gameObject != this.gameObject)
             {
                 Gizmos.DrawSphere(contacts[c].point, 0.1f);
-                Gizmos.DrawLine(contacts[c].collider.transform.position, this.transform.position);
+               // Gizmos.DrawLine(contacts[c].collider.transform.position, this.transform.position);
             }
         }
         Gizmos.color = Color.red;
