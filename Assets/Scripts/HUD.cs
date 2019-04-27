@@ -3,18 +3,18 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public Game game;
-
     public RectTransform gameOverScreen;
 
     [Header("Health")]
     public Image healthBar;
     public Text healthText;
 
+    protected Game game;
     protected Vector3 healthBarStartScale;
 
     protected virtual void Awake()
     {
+        game = FindObjectOfType<Game>();
         healthBarStartScale = healthBar.transform.localScale;
     }
 
