@@ -8,7 +8,9 @@ public class Health : MonoBehaviour
     public int secondsToDecrement;
 
     protected float lastDecrementDuration;
+
     private int value;
+    private int hurt = 0;
 
     public int Max { get { return maxValue; } }
 
@@ -18,6 +20,7 @@ public class Health : MonoBehaviour
         set {
             if (value < this.value)
             {
+                hurt = 0;
                 if (blood != null)
                 {
                     blood.Emit(10);
@@ -48,6 +51,10 @@ public class Health : MonoBehaviour
             }
         }
     }
+    private void LateUpdate()
+    {
+        ++hurt;
+    }
 
     public float Ratio
     {
@@ -61,15 +68,12 @@ public class Health : MonoBehaviour
     {
         float r = Ratio;
         Gizmos.color = Color.gray;
-        Gizmos.DrawCube(this.transform.position - new Vector3(0, 0.5f, 0), new Vector3(1, 0.1f, 0.1f));
-        Gizmos.color = this.gameObject.layer == 10/*"Player"*/? Color.red:Color.magenta;
-        Gizmos.DrawCube(this.transform.position - new Vector3(-0.5f + (r) / 2, 0.5f, 0), new Vector3(r, 0.1f, 0.1f));
-        //Gizmos.DrawCube(this.transform.position + new Vector3(-0.5f +(1- r) / 2, 1, 0), new Vector3(1 - r, 0.1f, 0.1f));
-        //Gizmos.DrawCube(this.transform.position + new Vector3(-Ratio / 2, 1, 0), new Vector3(Ratio, 0.1f, 0.1f));
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawCube(this.transform.position + new Vector3(-0.5f + r / 2, 1, 0), new Vector3(r, 0.1f, 0.1f));
+        Vector2 size = new Vector2(1, 2);
+        Gizmos.DrawCube(this.transform.position - new Vector3(0, size.y/2, 0), new Vector3(size.x, 0.1f, 0.1f));
+        Gizmos.color = hurt<10? Color.white: this.gameObject.layer == 10/*"Player"*/? Color.red:Color.magenta;
+        Gizmos.DrawCube(this.transform.position - new Vector3(size.x/2 - (r) / 2, size.y/2, 0), new Vector3(r, 0.1f, 0.1f));
         Gizmos.color = Color.white;
-        Gizmos.DrawWireCube(this.transform.position - new Vector3(0, 0.5f, 0), new Vector3(1, 0.1f, 0.1f));
+        Gizmos.DrawWireCube(this.transform.position - new Vector3(0, size.y/2, 0), new Vector3(size.x, 0.1f, 0.1f));
     }
 
 }

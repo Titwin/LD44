@@ -593,7 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ac: {fileID: 0}
-  size: {x: 1, y: 1}
+  size: {x: 1, y: 2}
   speed: 10
   jumpSpeed: 22
   canAttack: 1
@@ -605,6 +605,10 @@ MonoBehaviour:
   contactLeft: 0
   contactRight: 0
   direction: 1
+  movementX: 0
+  jump: 0
+  duck: 0
+  attack: 0
 --- !u!114 &1142639815982257688
 MonoBehaviour:
   m_ObjectHideFlags: 0
