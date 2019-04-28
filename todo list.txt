@@ -22,8 +22,10 @@ JUICEEEEEEE IT
 + animated tiles
 
 PROGRESSION
-- EAT bodies
++ EAT bodies
 - level design
+++ triggers
+++ damaging terrain
 + narrative popups
 - ui
 

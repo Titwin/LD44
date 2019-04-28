@@ -13,10 +13,8 @@ public class Player : Character
     // comodity property for AI, can be replaced with line-of-sight player detection
     public static Player thePlayer;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
-
         Controller = GetComponent<CharacterController2D>();
         thePlayer = this;
 

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [DefaultExecutionOrder(-100)]
@@ -8,7 +9,7 @@ public abstract class Character : Attackable
 
     [SerializeField] GameObject bodyTemplate;
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         if (health == null)
         {
@@ -19,6 +20,8 @@ public abstract class Character : Attackable
         {
             Debug.LogError(name + " has no weapon");
         }
+
+        
     }
 
     public bool Attack()
@@ -31,15 +34,14 @@ public abstract class Character : Attackable
         else { return false; }
     }
 
-    protected override void OnDeath()
+    protected override void OnDeath(GameObject source)
     {
-        base.OnDeath();
-        if (bodyTemplate!=null)
+        base.OnDeath(source);
+        if (bodyTemplate != null)
         {
             GameObject body = GameObject.Instantiate<GameObject>(bodyTemplate);
             body.transform.position = this.transform.position;
             body.SetActive(true);
         }
     }
-
 }

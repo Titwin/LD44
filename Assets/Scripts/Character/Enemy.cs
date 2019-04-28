@@ -39,8 +39,9 @@ public class Enemy : Character
     [SerializeField] int patrolDirection;
     [SerializeField] float t;
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
+        base.Start();
         startPoint = this.transform.position;
     }
 

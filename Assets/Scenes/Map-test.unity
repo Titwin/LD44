@@ -2700,7 +2700,7 @@ PrefabInstance:
     - target: {fileID: 1197412422038297649, guid: 9a735015890225d4bac47cc5c4e99986,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
-      value: 8.238106
+      value: 15.99429
       objectReference: {fileID: 0}
     - target: {fileID: 1197412422038297649, guid: 9a735015890225d4bac47cc5c4e99986,
         type: 3}
@@ -5250,6 +5250,15 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5276927406624631185, guid: 7a1b506916bfd70419410df319ee7628,
+        type: 3}
+      propertyPath: destroyTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 990732061, guid: 7a1b506916bfd70419410df319ee7628, type: 3}
+      propertyPath: invulnerabilityTime
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a1b506916bfd70419410df319ee7628, type: 3}
