@@ -34,6 +34,21 @@ AI
 - add enemy variety
 - make enemies eat each other
 
+TO FIX
+- game crach due to HUD at player deletion
+- magic particle : deletion at collision
+	- creation position relative to player
+	- fire sprite
+- altar loss due to prefab loss
+
+ANIMATIONS
+- remove AXE and BOW
+
+INTERACTION
+- on/off trigger linked on gameobject
+- restart 
+
+
 -------------- DISCARDED ----------------------------
 - animation2D (not for this submission)
 -- frames
