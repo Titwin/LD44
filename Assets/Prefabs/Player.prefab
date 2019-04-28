@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 986957256414451955}
-  - component: {fileID: 9001757660894491952}
+  - component: {fileID: 3813859566392600363}
   m_Layer: 10
   m_Name: Weapon
   m_TagString: Untagged
@@ -27,11 +27,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4473048750111712612}
   m_Father: {fileID: 7191536729198759038}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9001757660894491952
+--- !u!114 &3813859566392600363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,12 +41,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 815600670733124402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d88819219f349e4488f92ac6c51e73a3, type: 3}
+  m_Script: {fileID: 11500000, guid: e58e76d3f1f497d42be7daea4aec3b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 1142639815982257688}
   damages: 1
   healthModifier: 0
+  cooldown: 0.25
   type: 0
+  attackCollider: {fileID: 2106818717187214646}
 --- !u!1 &2770297110110492300
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,12 +146,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4116554228045433570}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 0.1, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.4000001, y: 0.10000038, z: 0}
   m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_Children: []
-  m_Father: {fileID: 7191536729198759038}
-  m_RootOrder: 2
+  m_Father: {fileID: 986957256414451955}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &3637834690790451468
 CircleCollider2D:
@@ -265,7 +269,6 @@ Transform:
   m_Children:
   - {fileID: 2818568493492032370}
   - {fileID: 1114930332681710246}
-  - {fileID: 4473048750111712612}
   - {fileID: 986957256414451955}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -408,9 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 5556503173328381646}
-  weapon: {fileID: 9001757660894491952}
-  attackCollider: {fileID: 2106818717187214646}
-  showTriggerDebug: 0
+  weapon: {fileID: 3813859566392600363}
 --- !u!114 &5517711386096988694
 MonoBehaviour:
   m_ObjectHideFlags: 0

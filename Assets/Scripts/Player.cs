@@ -6,7 +6,9 @@ using UnityEngine;
 public class Player : Character
 {
     public CharacterController2D Controller { get; private set; }
+    [SerializeField] Weapon[] weapons;
     private Dictionary<AnimationController.Weapon, AnimationController> animationControllers = new Dictionary<AnimationController.Weapon, AnimationController>();
+    //private Dictionary<Weapon.Type, Weapon> weaponDictionary = new Dictionary<Weapon.Type, Weapon>();
 
     // comodity property for AI, can be replaced with line-of-sight player detection
     public static Player thePlayer;
@@ -23,12 +25,16 @@ public class Player : Character
         {
             animationControllers[ac.weapon] = ac;
         }
+        /*foreach(Weapon w in weapons)
+        {
+            weaponDictionary[w.type] = w;
+        }*/
         SetWeapon(this.weapon);
     }
 
-    protected override void Update()
+    protected void Update()
     {
-        base.Update();
+        //base.Update();
 
         // set the movement actions
         float movementX = Input.GetAxis("Horizontal");
@@ -39,7 +45,7 @@ public class Player : Character
 
         if (Controller.canAttack && attack)
         {
-            Attack();
+            weapon.DoAttack();
         }
     }
 
@@ -73,6 +79,11 @@ public class Player : Character
         health.Value += weapon.healthModifier - this.weapon.healthModifier;
         health.Value = Mathf.Max(health.Value, 1);
 
+        foreach(Weapon w in weapons)
+        {
+            w.gameObject.SetActive(w.type == weapon.type);
+            if (w.type == weapon.type) this.weapon = w;
+        }
         AnimationController.Weapon t;
         switch (weapon.type)
         {

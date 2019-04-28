@@ -15,6 +15,7 @@ public class Enemy : Character
     [SerializeField] float thinkTime = 0.01f;
     [SerializeField] float pursuitRange = 0;
     [SerializeField] float patrolRange = 0;
+    [SerializeField] float runawayRange = 0.1f;
     [SerializeField] AnimationCurve agressionCurve;
 
     [Header("Decision flags (debug)")]
@@ -65,7 +66,7 @@ public class Enemy : Character
         float distanceToPlayerXY = Vector2.Distance(this.transform.position, Player.thePlayer.transform.position);
 
         scared = Random.value > agressionCurve.Evaluate(health.Ratio);
-        inAttackRange = attackCollider.InRange.Contains(Player.thePlayer);
+        inAttackRange = weapon.InRange(Player.thePlayer);
         inPursuitRange = distanceToPlayerXY < pursuitRange;
 
         dx = 0;
@@ -74,7 +75,7 @@ public class Enemy : Character
         if (inPursuitRange)
         {
             // if it is a coward, it will try to  move away
-            if (scared || Mathf.Abs(signedDistanceX) < attackCollider.transform.localScale.x / 2)
+            if (scared || Mathf.Abs(signedDistanceX) < runawayRange)
             {
                 // move away
                 nextState = AIState.scape;

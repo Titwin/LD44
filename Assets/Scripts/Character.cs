@@ -6,10 +6,6 @@ public abstract class Character : Attackable
 {
     public Weapon weapon;
 
-    public AttackCollider attackCollider;
-
-    public bool showTriggerDebug;
-
     protected virtual void Awake()
     {
         if (health == null)
@@ -23,20 +19,13 @@ public abstract class Character : Attackable
         }
     }
 
-    protected virtual void Update()
+    public bool Attack()
     {
-        if (showTriggerDebug)
+        if (weapon.CanAttack())
         {
-            var inRangeCharacterNames = attackCollider.InRange.Select(character => character.name).ToArray();
-            Debug.Log(gameObject.name + " is triggering [" + string.Join(", ", inRangeCharacterNames) + "]");
+            weapon.DoAttack();
+            return true;
         }
-    }
-
-    public virtual void Attack()
-    {
-        foreach (var character in attackCollider.InRange)
-        {
-            character.DoDamage(this,weapon.damages);
-        }
+        else { return false; }
     }
 }

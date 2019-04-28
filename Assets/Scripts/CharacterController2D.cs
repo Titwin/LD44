@@ -246,6 +246,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.gray;
         Gizmos.DrawWireCube(this.transform.position, size);
         Gizmos.color = Color.green;
         for (int c = 0; c < contactCount; ++c)
