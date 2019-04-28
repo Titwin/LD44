@@ -6,6 +6,8 @@ public abstract class Character : Attackable
 {
     public Weapon weapon;
 
+    [SerializeField] GameObject bodyTemplate;
+
     protected virtual void Awake()
     {
         if (health == null)
@@ -28,4 +30,16 @@ public abstract class Character : Attackable
         }
         else { return false; }
     }
+
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        if (bodyTemplate)
+        {
+            GameObject body = GameObject.Instantiate<GameObject>(bodyTemplate);
+            body.transform.position = this.transform.position;
+            body.SetActive(true);
+        }
+    }
+
 }

@@ -9,11 +9,19 @@ public class Attackable: MonoBehaviour
     public void DoDamage(Character source, int amount)
     {
         Debug.Log(this.name + " got attacked for " + amount + "dmg" + ", out of " + health.Value);
-        health.Value -= amount;
-       
-        if(health.Value <= 0)
+        if (!health.Invulnerable)
         {
-            StartCoroutine(DoDestroy());
+            health.Value -= amount;
+
+            if (health.Value <= 0)
+            {
+                OnDeath();
+                StartCoroutine(DoDestroy());
+            }
+            else
+            {
+                OnHurt();
+            }
         }
     }
 
@@ -23,4 +31,12 @@ public class Attackable: MonoBehaviour
         GameObject.Destroy(this.gameObject);
     }
 
+    protected virtual void OnHurt()
+    {
+
+    }
+    protected virtual void OnDeath()
+    {
+
+    }
 }

@@ -17,22 +17,23 @@ WEAPONS
 -----------TO DO -------------------------------------------
 
 JUICEEEEEEE IT 
-+ blood on the scene
-+ damage popping particles and numbers for armor
+- blood on the scene
+- damage popping particles and numbers for armor
++ animated tiles
 
 PROGRESSION
-+ EAT bodies
-+ level design
+- EAT bodies
+- level design
 + narrative popups
-+ ui
+- ui
 
 AI
 + making enemies attack
-+ add enemy variety
-+ make enemies eat each other
+- add enemy variety
+- make enemies eat each other
 
 -------------- DISCARDED ----------------------------
-+ animation2D (not for this submission)
-++ frames
-++ duration
-++ isLoop
+- animation2D (not for this submission)
+-- frames
+-- duration
+-- isLoop
