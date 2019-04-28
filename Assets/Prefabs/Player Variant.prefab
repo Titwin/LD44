@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 7191536729198759035, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
         type: 3}
       propertyPath: m_Name
-      value: Player Variant
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7191536729198759038, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
         type: 3}
@@ -67,17 +67,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1142639815982257688, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
+        type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 7081651573893839284}
+    - target: {fileID: 1142639815982257688, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 3848291840584864486}
     - target: {fileID: 7191536729198759033, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: f5d9633e88bb7af43aa8f084d1a69972,
         type: 3}
-    - target: {fileID: 1142639815982257688, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
-        type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 3848291840584864486}
     - target: {fileID: 5517711386096988694, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
         type: 3}
       propertyPath: weapon
@@ -85,33 +90,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
         type: 3}
-      propertyPath: animationWalking.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
-        type: 3}
-      propertyPath: animationDucking.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
-        type: 3}
-      propertyPath: animationJumpPrepare.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
-        type: 3}
-      propertyPath: animationJumping.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
-        type: 3}
-      propertyPath: animationFalling.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
-        type: 3}
-      propertyPath: animationAttack.Array.size
-      value: 6
+      propertyPath: weapon
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
         type: 3}
@@ -151,18 +131,6 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
         type: 3}
-      propertyPath: animationJumping.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300032, guid: f5d9633e88bb7af43aa8f084d1a69972,
-        type: 3}
-    - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
-        type: 3}
-      propertyPath: animationFalling.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300034, guid: f5d9633e88bb7af43aa8f084d1a69972,
-        type: 3}
-    - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
-        type: 3}
       propertyPath: animationDucking.Array.data[0]
       value: 
       objectReference: {fileID: 21300048, guid: f5d9633e88bb7af43aa8f084d1a69972,
@@ -175,9 +143,16 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
         type: 3}
-      propertyPath: weapon
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: animationJumping.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300032, guid: f5d9633e88bb7af43aa8f084d1a69972,
+        type: 3}
+    - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
+        type: 3}
+      propertyPath: animationFalling.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300034, guid: f5d9633e88bb7af43aa8f084d1a69972,
+        type: 3}
     - target: {fileID: 6316310699176634197, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
         type: 3}
       propertyPath: timeAttack
@@ -219,8 +194,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300078, guid: f5d9633e88bb7af43aa8f084d1a69972,
         type: 3}
+    - target: {fileID: 2649564401671276283, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
+        type: 3}
+      propertyPath: attackableMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4, type: 3}
+--- !u!212 &7081651573893839284 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7191536729198759033, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 111020006461289933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3848291840584864486 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3813859566392600363, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,

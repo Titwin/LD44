@@ -81,7 +81,7 @@ Transform:
   m_GameObject: {fileID: 2643653521363503397}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.15, y: 10.35, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 279933297287921344}
   - {fileID: 1329843975}
@@ -198,7 +198,10 @@ MonoBehaviour:
   contactUp: 0
   contactLeft: 0
   contactRight: 0
-  direction: 1
+  movementX: 0
+  jump: 0
+  duck: 0
+  attack: 0
 --- !u!114 &6171127777966537826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,11 +215,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1213715161779810471}
+  sprite: {fileID: 2643653521363503399}
+  destroyTime: 0.1
   weapon: {fileID: 7156047560858081105}
+  bodyTemplate: {fileID: 3403817454697242057, guid: 6206f15685a5d5644a801fac572ed624,
+    type: 3}
   controller: {fileID: 7523213993654582332}
-  speed: 0
-  floating: 0
-  transparent: 1
   jumpiness: 0.25
   thinkTime: 0.5
   pursuitRange: 5
@@ -289,9 +293,12 @@ MonoBehaviour:
   timeDucking: 0.1
   animationDucking:
   - {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
-  timeInAir: 0.1
-  animationInAir:
-  - {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
+  timeJumpPrepare: 0
+  animationJumpPrepare: []
+  timeJumping: 0
+  animationJumping: []
+  timeFalling: 0
+  animationFalling: []
   timeAttack: 0.1
   animationAttack:
   - {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
@@ -380,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood: {fileID: 6760537641874835081}
+  invulnerabilityTime: 0.5
   maxValue: 3
   secondsToDecrement: 0
 --- !u!1 &8289464993300483964
