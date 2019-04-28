@@ -11,7 +11,8 @@ public class Projectile : MonoBehaviour
     //[SerializeField] float range = 3;
 
     public LayerMask attackableMask;
-    
+    public LayerMask destructionMask;
+
 
     protected void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,5 +24,12 @@ public class Projectile : MonoBehaviour
                 target.DoDamage(owner, this.damage);
             }
         }
+
+        Debug.Log(other.gameObject.name);
+
+        if (destructionMask == (destructionMask | (1 << other.gameObject.layer)))
+            Destroy(gameObject);
+
+        
     }
 }
