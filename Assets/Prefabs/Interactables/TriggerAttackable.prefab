@@ -124,5 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
+  sprite: {fileID: 2575326620827112556}
+  destroyTime: 0.1
   value: 0
   sprite: {fileID: 0}

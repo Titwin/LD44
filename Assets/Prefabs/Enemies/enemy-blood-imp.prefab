@@ -216,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1213715161779810471}
   sprite: {fileID: 2643653521363503399}
-  destroyTime: 0.1
+  destroyTime: 0.5
   weapon: {fileID: 7156047560858081105}
   bodyTemplate: {fileID: 3403817454697242057, guid: 6206f15685a5d5644a801fac572ed624,
     type: 3}
