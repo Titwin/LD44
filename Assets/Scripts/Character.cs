@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(Health))]
+[DefaultExecutionOrder(-100)]
 public abstract class Character : Attackable
 {
     public Weapon weapon;

@@ -5,6 +5,8 @@ public class AttackCollider : TriggerCollider
 {
     public List<Attackable> InRange { get; private set; }
     public LayerMask attackableMask;
+
+    [SerializeField] int count = 0;
     protected override void Awake()
     {
         base.Awake();
@@ -22,6 +24,7 @@ public class AttackCollider : TriggerCollider
             if (hitBox != null)
             {
                 InRange.Add(hitBox.character);
+                ++count;
             }
         }
     }
@@ -35,6 +38,7 @@ public class AttackCollider : TriggerCollider
             if (hitBox != null)
             {
                 InRange.Remove(hitBox.character);
+                --count;
             }
         }
     }

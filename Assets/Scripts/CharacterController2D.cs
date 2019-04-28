@@ -33,12 +33,12 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] bool contactLeft = false;
     [SerializeField] bool contactRight = false;
     [SerializeField] int direction = 1;
-
+    [Header("State flags")]
     // these values are resetted at the end of the frame, do not use after LateUpdate()
-    float movementX = 0;
-    bool jump = false;
-    bool duck = false;
-    bool attack = false;
+    [SerializeField] float movementX = 0;
+    [SerializeField] bool jump = false;
+    [SerializeField] bool duck = false;
+    [SerializeField] bool attack = false;
 
     // Use this for initialization
     void Start()
