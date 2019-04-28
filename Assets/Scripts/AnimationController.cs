@@ -44,8 +44,6 @@ public class AnimationController : MonoBehaviour
     public enum Weapon
     {
         SWORD,
-        AXE,
-        BOW,
         MAGIC
     }
     public enum AnimationType{
