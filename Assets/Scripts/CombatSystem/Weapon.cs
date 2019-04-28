@@ -13,8 +13,6 @@ public abstract class Weapon : MonoBehaviour
     public enum Type
     {
         SWORD,
-        AXE,
-        BOW,
         MAGIC
     }
 
