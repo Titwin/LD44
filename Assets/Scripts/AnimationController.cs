@@ -9,6 +9,7 @@ public class AnimationController : MonoBehaviour
     private int animationIndex;
     private float animationTime;
     private AnimationType lastAnimation;
+    private CharacterController2D characterController;
 
     public Weapon weapon;
 
@@ -63,6 +64,7 @@ public class AnimationController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         animationTime = 0.0f;
         animationIndex = 0;
+        characterController = GetComponent<CharacterController2D>();
     }
 
     // Update is called once per frame
@@ -127,5 +129,7 @@ public class AnimationController : MonoBehaviour
             sr.flipX = flipped;
         }
         animationTime += Time.deltaTime;
+
+        characterController.attackCooldownTime = animationAttack.Length * timeAttack;
     }
 }
