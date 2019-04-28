@@ -1,0 +1,38 @@
+---------*DONE*-------------------
+ANIMATIONS
++ animationController2D
+++ play(enum state)
+++ duck -> eat action (no movement, duration, has healing effect)
+++ duplicated for each weapon
+++ enabled/disabled by the char
+
+WEAPONS
++rangedWeapon:
+++ generate damaging particle
+++ ammunition: 
+	affected by gravity?
++ melee weapon:
+++ move hit collider to weapon
+
+-----------TO DO -------------------------------------------
+
+JUICEEEEEEE IT 
++ blood on the scene
++ damage popping particles and numbers for armor
+
+PROGRESSION
++ EAT bodies
++ level design
++ narrative popups
++ ui
+
+AI
++ making enemies attack
++ add enemy variety
++ make enemies eat each other
+
+-------------- DISCARDED ----------------------------
++ animation2D (not for this submission)
+++ frames
+++ duration
+++ isLoop
