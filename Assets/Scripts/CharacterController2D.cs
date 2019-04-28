@@ -53,26 +53,23 @@ public class CharacterController2D : MonoBehaviour
     {
 
     }
-    int jumpFrames = 0;
+    int jumpFrames = -1;
     private void LateUpdate()
     {
-       
         CheckContacts();
-
         float dx = movementX * speed;
-        bool doJump = false;
         bool grounded = IsGrounded();
-        
+
         if (!canAttack)
         {
-            ac.playAnimation(AnimationController.AnimationType.ATTACK);//, attackCooldownTime/animationAttack.Length);
+            ac.playAnimation(AnimationController.AnimationType.ATTACK);
         }
         else if (attack && canAttack)
         {
             cooldownCoroutine = AttackCooldown(attackCooldownTime);
             StartCoroutine(cooldownCoroutine);
             canAttack = false;
-            ac.playAnimation(AnimationController.AnimationType.ATTACK);//, attackCooldownTime / animationAttack.Length);
+            ac.playAnimation(AnimationController.AnimationType.ATTACK);
         }
         else if (canAttack)
         {
@@ -86,8 +83,7 @@ public class CharacterController2D : MonoBehaviour
                 direction = -1;
                 this.transform.localEulerAngles = new Vector3(0, 180, 0);
             }
-
-            //float dy = 0.0f;
+            
             if (contactLeft && dx < 0)
             {
                 dx = 0;
@@ -102,13 +98,13 @@ public class CharacterController2D : MonoBehaviour
             {
                 if (jump)
                 {
-                    doJump = true;
-                    ac.playAnimation(AnimationController.AnimationType.INAIR);//, 0.2f);
+                    jumpFrames = 5;
+                    ac.playAnimation(AnimationController.AnimationType.JUMPPREPARE);
                 }
                 else if (duck)
                 {
-                    dx = dx / 2;
-                    ac.playAnimation(AnimationController.AnimationType.DUCKING);//, 0.2f);
+                    dx = 0;
+                    ac.playAnimation(AnimationController.AnimationType.DUCKING);
 
                     if (interactable != null && interactable.CanInteract(this.character))
                     {
@@ -117,16 +113,12 @@ public class CharacterController2D : MonoBehaviour
                 }
                 else if (dx != 0)
                 {
-                    ac.playAnimation(AnimationController.AnimationType.WALKING);//, 0.1f);
+                    ac.playAnimation(AnimationController.AnimationType.WALKING);
                 }
                 else
                 {
-                    ac.playAnimation(AnimationController.AnimationType.IDLE);//, 0.9f);
+                    ac.playAnimation(AnimationController.AnimationType.IDLE);
                 }
-            }
-            else
-            {
-                ac.playAnimation(AnimationController.AnimationType.INAIR);//, 0.2f);
             }
 
             if (dx > 0)
@@ -144,15 +136,33 @@ public class CharacterController2D : MonoBehaviour
         if (jumpFrames > 0)
         {
             jumpFrames--;
+            ac.playAnimation(AnimationController.AnimationType.JUMPPREPARE);
         }
         else
         {
-            if (doJump)
+            if(jumpFrames == 0)
             {
-                jumpFrames = 5;
+                rb.velocity = new Vector2(dx, jumpSpeed);
+                jumpFrames--;
             }
-            rb.velocity = new Vector2(dx, doJump ? jumpSpeed : (IsGrounded() ? 0 : rb.velocity.y));
+            else
+            {
+                rb.velocity = new Vector2(dx, rb.velocity.y);
+            }
+
+            if(!grounded)
+            {
+                if(rb.velocity.y > 0)
+                {
+                    ac.playAnimation(AnimationController.AnimationType.JUMPING);
+                }
+                else
+                {
+                    ac.playAnimation(AnimationController.AnimationType.FALLING);
+                }
+            }
         }
+
         // reset controls
         movementX = 0;
         jump = false;
