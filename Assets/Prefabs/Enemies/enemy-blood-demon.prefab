@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7055578c528deb408a420f63cc8155b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  character: {fileID: 2260878813494400314}
 --- !u!1 &8357808935955424181
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8357808935955424181}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.22, y: 0, z: 0}
+  m_LocalPosition: {x: 1.389, y: 0.028, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8817407003481504962}
@@ -131,6 +131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37636ef8e236a9a47abc9e179b8fd8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackableMask:
+    serializedVersion: 2
+    m_Bits: 1536
+  count: 0
 --- !u!1 &8817407003481504961
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,10 +147,11 @@ GameObject:
   - component: {fileID: 8817407003481504963}
   - component: {fileID: 2008744647697933844}
   - component: {fileID: 7825731822566937134}
-  - component: {fileID: 6419666584836623146}
   - component: {fileID: 5649953694446404904}
   - component: {fileID: 2260878813494400314}
   - component: {fileID: 7527286644625114298}
+  - component: {fileID: 2862291543787926514}
+  - component: {fileID: 4567049836548942564}
   m_Layer: 0
   m_Name: enemy-blood-demon
   m_TagString: Untagged
@@ -255,25 +260,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2, y: 2}
   m_Direction: 0
---- !u!95 &6419666584836623146
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8817407003481504961}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &5649953694446404904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,14 +272,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da78ac09814107b40ab2ca83f36b7e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ac: {fileID: 4567049836548942564}
+  size: {x: 0, y: 0}
   speed: 1
   jumpSpeed: 1
   canAttack: 1
+  isInteracting: 0
   attackCooldownTime: 1
+  interactable: {fileID: 0}
   contactDown: 0
   contactUp: 0
   contactLeft: 0
   contactRight: 0
+  movementX: 0
+  jump: 0
+  duck: 0
+  attack: 0
 --- !u!114 &2260878813494400314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,20 +300,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754c5122cb305d44e9034fbc2f4af3f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: {fileID: 5667097982457699728}
-  showTriggerDebug: 0
+  health: {fileID: 7527286644625114298}
+  weapon: {fileID: 2862291543787926514}
+  bodyTemplate: {fileID: 0}
   controller: {fileID: 5649953694446404904}
-  speed: 0
-  floating: 0
-  transparent: 1
+  jumpiness: 0
+  thinkTime: 0.01
   pursuitRange: 0
+  patrolRange: 0
+  runawayRange: 0.1
   agressionCurve:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  scared: 0
+  inAttackRange: 0
+  inPursuitRange: 0
   state: 0
+  nextState: 0
+  dx: 0
+  currentDX: 0
+  doAttack: 0
+  doJump: 0
+  startPoint: {x: 0, y: 0, z: 0}
+  patrolDirection: 0
+  t: 0
 --- !u!114 &7527286644625114298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,5 +339,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323ed53b95572874e8ac8baed01588be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blood: {fileID: 0}
+  invulnerabilityTime: 0.5
   maxValue: 5
   secondsToDecrement: 0
+--- !u!114 &2862291543787926514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817407003481504961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e58e76d3f1f497d42be7daea4aec3b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 2260878813494400314}
+  damages: 3
+  healthModifier: 0
+  cooldown: 0
+  type: 0
+  attackCollider: {fileID: 5667097982457699728}
+--- !u!114 &4567049836548942564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817407003481504961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995fd6ca5a3611546b3754c69e5472a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: 0
+  timeIdle: 1
+  animationIdle:
+  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
+  timeWalking: 1
+  animationWalking:
+  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
+  timeDucking: 1
+  animationDucking:
+  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
+  timeJumpPrepare: 1
+  animationJumpPrepare:
+  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
+  timeJumping: 1
+  animationJumping:
+  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
+  timeFalling: 1
+  animationFalling:
+  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
+  timeAttack: 1
+  animationAttack:
+  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
