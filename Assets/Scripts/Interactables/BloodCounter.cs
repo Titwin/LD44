@@ -8,6 +8,7 @@ public class BloodCounter : Interactable
     [SerializeField] Transform particleContainer;
     [SerializeField] int max = 10;
     [SerializeField] int current = 0;
+    [SerializeField] int damage = 3;
 
     [SerializeField] List<GameObject> particles = new List<GameObject>();
 
@@ -71,14 +72,14 @@ public class BloodCounter : Interactable
         {
             if (current == 0)
             {
-                StartCoroutine(DoDrip(50));
-                character.DoDamage(null, 1);
+                StartCoroutine(DoDrip(max));
+                character.DoDamage(null, damage);
                 return true;
             }
             else
             {
                 StartCoroutine(DoClear());
-                character.health.Value += 1;
+                character.health.Value += damage;
             }
             return true;
         }
