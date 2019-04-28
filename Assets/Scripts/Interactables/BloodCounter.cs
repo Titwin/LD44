@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BloodCounter : Interactable
 {
+    [SerializeField] ActivatedObject activatedObject;
+
     [SerializeField] GameObject particleTemplate;
     [SerializeField] Transform particleContainer;
     [SerializeField] int max = 10;
@@ -62,7 +64,7 @@ public class BloodCounter : Interactable
     }
     public override bool CanInteract(Character character)
     {
-        return character.gameObject.tag == "Player";
+        return !interacting && character.gameObject.tag == "Player";
     }
 
     public override bool DoInteract(Character character)
@@ -74,12 +76,13 @@ public class BloodCounter : Interactable
             {
                 StartCoroutine(DoDrip(max));
                 character.DoDamage(null, damage);
-                return true;
+                if (activatedObject != null) activatedObject.SetActive(true);
             }
             else
             {
                 StartCoroutine(DoClear());
                 character.health.Value += damage;
+                if (activatedObject != null) activatedObject.SetActive(false);
             }
             return true;
         }
