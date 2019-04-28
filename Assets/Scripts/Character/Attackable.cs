@@ -5,7 +5,7 @@ using UnityEngine;
 public class Attackable: MonoBehaviour
 {
     public Health health;
-
+    [SerializeField] float destroyTime = 0.1f;
     public void DoDamage(Character source, int amount)
     {
         OnAttack(source!=null?source.gameObject:null);
@@ -31,7 +31,7 @@ public class Attackable: MonoBehaviour
 
     protected IEnumerator DoDestroy()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(destroyTime);
         GameObject.Destroy(this.gameObject);
     }
     protected virtual void OnAttack(GameObject source)
