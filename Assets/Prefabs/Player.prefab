@@ -448,6 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood: {fileID: 3161829659985923105}
+  invulnerabilityTime: 0.5
   maxValue: 10
   secondsToDecrement: 5000
 --- !u!1 &7191536729198759035
@@ -623,6 +624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 5556503173328381646}
   weapon: {fileID: 1272675576}
+  bodyTemplate: {fileID: 0}
   weapons:
   - {fileID: 3813859566392600363}
   - {fileID: 1272675576}
@@ -705,11 +707,14 @@ MonoBehaviour:
   timeFalling: 0.5
   animationFalling:
   - {fileID: 21300022, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
-  timeAttack: 0.1
+  timeAttack: 0.05
   animationAttack:
-  - {fileID: 21300040, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
-  - {fileID: 21300042, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
-  - {fileID: 21300044, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300058, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300060, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300062, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300064, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300066, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300068, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
 --- !u!114 &3070863361713462329
 MonoBehaviour:
   m_ObjectHideFlags: 0
