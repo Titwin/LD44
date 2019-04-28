@@ -34,7 +34,7 @@ public abstract class Character : Attackable
     protected override void OnDeath()
     {
         base.OnDeath();
-        if (bodyTemplate)
+        if (bodyTemplate!=null)
         {
             GameObject body = GameObject.Instantiate<GameObject>(bodyTemplate);
             body.transform.position = this.transform.position;

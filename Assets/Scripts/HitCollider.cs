@@ -2,7 +2,7 @@
 
 public class HitCollider : TriggerCollider
 {
-    public Character character;
+    public Attackable character;
 
     protected override void Awake()
     {
