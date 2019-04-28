@@ -54,10 +54,13 @@ public class CharacterController2D : MonoBehaviour
 
     }
     int jumpFrames = -1;
+    int groundedFilter = 0;
     private void LateUpdate()
     {
+        bool wasGrounded = contactCount != 0;
         CheckContacts();
         float dx = movementX * speed;
+        float dy = rb.velocity.y;
         bool grounded = IsGrounded();
 
         if (!canAttack)
@@ -96,11 +99,25 @@ public class CharacterController2D : MonoBehaviour
 
             if (grounded)
             {
-                if (jump)
+                // JUMP PREPARE
+                if (jumpFrames > 0)
+                {
+                    jumpFrames--;
+                    ac.playAnimation(AnimationController.AnimationType.JUMPPREPARE);
+                }
+                else if (jumpFrames == 0)
+                {
+                    dy = jumpSpeed;
+                    jumpFrames--;
+                    ac.playAnimation(AnimationController.AnimationType.JUMPPREPARE);
+                }
+                else if (jump)
                 {
                     jumpFrames = 5;
                     ac.playAnimation(AnimationController.AnimationType.JUMPPREPARE);
                 }
+
+                //  DUCK
                 else if (duck)
                 {
                     dx = 0;
@@ -111,13 +128,31 @@ public class CharacterController2D : MonoBehaviour
                         StartCoroutine(DoInteraction(interactable));
                     }
                 }
+
+                //  WALK
                 else if (dx != 0)
                 {
                     ac.playAnimation(AnimationController.AnimationType.WALKING);
                 }
+
+                //  IDLE
                 else
                 {
                     ac.playAnimation(AnimationController.AnimationType.IDLE);
+                }
+            }
+            else
+            {
+                //  JUMP
+                if (rb.velocity.y > 0)
+                {
+                    ac.playAnimation(AnimationController.AnimationType.JUMPING);
+                }
+
+                //  FALL
+                else
+                {
+                    ac.playAnimation(AnimationController.AnimationType.FALLING);
                 }
             }
 
@@ -133,35 +168,7 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        if (jumpFrames > 0)
-        {
-            jumpFrames--;
-            ac.playAnimation(AnimationController.AnimationType.JUMPPREPARE);
-        }
-        else
-        {
-            if(jumpFrames == 0)
-            {
-                rb.velocity = new Vector2(dx, jumpSpeed);
-                jumpFrames--;
-            }
-            else
-            {
-                rb.velocity = new Vector2(dx, rb.velocity.y);
-            }
-
-            if(!grounded)
-            {
-                if(rb.velocity.y > 0)
-                {
-                    ac.playAnimation(AnimationController.AnimationType.JUMPING);
-                }
-                else
-                {
-                    ac.playAnimation(AnimationController.AnimationType.FALLING);
-                }
-            }
-        }
+        rb.velocity = new Vector2(dx, dy);
 
         // reset controls
         movementX = 0;
@@ -207,18 +214,15 @@ public class CharacterController2D : MonoBehaviour
                 }
             }
         }
-
     }
     public bool IsGrounded()
     {
-        //return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1);
-        /*RaycastHit2D hit = Physics2D.Raycast(transform.position - Vector3.up * distToGround, -Vector2.up, 0.1f);
-        if (hit.collider != null && hit.collider.gameObject != this.gameObject)
-        {
-            return true;
-        }
-        return false;*/
-        return contactDown || (contactLeft && contactRight);
+        bool contact = (contactDown || (contactLeft && contactRight));
+        if (contact)
+            groundedFilter = 5;
+        else
+            groundedFilter--;
+        return groundedFilter > 0;
     }
     public bool IsBlocked(int direction)
     {
