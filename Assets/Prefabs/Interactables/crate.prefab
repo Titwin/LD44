@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 7765346451067059144}
   - component: {fileID: 7765346451067059147}
   - component: {fileID: 5276927406624631185}
+  - component: {fileID: 8681272712495274183}
   m_Layer: 9
   m_Name: crate
   m_TagString: Untagged
@@ -209,6 +210,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 990732061}
-  sprite: {fileID: 0}
+  spriteEffect: {fileID: 8681272712495274183}
   destroyTime: 0.5
   loot: {fileID: 3403817454697242057, guid: 6206f15685a5d5644a801fac572ed624, type: 3}
+--- !u!114 &8681272712495274183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7765346451067059146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1cada7572a8f9479d02230afd42d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 7765346451067059144}

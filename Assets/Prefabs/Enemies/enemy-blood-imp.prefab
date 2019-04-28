@@ -60,6 +60,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2643653521363503398}
   - component: {fileID: 2643653521363503399}
+  - component: {fileID: 5788983332485598891}
   - component: {fileID: 8391064439834085293}
   - component: {fileID: 351005029545633635}
   - component: {fileID: 7523213993654582332}
@@ -137,6 +138,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5788983332485598891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2643653521363503397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1cada7572a8f9479d02230afd42d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 2643653521363503399}
 --- !u!70 &8391064439834085293
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -215,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1213715161779810471}
-  sprite: {fileID: 2643653521363503399}
+  spriteEffect: {fileID: 5788983332485598891}
   destroyTime: 0.5
   weapon: {fileID: 7156047560858081105}
   bodyTemplate: {fileID: 3403817454697242057, guid: 6206f15685a5d5644a801fac572ed624,

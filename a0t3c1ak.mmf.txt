@@ -1,0 +1,54 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+# Conflicts:
+#	Assets/Prefabs/Player Variant.prefab
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 3 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   .gitignore
+#	modified:   Assets/Prefabs/Enemies/Damaging object.prefab
+#	modified:   Assets/Prefabs/Enemies/enemy-blood-imp.prefab
+#	deleted:    Assets/Prefabs/Interactables/Axe altar Variant.prefab
+#	new file:   Assets/Prefabs/Interactables/Blood progress group Variant.prefab
+#	renamed:    Assets/Prefabs/Interactables/magic altar Variant.prefab.meta -> Assets/Prefabs/Interactables/Blood progress group Variant.prefab.meta
+#	modified:   Assets/Prefabs/Interactables/Body.prefab
+#	new file:   Assets/Prefabs/Interactables/Sword altar.prefab
+#	renamed:    Assets/Prefabs/Interactables/Axe altar Variant.prefab.meta -> Assets/Prefabs/Interactables/Sword altar.prefab.meta
+#	modified:   Assets/Prefabs/Interactables/TriggerAttackable.prefab
+#	deleted:    Assets/Prefabs/Interactables/bow altar.prefab
+#	modified:   Assets/Prefabs/Interactables/crate.prefab
+#	deleted:    Assets/Prefabs/Interactables/magic altar Variant.prefab
+#	new file:   Assets/Prefabs/Interactables/magic altar.prefab
+#	renamed:    Assets/Prefabs/Interactables/bow altar.prefab.meta -> Assets/Prefabs/Interactables/magic altar.prefab.meta
+#	modified:   Assets/Scenes/Map-test.unity
+#	new file:   Assets/Scripts/Animation.meta
+#	renamed:    Assets/Scripts/AnimatedTile.cs -> Assets/Scripts/Animation/AnimatedTile.cs
+#	renamed:    Assets/Scripts/AnimatedTile.cs.meta -> Assets/Scripts/Animation/AnimatedTile.cs.meta
+#	new file:   Assets/Scripts/Animation/SpriteEffect.cs
+#	new file:   Assets/Scripts/Animation/SpriteEffect.cs.meta
+#	modified:   Assets/Scripts/Character/Attackable.cs
+#	modified:   Assets/Scripts/Character/Health.cs
+#	modified:   Assets/Scripts/Interactables/InteractableBody.cs
+#	modified:   Assets/Sprites/BirdMan-empty.png.meta
+#	modified:   Assets/Sprites/BirdMan-mask.png.meta
+#	modified:   Assets/Sprites/Tonguebeast.png.meta
+#	modified:   Assets/Sprites/bird_walk.png.meta
+#	modified:   Assets/Sprites/placeholders/icon-blood.png
+#	modified:   todo list.txt
+#
+
