@@ -6,7 +6,10 @@ public class AttackableTrigger : Attackable
 {
     [SerializeField] bool value = false;
     [SerializeField] SpriteRenderer sprite;
-
+    [SerializeField] ActivatedObject activatedObject;
+    public float timer;
+    private float t;
+    
     private void Start()
     {
         Set(value);
@@ -16,7 +19,6 @@ public class AttackableTrigger : Attackable
     {
         base.OnAttack(source);
         Set(!value);
-       
     }
     void Set(bool _value)
     {
@@ -27,8 +29,20 @@ public class AttackableTrigger : Attackable
         }
         else
         {
+            t = timer;
             DoEnable();
         }
+
+        if (activatedObject != null)
+            activatedObject.SetActive(value);
+    }
+
+    private void Update()
+    {
+        if (t - Time.deltaTime < 0)
+            Set(false);
+        if(t > 0)
+            t -= Time.deltaTime;
     }
 
     virtual protected void DoDisable()

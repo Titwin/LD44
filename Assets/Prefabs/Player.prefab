@@ -346,7 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackableMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 25088
   count: 0
 --- !u!1 &5740191281217806873
 GameObject:
@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 9049486341853476474}
-  damages: 1
+  damages: 10
   healthModifier: 0
   cooldown: 0.25
   type: 0
@@ -716,10 +716,10 @@ MonoBehaviour:
   damage: 1
   attackableMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 16896
   destructionMask:
     serializedVersion: 2
-    m_Bits: 4608
+    m_Bits: 20992
 --- !u!1001 &8236313210413026705
 PrefabInstance:
   m_ObjectHideFlags: 0
