@@ -11,18 +11,32 @@ public class AnimationController : MonoBehaviour
     private AnimationType lastAnimation;
 
     public Weapon weapon;
+
+    [Space(10)]
     public float timeIdle;
     public Sprite[] animationIdle;
 
+    [Space(10)]
     public float timeWalking;
     public Sprite[] animationWalking;
 
+    [Space(10)]
     public float timeDucking;
     public Sprite[] animationDucking;
 
-    public float timeInAir;
-    public Sprite[] animationInAir;
+    [Space(10)]
+    public float timeJumpPrepare;
+    public Sprite[] animationJumpPrepare;
 
+    [Space(10)]
+    public float timeJumping;
+    public Sprite[] animationJumping;
+
+    [Space(10)]
+    public float timeFalling;
+    public Sprite[] animationFalling;
+
+    [Space(10)]
     public float timeAttack;
     public Sprite[] animationAttack;
 
@@ -37,7 +51,9 @@ public class AnimationController : MonoBehaviour
         IDLE,
         WALKING,
         DUCKING,
-        INAIR,
+        JUMPPREPARE,
+        JUMPING,
+        FALLING,
         ATTACK
     }
 
@@ -69,9 +85,17 @@ public class AnimationController : MonoBehaviour
                 animation = animationAttack;
                 t = timeAttack;
                 break;
-            case AnimationType.INAIR:
-                animation = animationInAir;
-                t = timeInAir;
+            case AnimationType.JUMPPREPARE:
+                animation = animationJumpPrepare;
+                t = timeJumpPrepare;
+                break;
+            case AnimationType.JUMPING:
+                animation = animationJumping;
+                t = timeJumping;
+                break;
+            case AnimationType.FALLING:
+                animation = animationFalling;
+                t = timeFalling;
                 break;
             default:
                 animation = animationIdle;
