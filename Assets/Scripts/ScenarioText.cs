@@ -14,9 +14,10 @@ public class ScenarioText : MonoBehaviour
     private bool alreadyLaunched = false;
 
     
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTrigerEnter2D(Collision2D col)
     {
-        if(col.gameObject)
+        Debug.Log("TOTO");
+        if (!alreadyLaunched && col.gameObject.tag == "Player")
         {
             alreadyLaunched = true;
             messagesCoroutine = messagesDraw();
