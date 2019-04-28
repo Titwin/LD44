@@ -3,7 +3,7 @@
 public class Health : MonoBehaviour
 {
     [SerializeField] ParticleSystem blood;
-    [SerializeField] float invulnerabilityTime = 0.5f;
+    [SerializeField] public float invulnerabilityTime = 0.5f;
     [SerializeField] int maxValue;
 
     public int secondsToDecrement;

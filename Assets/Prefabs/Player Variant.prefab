@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8448563801901707765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081651573893839286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1cada7572a8f9479d02230afd42d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 7081651573893839284}
 --- !u!1001 &111020006461289933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69,9 +82,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1142639815982257688, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
         type: 3}
-      propertyPath: sprite
+      propertyPath: spriteEffect
       value: 
-      objectReference: {fileID: 7081651573893839284}
+      objectReference: {fileID: 8448563801901707765}
     - target: {fileID: 1142639815982257688, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
         type: 3}
       propertyPath: weapon
@@ -201,6 +214,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4, type: 3}
+--- !u!1 &7081651573893839286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7191536729198759035, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 111020006461289933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &7081651573893839284 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7191536729198759033, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,

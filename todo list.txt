@@ -17,6 +17,9 @@ WEAPONS
 -----------TO DO -------------------------------------------
 
 JUICEEEEEEE IT 
++ blink on damage
++ fade on death
+- particles on hitting surfaces
 - blood on the scene
 - damage popping particles and numbers for armor
 + animated tiles
