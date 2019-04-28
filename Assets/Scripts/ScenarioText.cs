@@ -11,19 +11,18 @@ public class ScenarioText : MonoBehaviour
     public string[] messages;
 
     private IEnumerator messagesCoroutine;
+    private bool alreadyLaunched = false;
 
-    // Start is called before the first frame update
-    void Start()
+    
+    void OnCollisionEnter2D(Collision2D col)
     {
-        messagesCoroutine = messagesDraw();
-        StartCoroutine(messagesCoroutine);
-        messagesDraw();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(col.gameObject)
+        {
+            alreadyLaunched = true;
+            messagesCoroutine = messagesDraw();
+            StartCoroutine(messagesCoroutine);
+            messagesDraw();
+        }
     }
 
     private IEnumerator messagesDraw()
