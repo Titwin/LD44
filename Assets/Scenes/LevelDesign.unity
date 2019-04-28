@@ -738,18 +738,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 99795998}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &113773549 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7527286644625114298, guid: 9ac6cdbb75673004894b58f23210b408,
-    type: 3}
-  m_PrefabInstance: {fileID: 735642123}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 323ed53b95572874e8ac8baed01588be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &127056030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5249,11 +5237,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy-blood-demon (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 2260878813494400314, guid: 9ac6cdbb75673004894b58f23210b408,
-        type: 3}
-      propertyPath: health
-      value: 
-      objectReference: {fileID: 113773549}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ac6cdbb75673004894b58f23210b408, type: 3}
 --- !u!4 &735642124 stripped
