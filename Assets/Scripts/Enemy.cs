@@ -57,6 +57,10 @@ public class Enemy : Character
         {
             currentDX = Mathf.MoveTowards(currentDX, dx, Time.deltaTime*5);
         }
+        if (doAttack)
+        {
+            weapon.DoAttack();
+        }
         controller.Move(currentDX, doJump, doAttack, false);
     }
 
@@ -82,7 +86,7 @@ public class Enemy : Character
                 dx = -Mathf.Sign(signedDistanceX);
             }
             // if it can attack, it will attack
-            else if (inAttackRange && controller.canAttack)
+            else if (inAttackRange)
             {
                 // attack
                 nextState = AIState.attack;
