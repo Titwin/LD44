@@ -12,9 +12,9 @@ public class AttackableTrigger : Attackable
         Set(value);
     }
 
-    protected override void OnAttack()
+    protected override void OnAttack(GameObject source)
     {
-        base.OnAttack();
+        base.OnAttack(source);
         Set(!value);
        
     }

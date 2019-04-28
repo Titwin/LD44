@@ -8,7 +8,7 @@ public class Attackable: MonoBehaviour
 
     public void DoDamage(Character source, int amount)
     {
-        OnAttack();
+        OnAttack(source!=null?source.gameObject:null);
         if (health != null)
         {
             Debug.Log(this.name + " got attacked for " + amount + "dmg" + ", out of " + health.Value);
@@ -18,12 +18,12 @@ public class Attackable: MonoBehaviour
 
                 if (health.Value <= 0)
                 {
-                    OnDeath();
+                    OnDeath(source != null ? source.gameObject : null);
                     StartCoroutine(DoDestroy());
                 }
                 else
                 {
-                    OnHurt();
+                    OnHurt(source != null ? source.gameObject : null);
                 }
             }
         }
@@ -34,16 +34,16 @@ public class Attackable: MonoBehaviour
         yield return new WaitForEndOfFrame();
         GameObject.Destroy(this.gameObject);
     }
-    protected virtual void OnAttack()
+    protected virtual void OnAttack(GameObject source)
     {
 
     }
-    protected virtual void OnHurt()
+    protected virtual void OnHurt(GameObject source)
     {
 
     }
 
-    protected virtual void OnDeath()
+    protected virtual void OnDeath(GameObject source)
     {
 
     }

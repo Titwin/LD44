@@ -6,9 +6,9 @@ public class DestroyableObject : Attackable
 {
     [SerializeField] GameObject loot;
 
-    protected override void OnDeath()
+    protected override void OnDeath(GameObject source)
     {
-        base.OnDeath();
+        base.OnDeath(source);
         if (loot!=null)
         {
             GameObject body = GameObject.Instantiate<GameObject>(loot);
