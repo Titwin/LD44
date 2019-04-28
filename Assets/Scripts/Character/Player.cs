@@ -105,4 +105,9 @@ public class Player : Character
         }
         Controller.ac = animationControllers[t];
     }
+
+    protected override void OnDeath(GameObject source)
+    {
+        thePlayer = null;
+    }
 }
