@@ -7,9 +7,9 @@ public class Enemy : Character
 {
     [SerializeField] CharacterController2D controller;
     [Header("Type parameters")]
-    [SerializeField] bool speed = false;
-    [SerializeField] bool floating = false;
-    [SerializeField] bool transparent = true;
+    //[SerializeField] bool speed = false;
+    //[SerializeField] bool floating = false;
+    //[SerializeField] bool transparent = true;
     [SerializeField] float jumpiness = 0;
     [Header("Decision parameters")]
     [SerializeField] float thinkTime = 0.01f;

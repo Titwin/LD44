@@ -10,23 +10,6 @@ public class BloodCounter : Interactable
     [SerializeField] int current = 0;
 
     [SerializeField] List<GameObject> particles = new List<GameObject>();
-    float t = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*t += Time.deltaTime;
-        if (t > 1)
-        {
-            t = 0;
-            Drip();
-        }*/
-    }
 
     void Drip()
     {

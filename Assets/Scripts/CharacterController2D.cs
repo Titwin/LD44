@@ -11,6 +11,7 @@ public class CharacterController2D : MonoBehaviour
 
     private Character character;
 
+
     public Vector2 size;
     public float speed = 1;
     public float jumpSpeed = 1.0f;
@@ -21,8 +22,6 @@ public class CharacterController2D : MonoBehaviour
     private IEnumerator cooldownCoroutine;
     [SerializeField] Interactable interactable;
 
-    private float distToGround;
-
     int contactCount = 0;
     private ContactPoint2D[] contacts = new ContactPoint2D[32];
     [Header("State flags")]
@@ -32,7 +31,6 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] bool contactUp = false;
     [SerializeField] bool contactLeft = false;
     [SerializeField] bool contactRight = false;
-    [SerializeField] int direction = 1;
     [Header("State flags")]
     // these values are resetted at the end of the frame, do not use after LateUpdate()
     [SerializeField] float movementX = 0;
@@ -44,7 +42,6 @@ public class CharacterController2D : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        distToGround = GetComponent<CapsuleCollider2D>().bounds.extents.y + 0.1f;
         character = GetComponent<Character>();
     }
 
@@ -57,7 +54,6 @@ public class CharacterController2D : MonoBehaviour
     int groundedFilter = 0;
     private void LateUpdate()
     {
-        bool wasGrounded = contactCount != 0;
         CheckContacts();
         float dx = movementX * speed;
         float dy = rb.velocity.y;
@@ -78,12 +74,10 @@ public class CharacterController2D : MonoBehaviour
         {
             if (dx > 0)
             {
-                direction = 1;
                 this.transform.localEulerAngles = new Vector3(0, 0, 0);
             }
             else if (dx < 0)
             {
-                direction = -1;
                 this.transform.localEulerAngles = new Vector3(0, 180, 0);
             }
             
@@ -158,12 +152,10 @@ public class CharacterController2D : MonoBehaviour
 
             if (dx > 0)
             {
-                direction = 1;
                 this.transform.localEulerAngles = new Vector3(0, 0, 0);
             }
             if (dx < 0)
             {
-                direction = -1;
                 this.transform.localEulerAngles = new Vector3(0, 180, 0);
             }
         }
