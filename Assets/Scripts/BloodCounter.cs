@@ -8,7 +8,7 @@ public class BloodCounter : Interactable
     [SerializeField] Transform particleContainer;
     [SerializeField] int max = 10;
     [SerializeField] int current = 0;
-    float t = 0;
+    //float t = 0;
     // Start is called before the first frame update
     void Start()
     {

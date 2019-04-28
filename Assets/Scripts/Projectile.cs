@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] public Character owner;
 
     [SerializeField] int damage = 1;
-    [SerializeField] float range = 3;
+    //[SerializeField] float range = 3;
 
     public LayerMask attackableMask;
     
