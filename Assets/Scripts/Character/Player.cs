@@ -86,8 +86,6 @@ public class Player : Character
         switch (weapon.type)
         {
             case Weapon.Type.SWORD: t = AnimationController.Weapon.SWORD; break;
-            case Weapon.Type.AXE: t = AnimationController.Weapon.AXE; break;
-            case Weapon.Type.BOW: t = AnimationController.Weapon.BOW; break;
             case Weapon.Type.MAGIC: t = AnimationController.Weapon.MAGIC; break;
 
             default: t = AnimationController.Weapon.SWORD; break;
