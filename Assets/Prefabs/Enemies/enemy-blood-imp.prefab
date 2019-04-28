@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754c5122cb305d44e9034fbc2f4af3f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
+  health: {fileID: 1213715161779810471}
   weapon: {fileID: 7156047560858081105}
   controller: {fileID: 7523213993654582332}
   speed: 0
@@ -524,13 +524,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
       propertyPath: EmissionModule.rateOverDistance.scalar
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 0
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 311
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 354cdea73841b0649a9d8ef282435dbc, type: 3}
