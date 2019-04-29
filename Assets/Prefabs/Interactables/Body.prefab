@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3540853600605764764}
   - component: {fileID: 7323632223567669012}
   m_Layer: 11
-  m_Name: GameObject
+  m_Name: ground collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -194,8 +194,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionDuration: 1
-  effect: {fileID: 3338686705668932277}
   health: 1
+  perFrameTime: 0.1
+  animations:
+  - {fileID: 21300292, guid: bbf768e60ccfe2b43b3de2579c66e914, type: 3}
+  - {fileID: 21300294, guid: bbf768e60ccfe2b43b3de2579c66e914, type: 3}
+  - {fileID: 21300296, guid: bbf768e60ccfe2b43b3de2579c66e914, type: 3}
+  - {fileID: 21300298, guid: bbf768e60ccfe2b43b3de2579c66e914, type: 3}
 --- !u!50 &7779215308159165601
 Rigidbody2D:
   serializedVersion: 4
