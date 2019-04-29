@@ -20,6 +20,7 @@ public class Player : Character
     public bool IsInteracting { get; protected set; }
 
     public AudioClip pickUpClip;
+    public AudioClip pickUpWeaponClip;
 
     protected void Awake()
     {
@@ -73,7 +74,7 @@ public class Player : Character
         if (weapon != null)
         {
             SetWeapon(weapon);
-            audioSource.PlayOneShot(pickUpClip);
+            audioSource.PlayOneShot(pickUpWeaponClip);
         }
 
         var consumable = item as ConsumableItem;
