@@ -16,8 +16,8 @@ public class ActivatedObject : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(this.transform.parent.TransformPoint(offPosition), this.transform.lossyScale);
-        Gizmos.DrawWireCube(this.transform.parent.TransformPoint(onPosition), this.transform.lossyScale);
+        Gizmos.DrawWireCube(this.transform.parent.TransformPoint(offPosition), new Vector3(1,3,1));
+        Gizmos.DrawWireCube(this.transform.parent.TransformPoint(onPosition), new Vector3(1, 3, 1));
     }
 
     private void Update()
