@@ -187,12 +187,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35767de7e9ca25e4b9e1c529a7db0b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControl: {fileID: 0}
   player: {fileID: 0}
   healthBar: {fileID: 3213529011133792621}
   healthText: {fileID: 6676598650580266709}
-  gameOverScreen: {fileID: 1984806822}
-  gameOverScreenFadeDuration: 2
+  youDiedScreen: {fileID: 3213529011440607220}
+  youDiedScreenBacgkround: {fileID: 3213529012683757497}
+  youDiedScreenFadeDuration: 2
+  youDiedText: {fileID: 9157675422046989539}
+  youDiedTexts:
+  - {fileID: 21300002, guid: b5c0ab2c2cea6434eb77238c60cac745, type: 3}
+  - {fileID: 21300006, guid: b5c0ab2c2cea6434eb77238c60cac745, type: 3}
+  - {fileID: 21300010, guid: b5c0ab2c2cea6434eb77238c60cac745, type: 3}
+  - {fileID: 21300014, guid: b5c0ab2c2cea6434eb77238c60cac745, type: 3}
+  youDiedScreenTextFadeDuration: 1.5
 --- !u!1 &3213529011301049321
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,14 +257,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3213529011440607220}
-  - component: {fileID: 1984806822}
   m_Layer: 5
-  m_Name: GameOverScreen
+  m_Name: YouDiedScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3213529011440607220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -270,7 +276,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3213529012683757499}
-  - {fileID: 3213529012699639609}
+  - {fileID: 1425036209781804808}
   m_Father: {fileID: 3213529011214760608}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -279,18 +285,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &1984806822
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3213529011440607221}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &3213529012078714988
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +407,7 @@ GameObject:
   - component: {fileID: 3213529012683757497}
   - component: {fileID: 3213529012683757498}
   m_Layer: 5
-  m_Name: Background
+  m_Name: YouDiedBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -459,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.6}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.29803923}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -475,7 +469,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!1 &3213529012699639610
+--- !u!1 &4402194542720083840
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -483,53 +477,53 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3213529012699639609}
-  - component: {fileID: 3213529012699639591}
-  - component: {fileID: 3213529012699639608}
+  - component: {fileID: 1425036209781804808}
+  - component: {fileID: 8389852386671269153}
+  - component: {fileID: 9157675422046989539}
   m_Layer: 5
-  m_Name: Text
+  m_Name: YouDiedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3213529012699639609
+--- !u!224 &1425036209781804808
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3213529012699639610}
+  m_GameObject: {fileID: 4402194542720083840}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 3213529011440607220}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 104, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3213529012699639591
+--- !u!222 &8389852386671269153
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3213529012699639610}
+  m_GameObject: {fileID: 4402194542720083840}
   m_CullTransparentMesh: 0
---- !u!114 &3213529012699639608
+--- !u!114 &9157675422046989539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3213529012699639610}
+  m_GameObject: {fileID: 4402194542720083840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -540,20 +534,15 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 36
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Game Over
+  m_Sprite: {fileID: 21300014, guid: b5c0ab2c2cea6434eb77238c60cac745, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &6307158139515818550
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,8 +651,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.8478012, y: -0.06000042}
-  m_SizeDelta: {x: -6.3044, y: -3.88}
+  m_AnchoredPosition: {x: 1.5, y: 0}
+  m_SizeDelta: {x: -7, y: -4.0000005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9208511619211769084
 CanvasRenderer:

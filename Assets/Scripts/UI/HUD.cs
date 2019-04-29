@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,9 +12,15 @@ public class HUD : MonoBehaviour
     public Image healthBar;
     public Text healthText;
 
-    [Header("Game Over Screen")]
-    public CanvasGroup gameOverScreen;
-    public float gameOverScreenFadeDuration;
+    [Header("You Died Screen")]
+    public RectTransform youDiedScreen;
+    public CanvasRenderer youDiedScreenBacgkround;
+    public float youDiedScreenFadeDuration;
+
+    [Header("You Died Screen Text")]
+    public Image youDiedText;
+    public List<Sprite> youDiedTexts;
+    public float youDiedScreenTextFadeDuration;
 
     protected Game game;
     protected Vector3 healthBarStartScale;
@@ -29,19 +36,19 @@ public class HUD : MonoBehaviour
     {
         UpdateHealthBar();
 
-        if (game.IsOver && !wasOver)
+        if (game.PlayerDied && !wasOver)
         {
             player.GetComponent<CharacterController2D>().enabled = false;
-            gameOverScreen.gameObject.SetActive(true);
-            StartCoroutine(ShowGameOverScreen());
+            youDiedScreen.gameObject.SetActive(true);
+            StartCoroutine(ShowYouDiedScreen());
         }
-        else if (!game.IsOver && wasOver)
+        else if (!game.PlayerDied && wasOver)
         {
-            gameOverScreen.gameObject.SetActive(false);
+            youDiedScreen.gameObject.SetActive(false);
             player.GetComponent<CharacterController2D>().enabled = true;
         }
 
-        wasOver = game.IsOver;
+        wasOver = game.PlayerDied;
     }
 
     protected virtual void UpdateHealthBar()
@@ -55,18 +62,34 @@ public class HUD : MonoBehaviour
         healthText.text = player.health.Value.ToString("00")+"/"+ player.health.Max;
     }
 
-    protected virtual IEnumerator ShowGameOverScreen()
+    protected virtual IEnumerator ShowYouDiedScreen()
     {
         float duration = 0;
 
+        int textIndex = 0;
+        float currentTextDuration = 0;
+        float textDuration = youDiedScreenTextFadeDuration / youDiedTexts.Count;
+
         do
         {
-            float durationPercentage = duration / gameOverScreenFadeDuration;
-            gameOverScreen.alpha = durationPercentage;
+            float durationPercentage = duration / youDiedScreenFadeDuration;
+            youDiedScreenBacgkround.SetAlpha(durationPercentage);
+
+            if (textIndex < youDiedTexts.Count - 1)
+            {
+                if (currentTextDuration > textDuration)
+                {
+                    currentTextDuration = 0;
+                    textIndex++;
+                }
+                youDiedText.sprite = youDiedTexts[textIndex];
+            }
+
             yield return null;
 
             duration += Time.deltaTime;
+            currentTextDuration += Time.deltaTime;
         }
-        while (duration <= gameOverScreenFadeDuration) ;
+        while (duration <= youDiedScreenFadeDuration) ;
     }
 }
