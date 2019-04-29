@@ -73,6 +73,8 @@ public class AnimationController : MonoBehaviour
     // Update is called once per frame
     public void playAnimation(AnimationType animType, bool flipped = false)
     {
+        if (!sr) return;
+
         Sprite[] animation;
         float t;
 

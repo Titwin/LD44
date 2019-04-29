@@ -403,7 +403,7 @@ MonoBehaviour:
   blood: {fileID: 6461627976197516355}
   invulnerabilityTime: 0.5
   maxValue: 10
-  secondsToDecrement: 5000
+  secondsToDecrement: 20
 --- !u!1 &6070660644012996334
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,6 +721,11 @@ PrefabInstance:
         type: 3}
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 4407
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088980, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}

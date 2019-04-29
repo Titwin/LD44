@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timePerSprite: 0.1
   animation:
-  - {fileID: 21300232, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
-  - {fileID: 21300234, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
-  - {fileID: 21300236, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
-  - {fileID: 21300238, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300438, guid: bbf768e60ccfe2b43b3de2579c66e914, type: 3}
+  - {fileID: 21300440, guid: bbf768e60ccfe2b43b3de2579c66e914, type: 3}
+  - {fileID: 21300442, guid: bbf768e60ccfe2b43b3de2579c66e914, type: 3}
+  - {fileID: 21300444, guid: bbf768e60ccfe2b43b3de2579c66e914, type: 3}
