@@ -183,7 +183,7 @@ MonoBehaviour:
   health: {fileID: 4562684118804612780}
   spriteEffect: {fileID: 4068293155512773091}
   destroyTime: 0.1
-  weapon: {fileID: 8236313210651838200}
+  weapon: {fileID: 5089294266265864009}
   bodyTemplate: {fileID: 7814929516518024235, guid: 2e568140f27a7ac4d8e15ccd08429c14,
     type: 3}
   weapons:
@@ -526,8 +526,8 @@ MonoBehaviour:
   type: 1
   projectileTemplate: {fileID: 8232518155648864323}
   orientation: {x: 1, y: 0}
-  speed: 10
-  delay: 0.5
+  speed: 7
+  delay: 0.32
 --- !u!1 &8727091277094822736
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,6 +645,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: fireball
       objectReference: {fileID: 0}
+    - target: {fileID: 1890020645748580402, guid: 4d6406b0de8745b49a22abe9afbaacfb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386458282024617727, guid: 4d6406b0de8745b49a22abe9afbaacfb,
+        type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 9049486341853476474}
+    - target: {fileID: 1386458282024617727, guid: 4d6406b0de8745b49a22abe9afbaacfb,
+        type: 3}
+      propertyPath: destructionMask.m_Bits
+      value: 4608
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6406b0de8745b49a22abe9afbaacfb, type: 3}
 --- !u!4 &4454969732422698355 stripped
@@ -721,11 +736,6 @@ PrefabInstance:
         type: 3}
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 4407
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088980, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
