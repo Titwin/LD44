@@ -8,9 +8,10 @@ public class SimpleAnimation : MonoBehaviour
     private int animationIndex;
     private float animationTime;
     public bool randomInitialization = false;
+    public bool flipX = false;
+    public bool flipY = false;
     public float perFrameTime;
     public Sprite[] animations;
-
     
     void Start()
     {
@@ -39,6 +40,8 @@ public class SimpleAnimation : MonoBehaviour
             animationTime -= perFrameTime;
             animationIndex = (animationIndex + 1) % animations.Length;
             sr.sprite = animations[animationIndex];
+            sr.flipX = flipX;
+            sr.flipY = flipY;
         }
         animationTime += Time.deltaTime;
     }
