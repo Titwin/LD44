@@ -5,7 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class AnimationController : MonoBehaviour
 {
-    private SpriteRenderer sr;
+    [HideInInspector]
+    public SpriteRenderer sr;
+
     private int animationIndex;
     private float animationTime;
     private AnimationType lastAnimation;

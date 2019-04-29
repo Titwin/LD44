@@ -6,14 +6,19 @@ public class SpriteEffect : MonoBehaviour
 {
     [SerializeField] SpriteRenderer sprite;
     bool blinking = false;
+    // huge hack
+    public new bool canFade = true;
+    public new bool canBlink = true;
 
     public void Fade(float time)
     {
-        StartCoroutine(DoFade(time));
+        if(canFade)
+            StartCoroutine(DoFade(time));
     }
     public void Blink(float time)
     {
-        StartCoroutine(DoBlink(time));
+        if(canBlink)
+            StartCoroutine(DoBlink(time));
     }
         
     IEnumerator DoFade(float time)
