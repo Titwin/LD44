@@ -98,7 +98,7 @@ public class CharacterController2D : MonoBehaviour
                 }
                 else if (jump)
                 {
-                    jumpFrames = 5;
+                    jumpFrames = 3;
                     ac.playAnimation(AnimationController.AnimationType.JUMPPREPARE);
                 }
 
