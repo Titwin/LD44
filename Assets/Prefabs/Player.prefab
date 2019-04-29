@@ -104,6 +104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 1261073556606479387}
+  canFade: 0
+  canBlink: 1
 --- !u!50 &1261073556606479391
 Rigidbody2D:
   serializedVersion: 4
@@ -181,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 4562684118804612780}
   spriteEffect: {fileID: 4068293155512773091}
-  destroyTime: 0.3
+  destroyTime: 2
   audioSource: {fileID: 662260882357000021}
   hurtClips:
   - {fileID: 8300000, guid: 6938bd327374a45418e0ffc491a2b6a2, type: 3}
@@ -209,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995fd6ca5a3611546b3754c69e5472a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 0}
   weapon: 0
   timeIdle: 0.3
   animationIdle:
@@ -244,7 +247,7 @@ MonoBehaviour:
   - {fileID: 21300074, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
   - {fileID: 21300076, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
   - {fileID: 21300078, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
-  timeDying: 0.4
+  timeDying: 0.6
   animationDying:
   - {fileID: 21300096, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
   - {fileID: 21300098, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
@@ -261,6 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995fd6ca5a3611546b3754c69e5472a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 0}
   weapon: 1
   timeIdle: 0.3
   animationIdle:
@@ -298,8 +302,12 @@ MonoBehaviour:
   - {fileID: 21300090, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
   - {fileID: 21300092, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
   - {fileID: 21300094, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
-  timeDying: 0
-  animationDying: []
+  timeDying: 0.6
+  animationDying:
+  - {fileID: 21300096, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300098, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300100, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300100, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
 --- !u!1 &3497811005485361866
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,16 +728,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8236313210651838203}
     m_Modifications:
-    - target: {fileID: 1890020645748580402, guid: 4d6406b0de8745b49a22abe9afbaacfb,
-        type: 3}
-      propertyPath: m_Name
-      value: fireball
-      objectReference: {fileID: 0}
-    - target: {fileID: 1890020645748580402, guid: 4d6406b0de8745b49a22abe9afbaacfb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6688211091768628175, guid: 4d6406b0de8745b49a22abe9afbaacfb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -783,6 +781,16 @@ PrefabInstance:
     - target: {fileID: 6688211091768628175, guid: 4d6406b0de8745b49a22abe9afbaacfb,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1890020645748580402, guid: 4d6406b0de8745b49a22abe9afbaacfb,
+        type: 3}
+      propertyPath: m_Name
+      value: fireball
+      objectReference: {fileID: 0}
+    - target: {fileID: 1890020645748580402, guid: 4d6406b0de8745b49a22abe9afbaacfb,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1386458282024617727, guid: 4d6406b0de8745b49a22abe9afbaacfb,

@@ -16,7 +16,7 @@ public class Player : Character
     public bool GoesThroughOnDeath { get; protected set; }
 
     public Interactable Interactable { get; set; }
-
+    private bool dying = false;
     public bool IsInteracting { get; protected set; }
 
     public AudioClip pickUpClip;
@@ -125,14 +125,29 @@ public class Player : Character
 
     internal override void OnDeath(GameObject source)
     {
-        base.OnDeath(source);
+        if (dying) return;
+
+        audioSource.PlayOneShot(deathClip);
 
         GoesThroughOnDeath = true;
 
         thePlayer = null;
-        Controller.ac.playAnimation(AnimationController.AnimationType.DYING);
+        StartCoroutine(DeathAnimation());
+        dying = true;
     }
-
+    internal override void OnHurt(GameObject source)
+    {
+        if (dying) return;
+        base.OnHurt(source);
+    }
+    protected virtual IEnumerator DeathAnimation()
+    {
+        foreach (Sprite s in Controller.ac.animationDying)
+        {
+            Controller.ac.sr.sprite = s;
+            yield return new WaitForSeconds(Controller.ac.timeDying);
+        }
+    }
     protected virtual IEnumerator Interact()
     {
         if (!IsInteracting)

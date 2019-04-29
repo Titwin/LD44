@@ -48,7 +48,7 @@ public class Attackable: MonoBehaviour
     {
     }
 
-    protected virtual void OnHurt(GameObject source)
+    internal virtual void OnHurt(GameObject source)
     {
         spriteEffect.Blink(health.invulnerabilityTime);
         audioSource.PlayOneShot(GetRandom(hurtClips));
