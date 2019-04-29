@@ -5,7 +5,8 @@ using UnityEngine;
 public class AttackableTrigger : Attackable
 {
     [SerializeField] bool value = false;
-    [SerializeField] SpriteRenderer sprite;
+    [SerializeField] GameObject artOn;
+    [SerializeField] GameObject artOff;
     [SerializeField] ActivatedObject activatedObject;
     public float timer;
     private float t;
@@ -47,10 +48,12 @@ public class AttackableTrigger : Attackable
 
     virtual protected void DoDisable()
     {
-        sprite.color = Color.gray;
+        artOn.SetActive(false);
+        artOff.SetActive(true);
     }
     virtual protected void DoEnable()
     {
-        sprite.color = Color.magenta;
+        artOn.SetActive(true);
+        artOff.SetActive(false);
     }
 }
