@@ -18,10 +18,10 @@ public class Projectile : MonoBehaviour
     {
         if (attackableMask == (attackableMask | (1 << other.gameObject.layer)))
         {
-            Attackable target = other.GetComponent<Attackable>();
+            HitCollider target = other.GetComponent<HitCollider>();
             if (target != null)
             {
-                target.DoDamage(owner.gameObject, this.damage);
+                target.character.DoDamage(owner.gameObject, this.damage);
             }
         }
 
