@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
+    public GameObject introduction;
+
     public float gameOverDuration;
     public GameObject respawn;
     public Player player;
@@ -18,25 +20,41 @@ public class Game : MonoBehaviour
 
     protected virtual void Start()
     {
+        introduction.SetActive(true);
+        hud.gameObject.SetActive(false);
+
         PlayerDied = false;
         resetables.SetActive(false);
         player.gameObject.SetActive(false);
-        Initialize();
+        
     }
 
     protected virtual void LateUpdate()
     {
-        if (!PlayerDied)
+        if (introduction.activeSelf)
         {
-            if (instanciatedPlayer.GetComponent<Player>().health.Value <= 0)
+            if(Input.anyKey)
             {
-                StartCoroutine(Die());
+                introduction.SetActive(false);
+
+                hud.gameObject.SetActive(true);
+                Initialize();
             }
         }
-
-        if(end.activated)
+        if (!introduction.activeSelf)
         {
-            hud.end();
+            if (!PlayerDied)
+            {
+                if (instanciatedPlayer.GetComponent<Player>().health.Value <= 0)
+                {
+                    StartCoroutine(Die());
+                }
+            }
+
+            if (end.activated)
+            {
+                hud.end();
+            }
         }
     }
 
