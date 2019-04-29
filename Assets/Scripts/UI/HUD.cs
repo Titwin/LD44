@@ -52,6 +52,6 @@ public class HUD : MonoBehaviour
         healthBarScale.x = healthBarStartScale.x * healthPercentage;
         healthBar.transform.localScale = healthBarScale;
 
-        healthText.text = game.Player.health.Value.ToString("00");
+        healthText.text = game.Player.health.Value.ToString("00")+"/"+ game.Player.health.Max;
     }
 }

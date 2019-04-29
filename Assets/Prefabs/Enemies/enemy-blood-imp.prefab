@@ -232,7 +232,7 @@ MonoBehaviour:
   spriteEffect: {fileID: 5788983332485598891}
   destroyTime: 0.5
   weapon: {fileID: 7156047560858081105}
-  bodyTemplate: {fileID: 7814929516518024235, guid: 2e568140f27a7ac4d8e15ccd08429c14,
+  bodyTemplate: {fileID: 652338792621200750, guid: 4b956b478ad942b4da58967ca32cf8d1,
     type: 3}
   controller: {fileID: 7523213993654582332}
   jumpiness: 0.25

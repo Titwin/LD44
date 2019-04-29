@@ -33,7 +33,7 @@ public class Health : MonoBehaviour
             p.position = this.transform.position;
             for (int i = 0; i < 10* amount; ++i)
             {
-                p.velocity = (this.transform.position - source.transform.position).normalized * 2+ new Vector3(Random.RandomRange(-0.5f,0.5f), Random.RandomRange(-0.5f, 0.5f),0);
+                p.velocity = (this.transform.position - source.transform.position).normalized * Random.Range(1f, 2f) + new Vector3(Random.RandomRange(-0.5f,0.5f), Random.RandomRange(-0.5f, 0.5f),0);
                 blood.Emit(p, 1);
             }
         }
@@ -51,9 +51,9 @@ public class Health : MonoBehaviour
         {
             ParticleSystem.EmitParams p = new ParticleSystem.EmitParams();
             p.position = this.transform.position;
-            for (int i = 0; i < 30* amount; ++i)
+            for (int i = 0; i < 50* amount; ++i)
             {
-                p.velocity = -(this.transform.position - source.transform.position).normalized * 5 + new Vector3(Random.RandomRange(-0.5f, 0.5f), Random.RandomRange(-0.5f, 0.5f), 0);
+                p.velocity = -(this.transform.position - source.transform.position).normalized * Random.Range(1f,7f) + new Vector3(Random.RandomRange(-0.5f, 0.5f), Random.RandomRange(-0.5f, 0.5f), 0);
                 blood.Emit(p, 1);
             }
         }
@@ -72,7 +72,7 @@ public class Health : MonoBehaviour
             p.position = source.transform.position;
             for (int i = 0; i < 5* amount; ++i)
             {
-                p.velocity = (this.transform.position - source.transform.position).normalized * 5 + new Vector3(Random.RandomRange(-0.5f, 0.5f), Random.RandomRange(-0.5f, 0.5f), 0);
+                p.velocity = (this.transform.position - source.transform.position).normalized * Random.Range(1f, 5f) + new Vector3(Random.RandomRange(-0.5f, 0.5f), Random.RandomRange(-0.5f, 0.5f), 0);
                 blood.Emit(p, 1);
             }
         }
