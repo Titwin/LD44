@@ -155,7 +155,7 @@ MonoBehaviour:
   ac: {fileID: 2730668085694940983}
   size: {x: 1, y: 2}
   speed: 10
-  jumpSpeed: 22
+  jumpSpeed: 23
   canAttack: 1
   isInteracting: 0
   attackCooldownTime: 0.2
