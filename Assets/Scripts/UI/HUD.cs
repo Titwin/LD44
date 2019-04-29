@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     [Header("Player")]
-    public CharacterController2D playerControl;
     public Player player;
 
     [Header("Health")]
