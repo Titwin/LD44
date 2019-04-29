@@ -11,7 +11,7 @@ public class Attackable: MonoBehaviour
     [SerializeField] float destroyTime = 0.1f;
 
     
-    public void DoDamage(Character source, int amount)
+    public void DoDamage(GameObject source, int amount)
     {
         OnAttack(source!=null?source.gameObject:null);
         if (health != null)
@@ -19,7 +19,7 @@ public class Attackable: MonoBehaviour
             Debug.Log(this.name + " got attacked for " + amount + "dmg" + ", out of " + health.Value);
             if (!health.Invulnerable)
             {
-                health.Value -= amount;
+                health.Hurt(source,amount);
 
                 if (health.Value <= 0)
                 {

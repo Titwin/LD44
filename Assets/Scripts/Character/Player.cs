@@ -64,7 +64,7 @@ public class Player : Character
         var consumable = item as ConsumableItem;
         if (consumable != null)
         {
-            health.Value += consumable.healthModifier;
+            health.Heal(item.gameObject, consumable.healthModifier);
         }
 
         Debug.Log(name + " has picked " + item.name + "(" + item.GetType() + ")");
@@ -74,8 +74,10 @@ public class Player : Character
     protected virtual void SetWeapon(Weapon weapon)
     {
         this.weapon.damages = weapon.damages;
-        health.Value += weapon.healthModifier - this.weapon.healthModifier;
-        health.Value = Mathf.Max(health.Value, 1);
+        int delta = weapon.healthModifier - this.weapon.healthModifier;
+        delta = Mathf.Min(health.Value - 1, delta);
+        if (delta>0) health.Heal(weapon.gameObject,delta);
+        else if (delta < 0) health.Hurt(weapon.gameObject, delta);
 
         foreach(Weapon w in weapons)
         {

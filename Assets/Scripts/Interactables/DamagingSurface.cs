@@ -13,7 +13,7 @@ public class DamagingSurface : MonoBehaviour
             Attackable target = collision.gameObject.GetComponent<Attackable>();
             if(target != null)
             {
-                target.DoDamage(null, damage);
+                target.DoDamage(this.gameObject, damage);
             }
         }
     }

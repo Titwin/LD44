@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300072, guid: bbf768e60ccfe2b43b3de2579c66e914, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.8427868, a: 1}
+  m_Color: {r: 0.654902, g: 0.24705884, b: 0.24705884, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &121258617250469172
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -257,7 +257,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5483c1a5e74e37d4cbaa80fbf3f7c827, type: 3}
-  m_Color: {r: 1, g: 0.075109825, b: 0, a: 1}
+  m_Color: {r: 0.654902, g: 0.24705884, b: 0.24705884, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

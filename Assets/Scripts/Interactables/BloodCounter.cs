@@ -75,13 +75,13 @@ public class BloodCounter : Interactable
             if (current == 0)
             {
                 StartCoroutine(DoDrip(max));
-                character.DoDamage(null, damage);
+                character.health.Suck(this.gameObject, damage);
                 if (activatedObject != null) activatedObject.SetActive(true);
             }
             else
             {
                 StartCoroutine(DoClear());
-                character.health.Value += damage;
+                character.health.Heal(this.gameObject,damage);
                 if (activatedObject != null) activatedObject.SetActive(false);
             }
             return true;

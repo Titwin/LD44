@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
             Attackable target = other.GetComponent<Attackable>();
             if (target != null)
             {
-                target.DoDamage(owner, this.damage);
+                target.DoDamage(owner.gameObject, this.damage);
             }
         }
 

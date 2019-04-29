@@ -15,7 +15,7 @@ public class WeaponMelee : Weapon
             {
                 foreach (var target in attackCollider.InRange)
                 {
-                    target.DoDamage(this.owner, this.damages);
+                    target.DoDamage(this.owner.gameObject, this.damages);
                 }
             }
         }

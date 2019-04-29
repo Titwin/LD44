@@ -15,7 +15,7 @@ public class InteractableBody : Interactable
 
     public override bool DoInteract(Character character)
     {
-        character.health.Value += health;
+        character.health.Heal(this.gameObject,health);
         //enabled = false;
         StartCoroutine(DoSlowDestroy(0.5f));
         return true;
