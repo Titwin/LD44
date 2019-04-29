@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.26, y: 0.25}
   m_EdgeRadius: 0
 --- !u!114 &7150558215565642061
 MonoBehaviour:
@@ -69,8 +69,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7055578c528deb408a420f63cc8155b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   character: {fileID: 2260878813494400314}
 --- !u!114 &5082821889165326423
 MonoBehaviour:
@@ -82,8 +82,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 323ed53b95572874e8ac8baed01588be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   blood: {fileID: 4684788569330586111}
   invulnerabilityTime: 0.5
   maxValue: 3
@@ -114,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3825199823274453085}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.395, y: 0, z: 0}
+  m_LocalPosition: {x: 0.519, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.95, z: 1}
   m_Children: []
   m_Father: {fileID: 8549913672273104019}
@@ -144,7 +144,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &10821077656081982
 MonoBehaviour:
@@ -156,8 +156,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37636ef8e236a9a47abc9e179b8fd8bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   attackableMask:
     serializedVersion: 2
     m_Bits: 1536
@@ -388,8 +388,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d1cada7572a8f9479d02230afd42d6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   sprite: {fileID: 8817407003481504963}
 --- !u!50 &2008744647697933844
 Rigidbody2D:
@@ -438,8 +438,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da78ac09814107b40ab2ca83f36b7e4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   ac: {fileID: 4567049836548942564}
   size: {x: 0, y: 0}
   speed: 1
@@ -466,11 +466,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 754c5122cb305d44e9034fbc2f4af3f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   health: {fileID: 5082821889165326423}
   spriteEffect: {fileID: 3863829597120523710}
-  destroyTime: 0.1
+  destroyTime: 0.5
   audioSource: {fileID: 6720889136998343862}
   attackClips:
   - {fileID: 8300000, guid: f1996017876ece948b7cb9ead6a534a5, type: 3}
@@ -482,14 +482,32 @@ MonoBehaviour:
   bodyTemplate: {fileID: 7814929516518024235, guid: 2e568140f27a7ac4d8e15ccd08429c14,
     type: 3}
   controller: {fileID: 5649953694446404904}
-  jumpiness: 0
-  thinkTime: 0.01
-  pursuitRange: 0
-  patrolRange: 0
+  jumpiness: 0.1
+  thinkTime: 0.05
+  pursuitRange: 3
+  patrolRange: 3
   runawayRange: 0.1
   agressionCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -515,8 +533,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 995fd6ca5a3611546b3754c69e5472a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   weapon: 0
   timeIdle: 1
   animationIdle:
@@ -590,12 +608,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e58e76d3f1f497d42be7daea4aec3b0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   owner: {fileID: 2260878813494400314}
   damages: 1
   healthModifier: 0
-  cooldown: 0.5
+  cooldown: 1
   type: 0
   attackCollider: {fileID: 10821077656081982}
 --- !u!1001 &7701899952707776557
@@ -605,10 +623,40 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8817407003481504962}
     m_Modifications:
-    - target: {fileID: 3161829659025088983, guid: 354cdea73841b0649a9d8ef282435dbc,
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
-      propertyPath: m_Name
-      value: bleeding
+      propertyPath: InitialModule.startLifetime.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 311
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088980, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
@@ -680,40 +728,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+    - target: {fileID: 3161829659025088983, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
-      propertyPath: InitialModule.startLifetime.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minScalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: CollisionModule.collidesWith.m_Bits
-      value: 311
+      propertyPath: m_Name
+      value: bleeding
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088981, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}

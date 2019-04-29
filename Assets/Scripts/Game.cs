@@ -17,6 +17,7 @@ public class Game : MonoBehaviour
 
     protected virtual void Start()
     {
+        PlayerDied = false;
         resetables.SetActive(false);
         player.gameObject.SetActive(false);
         Initialize();
