@@ -101,6 +101,8 @@ GameObject:
   - component: {fileID: 7765346451067059147}
   - component: {fileID: 5276927406624631185}
   - component: {fileID: 8681272712495274183}
+  - component: {fileID: 9147061183216116102}
+  - component: {fileID: 8777128951032845513}
   m_Layer: 13
   m_Name: crate
   m_TagString: Untagged
@@ -212,6 +214,9 @@ MonoBehaviour:
   health: {fileID: 990732061}
   spriteEffect: {fileID: 8681272712495274183}
   destroyTime: 0.5
+  audioSource: {fileID: 0}
+  hurtClips: []
+  deathClip: {fileID: 0}
   loot: {fileID: 3403817454697242057, guid: 6206f15685a5d5644a801fac572ed624, type: 3}
 --- !u!114 &8681272712495274183
 MonoBehaviour:
@@ -226,3 +231,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 7765346451067059144}
+--- !u!114 &9147061183216116102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7765346451067059146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4e916f1c3f98641a73b4e38bf2bd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomInitialization: 1
+  perFrameTime: 0.8
+  animations:
+  - {fileID: 21300012, guid: 6812e2a0cb97cde45b41d38cc4f0c229, type: 3}
+  - {fileID: 21300028, guid: 6812e2a0cb97cde45b41d38cc4f0c229, type: 3}
+  - {fileID: 21300030, guid: 6812e2a0cb97cde45b41d38cc4f0c229, type: 3}
+  - {fileID: 21300032, guid: 6812e2a0cb97cde45b41d38cc4f0c229, type: 3}
+  - {fileID: 21300034, guid: 6812e2a0cb97cde45b41d38cc4f0c229, type: 3}
+--- !u!114 &8777128951032845513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7765346451067059146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e1276e0cd947841af81877ed64eee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
