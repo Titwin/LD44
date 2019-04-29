@@ -1,42 +1,39 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
     public float gameOverDuration;
     public GameObject respawn;
     public Player player;
-    public CameraController camera;
+    public new CameraController camera;
     public GameObject resetables;
     public HUD hud;
 
     private GameObject instanciatedScene;
     private GameObject instanciatedPlayer;
-    //public Player Player { get; private set; }
 
-    public bool IsOver { get; private set; }
+    public bool PlayerDied { get; private set; }
 
     protected virtual void Start()
     {
-        //Player = FindObjectOfType<Player>();
         resetables.SetActive(false);
         player.gameObject.SetActive(false);
-        initialize();
+        Initialize();
     }
 
     protected virtual void LateUpdate()
     {
-        if (!IsOver)
+        if (!PlayerDied)
         {
             if (instanciatedPlayer.GetComponent<Player>().health.Value <= 0)
             {
-                StartCoroutine(Over());
+                StartCoroutine(Die());
             }
         }
     }
 
-    private void initialize()
+    private void Initialize()
     {
         instanciatedScene = Instantiate(resetables);
         instanciatedScene.SetActive(true);
@@ -47,15 +44,15 @@ public class Game : MonoBehaviour
         hud.player = instanciatedPlayer.GetComponent<Player>();
     }
 
-    protected IEnumerator Over()
+    protected IEnumerator Die()
     {
-        IsOver = true;
+        PlayerDied = true;
         yield return new WaitForSeconds(gameOverDuration);
         
         DestroyImmediate(instanciatedScene);
         DestroyImmediate(instanciatedPlayer);
-        initialize();
+        Initialize();
         instanciatedPlayer.transform.position = respawn.transform.position;
-        IsOver = false;
+        PlayerDied = false;
     }
 }

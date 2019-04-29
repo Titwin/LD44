@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a92ccebb739a64c4f8199a8e2c40f690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverDuration: 2
+  gameOverDuration: 4
   respawn: {fileID: 4229191704952171865}
   player: {fileID: 1709517573222948045}
   camera: {fileID: 0}
