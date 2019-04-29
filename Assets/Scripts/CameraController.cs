@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    public  Transform target;
     [SerializeField] Vector3 offset;
     // Start is called before the first frame update
     void Start()

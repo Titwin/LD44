@@ -59,6 +59,8 @@ public class CharacterController2D : MonoBehaviour
         float dy = rb.velocity.y;
         bool grounded = IsGrounded();
 
+        if (!ac) return;
+
         if (!canAttack)
         {
             ac.playAnimation(AnimationController.AnimationType.ATTACK);

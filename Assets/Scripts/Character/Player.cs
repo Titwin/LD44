@@ -30,6 +30,11 @@ public class Player : Character
         SetWeapon(this.weapon);
     }
 
+    public void reset()
+    {
+        
+    }
+
     protected void Update()
     {
         //base.Update();
@@ -109,5 +114,6 @@ public class Player : Character
     protected override void OnDeath(GameObject source)
     {
         thePlayer = null;
+        Controller.ac.playAnimation(AnimationController.AnimationType.DYING);
     }
 }
