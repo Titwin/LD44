@@ -41,6 +41,10 @@ public class AnimationController : MonoBehaviour
     public float timeAttack;
     public Sprite[] animationAttack;
 
+    [Space(10)]
+    public float timeDying;
+    public Sprite[] animationDying;
+
     public enum Weapon
     {
         SWORD,
@@ -53,7 +57,8 @@ public class AnimationController : MonoBehaviour
         JUMPPREPARE,
         JUMPING,
         FALLING,
-        ATTACK
+        ATTACK,
+        DYING
     }
 
     // Use this for initialization
@@ -96,6 +101,10 @@ public class AnimationController : MonoBehaviour
             case AnimationType.FALLING:
                 animation = animationFalling;
                 t = timeFalling;
+                break;
+            case AnimationType.DYING:
+                animation = animationDying;
+                t = timeDying;
                 break;
             default:
                 animation = animationIdle;

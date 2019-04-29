@@ -127,7 +127,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
   spriteEffect: {fileID: 5788983332485598891}
   destroyTime: 0.5
   weapon: {fileID: 7156047560858081105}
-  bodyTemplate: {fileID: 3403817454697242057, guid: 6206f15685a5d5644a801fac572ed624,
+  bodyTemplate: {fileID: 7814929516518024235, guid: 2e568140f27a7ac4d8e15ccd08429c14,
     type: 3}
   controller: {fileID: 7523213993654582332}
   jumpiness: 0.25
@@ -300,22 +300,36 @@ MonoBehaviour:
   weapon: 0
   timeIdle: 0.1
   animationIdle:
-  - {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
+  - {fileID: 21300006, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
+  - {fileID: 21300008, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
   timeWalking: 0.1
   animationWalking:
-  - {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
+  - {fileID: 21300000, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
+  - {fileID: 21300002, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
+  - {fileID: 21300004, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
+  - {fileID: 21300006, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
   timeDucking: 0.1
-  animationDucking:
-  - {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
+  animationDucking: []
   timeJumpPrepare: 0
-  animationJumpPrepare: []
+  animationJumpPrepare:
+  - {fileID: 21300006, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
   timeJumping: 0
-  animationJumping: []
+  animationJumping:
+  - {fileID: 21300002, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
+  - {fileID: 21300008, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
   timeFalling: 0
-  animationFalling: []
+  animationFalling:
+  - {fileID: 21300002, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
+  - {fileID: 21300008, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
   timeAttack: 0.1
   animationAttack:
-  - {fileID: 21300000, guid: 77a013485cf96a143903da42bb00db64, type: 3}
+  - {fileID: 21300010, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
+  - {fileID: 21300008, guid: 599e1d93996117244a25bd4814d8bc90, type: 3}
+  timeDying: 0.1
+  animationDying:
+  - {fileID: 21300300, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300304, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300308, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
 --- !u!1 &3221463688646554934
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,21 +499,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2643653521363503398}
     m_Modifications:
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: CollisionModule.collidesWith.m_Bits
-      value: 311
-      objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088980, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -559,6 +558,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bleeding
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 311
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 354cdea73841b0649a9d8ef282435dbc, type: 3}

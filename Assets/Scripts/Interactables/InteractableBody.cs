@@ -6,7 +6,7 @@ public class InteractableBody : Interactable
 {
     [SerializeField] SpriteEffect effect;
     [SerializeField] int health = 1;
-    bool enabled = true;
+    //bool enabled = true;
 
     public override bool CanInteract(Character character)
     {
@@ -16,7 +16,7 @@ public class InteractableBody : Interactable
     public override bool DoInteract(Character character)
     {
         character.health.Value += health;
-        enabled = false;
+        //enabled = false;
         StartCoroutine(DoSlowDestroy(0.5f));
         return true;
     }

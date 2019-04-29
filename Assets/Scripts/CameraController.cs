@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        this.transform.position = target.transform.position + offset;
+        if(target)
+            this.transform.position = target.transform.position + offset;
     }
 }

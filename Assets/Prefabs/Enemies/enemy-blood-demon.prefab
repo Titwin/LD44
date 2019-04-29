@@ -239,7 +239,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -385,25 +385,34 @@ MonoBehaviour:
   weapon: 0
   timeIdle: 1
   animationIdle:
-  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
-  timeWalking: 1
+  - {fileID: 21300000, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
+  - {fileID: 21300002, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
+  timeWalking: 0.3
   animationWalking:
-  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
+  - {fileID: 21300000, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
+  - {fileID: 21300002, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
+  - {fileID: 21300004, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
   timeDucking: 1
   animationDucking:
-  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
-  timeJumpPrepare: 1
+  - {fileID: 21300004, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
+  timeJumpPrepare: 0.5
   animationJumpPrepare:
-  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
-  timeJumping: 1
+  - {fileID: 21300006, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
+  timeJumping: 0.5
   animationJumping:
-  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
-  timeFalling: 1
+  - {fileID: 21300006, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
+  timeFalling: 0.5
   animationFalling:
-  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
-  timeAttack: 1
+  - {fileID: 21300002, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
+  timeAttack: 0.3
   animationAttack:
-  - {fileID: 21300000, guid: 5b1e3906106663a4d9dc732c0bc0aadb, type: 3}
+  - {fileID: 21300004, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
+  - {fileID: 21300000, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
+  timeDying: 0.1
+  animationDying:
+  - {fileID: 21300300, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300304, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300308, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
 --- !u!1 &8890119390153468856
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,41 +470,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8817407003481504962}
     m_Modifications:
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minScalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: CollisionModule.collidesWith.m_Bits
-      value: 311
-      objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088980, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -570,6 +544,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bleeding
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 311
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088981, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
