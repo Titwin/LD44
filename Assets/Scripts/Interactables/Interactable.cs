@@ -16,7 +16,16 @@ public abstract class Interactable : MonoBehaviour
             collision.gameObject.GetComponent<Player>().Interactable = this;
         }
     }
-
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (collision.gameObject.GetComponent<Player>().Interactable == null)
+            {
+                collision.gameObject.GetComponent<Player>().Interactable = this;
+            }
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
