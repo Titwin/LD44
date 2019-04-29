@@ -410,9 +410,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3038578ebe8866a41b1d573da958c459, type: 3}
   timeDying: 0.1
   animationDying:
-  - {fileID: 21300300, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
-  - {fileID: 21300304, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
-  - {fileID: 21300308, guid: 8143c1f4f1de8314ca323f9785170579, type: 3}
+  - {fileID: 21300466, guid: bbf768e60ccfe2b43b3de2579c66e914, type: 3}
+  - {fileID: 21300470, guid: bbf768e60ccfe2b43b3de2579c66e914, type: 3}
+  - {fileID: 21300474, guid: bbf768e60ccfe2b43b3de2579c66e914, type: 3}
 --- !u!1 &8890119390153468856
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,6 +470,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8817407003481504962}
     m_Modifications:
+    - target: {fileID: 3161829659025088983, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: m_Name
+      value: bleeding
+      objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088980, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -539,11 +544,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088983, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: m_Name
-      value: bleeding
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
