@@ -319,7 +319,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8817407003481504961}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.05, y: 10.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -391,6 +391,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 8817407003481504963}
+  canFade: 1
+  canBlink: 1
 --- !u!50 &2008744647697933844
 Rigidbody2D:
   serializedVersion: 4
@@ -442,8 +444,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ac: {fileID: 4567049836548942564}
   size: {x: 0, y: 0}
-  speed: 1
-  jumpSpeed: 1
+  speed: 4
+  jumpSpeed: 5
   canAttack: 1
   attackCooldownTime: 1
   contactDown: 0
@@ -483,8 +485,8 @@ MonoBehaviour:
   controller: {fileID: 5649953694446404904}
   jumpiness: 0.1
   thinkTime: 0.05
-  pursuitRange: 3
-  patrolRange: 3
+  pursuitRange: 6
+  patrolRange: 2
   runawayRange: 0.1
   agressionCurve:
     serializedVersion: 2
@@ -498,6 +500,15 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.2996974
+      value: 0.76634914
+      inSlope: 0.9922719
+      outSlope: 0.9922719
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
@@ -534,6 +545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995fd6ca5a3611546b3754c69e5472a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 0}
   weapon: 0
   timeIdle: 1
   animationIdle:
@@ -610,7 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 2260878813494400314}
-  damages: 1
+  damages: 2
   healthModifier: 0
   cooldown: 1
   type: 0
@@ -696,26 +708,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minScalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
