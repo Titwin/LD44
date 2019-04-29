@@ -258,7 +258,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionDuration: 1
-  item: {fileID: 6853540619752506285}
+  toggled: 1
+  item1: {fileID: 5553134801312386504}
+  item2: {fileID: 6853540619752506285}
 --- !u!1 &3260508123410766106
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +443,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3260508123677499017}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.59, y: 9.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -780,7 +782,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4239489484993925827}
+  - {fileID: 6367491489235787299}
   m_Father: {fileID: 3260508123387794956}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -791,7 +793,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5968286196975936501}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -864,7 +866,7 @@ MonoBehaviour:
   damages: 2
   healthModifier: -1
   cooldown: 0.25
-  type: 1
+  type: 0
   attackCollider: {fileID: 0}
 --- !u!1 &7179660400929183753
 GameObject:
@@ -980,13 +982,13 @@ MonoBehaviour:
   damages: 2
   healthModifier: -3
   cooldown: 0
-  type: 3
+  type: 1
   projectileTemplate: {fileID: 7645584223444972710, guid: 1b74899792429034988264768e840fa9,
     type: 3}
   orientation: {x: 1, y: 0}
   speed: 10
   delay: 0
---- !u!1 &8525852669649129322
+--- !u!1 &7776402546422395801
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -994,8 +996,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4239489484993925827}
-  - component: {fileID: 8608443342152085447}
+  - component: {fileID: 6367491489235787299}
+  - component: {fileID: 6324613031544362128}
   m_Layer: 0
   m_Name: altar-fire (1)
   m_TagString: Untagged
@@ -1003,13 +1005,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4239489484993925827
+--- !u!4 &6367491489235787299
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8525852669649129322}
+  m_GameObject: {fileID: 7776402546422395801}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.119999886, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1017,13 +1019,13 @@ Transform:
   m_Father: {fileID: 5968286196975936499}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8608443342152085447
+--- !u!212 &6324613031544362128
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8525852669649129322}
+  m_GameObject: {fileID: 7776402546422395801}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
