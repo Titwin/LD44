@@ -9,6 +9,7 @@ public class ActivatedObject : MonoBehaviour
     [SerializeField] Vector3 offPosition = Vector3.zero;
     [SerializeField] Vector3 onPosition = Vector3.zero;
 
+    [SerializeField] Vector3 size = new Vector3(1, 3, 1);
     private void Start()
     {
         Vector3 targetPos = active ? onPosition : offPosition;
@@ -16,8 +17,25 @@ public class ActivatedObject : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(this.transform.parent.TransformPoint(offPosition), new Vector3(1,3,1));
-        Gizmos.DrawWireCube(this.transform.parent.TransformPoint(onPosition), new Vector3(1, 3, 1));
+        Vector3 wOff = this.transform.parent.TransformPoint(offPosition);
+        Vector3 wOn = this.transform.parent.TransformPoint(onPosition);
+        Vector3 wSize = transform.TransformVector(size);
+
+        Gizmos.color = Color.white;
+        //Path
+        Gizmos.DrawLine(wOff, wOn);
+        //Bounding box
+        Gizmos.DrawWireCube((wOff+wOn)/2, wSize + new Vector3(Mathf.Abs(wOff.x - wOn.x), Mathf.Abs(wOff.y - wOn.y), Mathf.Abs(wOff.z - wOn.z))+Vector3.one*0.1f);
+
+        // Off location
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(wOff, wSize);
+        Gizmos.DrawSphere(wOff, 0.25f);
+        Gizmos.color = Color.green;
+        // On location
+        Gizmos.DrawWireCube(wOn, wSize);
+        Gizmos.DrawSphere(wOn, 0.25f);
+
     }
 
     private void Update()
