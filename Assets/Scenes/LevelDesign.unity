@@ -22888,6 +22888,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8236313210651838200, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
+        type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2273985067450483005, guid: 3fa977e4fa82a2d4eb1e840ad30a74c4,
         type: 3}
       propertyPath: timeAttack
