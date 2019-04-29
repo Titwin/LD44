@@ -158,9 +158,7 @@ MonoBehaviour:
   speed: 10
   jumpSpeed: 23
   canAttack: 1
-  isInteracting: 0
   attackCooldownTime: 0.2
-  interactable: {fileID: 0}
   contactDown: 0
   contactUp: 0
   contactLeft: 0
@@ -185,19 +183,20 @@ MonoBehaviour:
   spriteEffect: {fileID: 4068293155512773091}
   destroyTime: 0.3
   audioSource: {fileID: 662260882357000021}
-  attackClips:
-  - {fileID: 8300000, guid: fca49286521d3474a8b18c1e63eccffc, type: 3}
-  - {fileID: 8300000, guid: 34657a26b1b59ec4eafc3a08c7a82f5e, type: 3}
   hurtClips:
   - {fileID: 8300000, guid: 6938bd327374a45418e0ffc491a2b6a2, type: 3}
+  deathClip: {fileID: 8300000, guid: 281dc387caf4d334b9b681f6b02cfacc, type: 3}
   weapon: {fileID: 5089294266265864009}
   bodyTemplate: {fileID: 7814929516518024235, guid: 2e568140f27a7ac4d8e15ccd08429c14,
     type: 3}
+  attackClips:
+  - {fileID: 8300000, guid: fca49286521d3474a8b18c1e63eccffc, type: 3}
+  - {fileID: 8300000, guid: 34657a26b1b59ec4eafc3a08c7a82f5e, type: 3}
   weapons:
   - {fileID: 5089294266265864009}
   - {fileID: 8236313210651838200}
   pickUpClip: {fileID: 8300000, guid: 278b3a2d9f2f7ee4bb60c13cfc9058b7, type: 3}
-  deathClip: {fileID: 8300000, guid: 281dc387caf4d334b9b681f6b02cfacc, type: 3}
+  pickUpWeaponClip: {fileID: 8300000, guid: f05729a53aca4144694b5a2ce43963c4, type: 3}
 --- !u!114 &2730668085694940983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,11 +827,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: bleeding
       objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088980, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -887,6 +881,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}

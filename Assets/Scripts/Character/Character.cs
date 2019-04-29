@@ -38,8 +38,9 @@ public abstract class Character : Attackable
     internal override void OnDeath(GameObject source)
     {
         base.OnDeath(source);
+        int p = Random.Range(1, 20);
 
-        if (bodyTemplate != null)
+        if (p < 5 && bodyTemplate != null)
         {
             var body = Instantiate(bodyTemplate);
             body.transform.position = this.transform.position;

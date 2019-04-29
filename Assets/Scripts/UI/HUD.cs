@@ -22,6 +22,8 @@ public class HUD : MonoBehaviour
     public List<Sprite> youDiedTexts;
     public float youDiedScreenTextFadeDuration;
 
+    public GameObject youWonScreen;
+
     protected Game game;
     protected Vector3 healthBarStartScale;
     protected bool wasOver;
@@ -49,6 +51,11 @@ public class HUD : MonoBehaviour
         }
 
         wasOver = game.PlayerDied;
+    }
+
+    public void end()
+    {
+        StartCoroutine(ShowYouWonScreen());
     }
 
     protected virtual void UpdateHealthBar()
@@ -91,5 +98,11 @@ public class HUD : MonoBehaviour
             currentTextDuration += Time.deltaTime;
         }
         while (duration <= youDiedScreenFadeDuration) ;
+    }
+
+    protected virtual IEnumerator ShowYouWonScreen()
+    {
+        youWonScreen.SetActive(true);
+        yield return new WaitForSeconds(10000);
     }
 }

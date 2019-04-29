@@ -9,6 +9,7 @@ public class Game : MonoBehaviour
     public new CameraController camera;
     public GameObject resetables;
     public HUD hud;
+    public End end;
 
     private GameObject instanciatedScene;
     private GameObject instanciatedPlayer;
@@ -31,6 +32,11 @@ public class Game : MonoBehaviour
             {
                 StartCoroutine(Die());
             }
+        }
+
+        if(end.activated)
+        {
+            hud.end();
         }
     }
 
