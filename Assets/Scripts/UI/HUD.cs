@@ -72,7 +72,7 @@ public class HUD : MonoBehaviour
 
         do
         {
-            float durationPercentage = duration / youDiedScreenFadeDuration;
+            float durationPercentage = Mathf.Clamp01(duration / youDiedScreenFadeDuration);
             youDiedScreenBacgkround.SetAlpha(durationPercentage);
 
             if (textIndex < youDiedTexts.Count - 1)

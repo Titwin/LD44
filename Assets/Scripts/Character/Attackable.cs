@@ -10,7 +10,11 @@ public class Attackable: MonoBehaviour
 
     [SerializeField] float destroyTime = 0.1f;
 
-    
+    public AudioSource audioSource;
+
+    public List<AudioClip> hurtClips;
+    public AudioClip deathClip;
+
     public void DoDamage(GameObject source, int amount)
     {
         OnAttack(source!=null?source.gameObject:null);
@@ -37,20 +41,34 @@ public class Attackable: MonoBehaviour
     protected IEnumerator DoDestroy()
     {
         yield return new WaitForSeconds(destroyTime);
-        GameObject.Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
+
     protected virtual void OnAttack(GameObject source)
     {
-
     }
+
     protected virtual void OnHurt(GameObject source)
     {
         spriteEffect.Blink(health.invulnerabilityTime);
+        audioSource.PlayOneShot(GetRandom(hurtClips));
     }
 
-    protected virtual void OnDeath(GameObject source)
+    internal virtual void OnDeath(GameObject source)
     {
         spriteEffect.Blink(destroyTime);
+        audioSource.PlayOneShot(deathClip);
     }
 
+    protected virtual AudioClip GetRandom(List<AudioClip> audioClips)
+    {
+        if (audioClips.Count == 0)
+        {
+            Debug.LogWarning(name + " has mising audio clips!");
+            return null;
+        }
+
+        int index = Mathf.RoundToInt(Random.value * (audioClips.Count - 1));
+        return audioClips[index];
+    }
 }

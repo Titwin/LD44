@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DestroyableObject : Attackable
 {
     [SerializeField] GameObject loot;
 
-    protected override void OnDeath(GameObject source)
+    internal override void OnDeath(GameObject source)
     {
         base.OnDeath(source);
-        if (loot!=null)
+        if (loot != null)
         {
-            GameObject body = GameObject.Instantiate<GameObject>(loot);
+            GameObject body = Instantiate(loot);
             body.transform.position = this.transform.position;
             body.SetActive(true);
         }

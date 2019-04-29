@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController2D))]
@@ -12,6 +12,14 @@ public class Player : Character
 
     // comodity property for AI, can be replaced with line-of-sight player detection
     public static Player thePlayer;
+
+    public bool GoesThroughOnDeath { get; protected set; }
+
+    public Interactable Interactable { get; set; }
+
+    public bool IsInteracting { get; protected set; }
+
+    public AudioClip pickUpClip;
 
     protected void Awake()
     {
@@ -30,15 +38,8 @@ public class Player : Character
         SetWeapon(this.weapon);
     }
 
-    public void reset()
-    {
-        
-    }
-
     protected void Update()
     {
-        //base.Update();
-
         // set the movement actions
         float movementX = Input.GetAxis("Horizontal");
         bool jump = Input.GetButtonDown("Jump");
@@ -48,7 +49,15 @@ public class Player : Character
 
         if (Controller.canAttack && attack)
         {
-            weapon.DoAttack();
+            Attack();
+        }
+
+        if (duck)
+        {
+            if (Interactable != null && Interactable.CanInteract(this))
+            {
+                StartCoroutine(Interact());
+            }
         }
     }
 
@@ -64,12 +73,14 @@ public class Player : Character
         if (weapon != null)
         {
             SetWeapon(weapon);
+            audioSource.PlayOneShot(pickUpClip);
         }
 
         var consumable = item as ConsumableItem;
         if (consumable != null)
         {
             health.Heal(item.gameObject, consumable.healthModifier);
+            audioSource.PlayOneShot(pickUpClip);
         }
 
         Debug.Log(name + " has picked " + item.name + "(" + item.GetType() + ")");
@@ -111,9 +122,27 @@ public class Player : Character
         Controller.ac = animationControllers[t];
     }
 
-    protected override void OnDeath(GameObject source)
+    internal override void OnDeath(GameObject source)
     {
+        base.OnDeath(source);
+
+        GoesThroughOnDeath = true;
+
         thePlayer = null;
         Controller.ac.playAnimation(AnimationController.AnimationType.DYING);
+    }
+
+    protected virtual IEnumerator Interact()
+    {
+        if (!IsInteracting)
+        {
+            IsInteracting = true;
+
+            Interactable.DoInteract(this);
+            audioSource.PlayOneShot(pickUpClip);
+            yield return new WaitForSeconds(Interactable.interactionDuration);
+
+            IsInteracting = false;
+        }
     }
 }

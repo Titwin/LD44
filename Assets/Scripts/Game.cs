@@ -47,6 +47,13 @@ public class Game : MonoBehaviour
     protected IEnumerator Die()
     {
         PlayerDied = true;
+
+        var player = instanciatedPlayer.GetComponent<Player>();
+        if (!player.GoesThroughOnDeath)
+        {
+            player.OnDeath(null);
+        }
+
         yield return new WaitForSeconds(gameOverDuration);
         
         DestroyImmediate(instanciatedScene);

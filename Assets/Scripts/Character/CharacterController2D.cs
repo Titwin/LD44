@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -9,28 +8,28 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D rb;
     public AnimationController ac;
 
-    private Character character;
-
-
     public Vector2 size;
     public float speed = 1;
     public float jumpSpeed = 1.0f;
 
     public bool canAttack = true;
-    public bool isInteracting = false;
     public float attackCooldownTime = 1;
     private IEnumerator cooldownCoroutine;
-    [SerializeField] Interactable interactable;
+
+    int jumpFrames = -1;
+    int groundedFilter = 0;
 
     int contactCount = 0;
-    private ContactPoint2D[] contacts = new ContactPoint2D[32];
-    [Header("State flags")]
 
+    private ContactPoint2D[] contacts = new ContactPoint2D[32];
+
+    [Header("State flags")]
     // these flags are serialized only for debug reasons
     [SerializeField] bool contactDown = false;
     [SerializeField] bool contactUp = false;
     [SerializeField] bool contactLeft = false;
     [SerializeField] bool contactRight = false;
+
     [Header("State flags")]
     // these values are resetted at the end of the frame, do not use after LateUpdate()
     [SerializeField] float movementX = 0;
@@ -38,20 +37,10 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] bool duck = false;
     [SerializeField] bool attack = false;
 
-    // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        character = GetComponent<Character>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    int jumpFrames = -1;
-    int groundedFilter = 0;
     private void LateUpdate()
     {
         CheckContacts();
@@ -118,11 +107,6 @@ public class CharacterController2D : MonoBehaviour
                 {
                     dx = 0;
                     ac.playAnimation(AnimationController.AnimationType.DUCKING);
-
-                    if (interactable != null && interactable.CanInteract(this.character))
-                    {
-                        StartCoroutine(DoInteraction(interactable));
-                    }
                 }
 
                 //  WALK
@@ -229,27 +213,6 @@ public class CharacterController2D : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         canAttack = true;
-    }
-    private IEnumerator DoInteraction(Interactable interactable)
-    {
-        if (!isInteracting)
-        {
-            isInteracting = true;
-            interactable.DoInteract(character);
-            yield return new WaitForSeconds(interactable.interactionDuration);
-            isInteracting = false;
-        }
-    }
-    internal void ExitedInteractable(Interactable _interactable)
-    {
-        if (this.interactable == _interactable)
-            interactable = null;
-    }
-
-    internal void EnteredInteractable(Interactable _interactable)
-    {
-        this.interactable = _interactable;
-
     }
 
     private void OnDrawGizmos()
