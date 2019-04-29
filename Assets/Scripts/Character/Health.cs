@@ -18,27 +18,70 @@ public class Health : MonoBehaviour
     public int Value
     {
         get { return value; }
-        set {
-            if (value < this.value)
-            {
-                unhurtTime = 0;
-                if (blood != null)
-                {
-                    blood.Emit(10);
-                }
-                else
-                {
-                    Debug.LogWarning(this.gameObject.name + " does not have a blood emitter");
-                }
-            }
+        private set {
             this.value = Mathf.Clamp(value, 0, maxValue);
         }
     }
 
+    public void Hurt(GameObject source, int amount)
+    {
+        Value -= amount;
+        unhurtTime = 0;
+        if (blood != null)
+        {
+            ParticleSystem.EmitParams p = new ParticleSystem.EmitParams();
+            p.position = this.transform.position;
+            for (int i = 0; i < 10* amount; ++i)
+            {
+                p.velocity = (this.transform.position - source.transform.position).normalized * 2+ new Vector3(Random.RandomRange(-0.5f,0.5f), Random.RandomRange(-0.5f, 0.5f),0);
+                blood.Emit(p, 1);
+            }
+        }
+        else
+        {
+            Debug.LogWarning(this.gameObject.name + " does not have a blood emitter");
+        }
+
+    }
+    public void Suck(GameObject source, int amount)
+    {
+        Value -= amount;
+        unhurtTime = 0;
+        if (blood != null)
+        {
+            ParticleSystem.EmitParams p = new ParticleSystem.EmitParams();
+            p.position = this.transform.position;
+            for (int i = 0; i < 30* amount; ++i)
+            {
+                p.velocity = -(this.transform.position - source.transform.position).normalized * 5 + new Vector3(Random.RandomRange(-0.5f, 0.5f), Random.RandomRange(-0.5f, 0.5f), 0);
+                blood.Emit(p, 1);
+            }
+        }
+        else
+        {
+            Debug.LogWarning(this.gameObject.name + " does not have a blood emitter");
+        }
+
+    }
+    public void Heal(GameObject source, int amount)
+    {
+        Value += amount;
+        if (blood != null)
+        {
+            ParticleSystem.EmitParams p = new ParticleSystem.EmitParams();
+            p.position = source.transform.position;
+            for (int i = 0; i < 5* amount; ++i)
+            {
+                p.velocity = (this.transform.position - source.transform.position).normalized * 5 + new Vector3(Random.RandomRange(-0.5f, 0.5f), Random.RandomRange(-0.5f, 0.5f), 0);
+                blood.Emit(p, 1);
+            }
+        }
+    }
     protected virtual void Awake()
     {
         Value = maxValue;
     }
+
 
     void Update()
     {
