@@ -45,7 +45,6 @@ public class Game : MonoBehaviour
 
         camera.target = instanciatedPlayer.transform;
         hud.player = instanciatedPlayer.GetComponent<Player>();
-        hud.playerControl = instanciatedPlayer.GetComponent<CharacterController2D>();
     }
 
     protected IEnumerator Over()

@@ -1,18 +1,23 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    public RectTransform gameOverScreen;
-    public CharacterController2D playerControl;
+    [Header("Player")]
     public Player player;
 
     [Header("Health")]
     public Image healthBar;
     public Text healthText;
 
+    [Header("Game Over Screen")]
+    public CanvasGroup gameOverScreen;
+    public float gameOverScreenFadeDuration;
+
     protected Game game;
     protected Vector3 healthBarStartScale;
+    protected bool wasOver;
 
     protected virtual void Awake()
     {
@@ -22,17 +27,21 @@ public class HUD : MonoBehaviour
 
     protected virtual void LateUpdate()
     {
-        try
-        {
-            UpdateHealthBar();
+        UpdateHealthBar();
 
-            gameOverScreen.gameObject.SetActive(game.IsOver);
-            playerControl.enabled = !game.IsOver;
-        }
-        catch (System.Exception e)
+        if (game.IsOver && !wasOver)
         {
-
+            player.GetComponent<CharacterController2D>().enabled = false;
+            gameOverScreen.gameObject.SetActive(true);
+            StartCoroutine(ShowGameOverScreen());
         }
+        else if (!game.IsOver && wasOver)
+        {
+            gameOverScreen.gameObject.SetActive(false);
+            player.GetComponent<CharacterController2D>().enabled = true;
+        }
+
+        wasOver = game.IsOver;
     }
 
     protected virtual void UpdateHealthBar()
@@ -44,5 +53,20 @@ public class HUD : MonoBehaviour
         healthBar.transform.localScale = healthBarScale;
 
         healthText.text = player.health.Value.ToString("00")+"/"+ player.health.Max;
+    }
+
+    protected virtual IEnumerator ShowGameOverScreen()
+    {
+        float duration = 0;
+
+        do
+        {
+            float durationPercentage = duration / gameOverScreenFadeDuration;
+            gameOverScreen.alpha = durationPercentage;
+            yield return null;
+
+            duration += Time.deltaTime;
+        }
+        while (duration <= gameOverScreenFadeDuration) ;
     }
 }
