@@ -91,10 +91,11 @@ public class Player : Character
     protected virtual void SetWeapon(Weapon weapon)
     {
         this.weapon.damages = weapon.damages;
-        int delta = weapon.healthModifier - this.weapon.healthModifier;
-        delta = Mathf.Min(health.Value - 1, delta);
-        if (delta>0) health.Heal(weapon.gameObject,delta);
-        else if (delta < 0) health.Hurt(weapon.gameObject, delta);
+        //int delta = weapon.healthModifier - this.weapon.healthModifier;
+        int delta = Mathf.Min(health.Value - 1, 2);
+        //if (delta>0) health.Heal(weapon.gameObject,delta);
+        //else if (delta < 0)
+            health.Hurt(weapon.gameObject, delta);
 
         foreach(Weapon w in weapons)
         {
