@@ -863,8 +863,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  damages: 2
-  healthModifier: -1
+  damages: 3
+  healthModifier: 1
   cooldown: 0.25
   type: 0
   attackCollider: {fileID: 0}
@@ -980,7 +980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   damages: 2
-  healthModifier: -3
+  healthModifier: 3
   cooldown: 0
   type: 1
   projectileTemplate: {fileID: 7645584223444972710, guid: 1b74899792429034988264768e840fa9,

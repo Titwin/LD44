@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 9049486341853476474}
-  damages: 10
+  damages: 3
   healthModifier: 0
   cooldown: 0.25
   type: 0
@@ -884,11 +884,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 1.6
       objectReference: {fileID: 0}
@@ -936,11 +931,6 @@ PrefabInstance:
         type: 3}
       propertyPath: CollisionModule.collidesWith.m_Bits
       value: 4407
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088981, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
