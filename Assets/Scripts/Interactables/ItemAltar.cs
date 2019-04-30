@@ -17,7 +17,10 @@ public class ItemAltar : Interactable
             else return item1;
         }
     }
-    
+    public static void Reset()
+    {
+        toggledGlobal = true;
+    }
     private void Start()
     {
         UpdateState();

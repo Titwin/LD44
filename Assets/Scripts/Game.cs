@@ -85,6 +85,8 @@ public class Game : MonoBehaviour
         DestroyImmediate(instanciatedPlayer);
         Initialize();
         instanciatedPlayer.transform.position = respawn.transform.position;
+        ItemAltar.Reset();
+
         PlayerDied = false;
     }
 }
