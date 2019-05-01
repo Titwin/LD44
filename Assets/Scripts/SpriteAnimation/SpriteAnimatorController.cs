@@ -5,6 +5,11 @@ using UnityEngine;
 public class SpriteAnimatorController : MonoBehaviour
 {
     [SerializeField] SpriteAnimator animator;
+    #region state variables
+    public int direction = 0;
+    public bool waiting = false;
+    bool reset = true;
+    #endregion
 
     private void OnEnable()
     {
@@ -16,6 +21,7 @@ public class SpriteAnimatorController : MonoBehaviour
     private void OnDisable()
     {
         animator.OnAnimationStart -= this.OnAnimationStart;
+        animator.OnAnimationMinDurationReached -= this.OnAnimationMinDurationReached;
         animator.OnAnimationLoop -= this.OnAnimationLoop;
         animator.OnAnimationEnd -= this.OnAnimationEnd;
     }
@@ -28,10 +34,7 @@ public class SpriteAnimatorController : MonoBehaviour
         waiting = false;
     }
     public virtual void OnAnimationLoop(SpriteAnimation animation)
-    {
-        waiting = false;
-        reset = true;
-       
+    {     
     }
     public virtual void OnAnimationEnd(SpriteAnimation animation)
     {
@@ -43,14 +46,14 @@ public class SpriteAnimatorController : MonoBehaviour
     {
         animator.PlayAnimationIndexed("idle");
     }
-    public int direction=0;
-    public bool waiting = false;
-
-    bool reset = true;
 
     private void Update()
     {
-        
+        UpdateStateMachine();
+    }
+
+    private void UpdateStateMachine()
+    {
         if (!waiting)
         {
             if (Input.GetKeyDown(KeyCode.Space))

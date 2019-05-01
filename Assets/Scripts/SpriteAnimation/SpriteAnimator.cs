@@ -45,7 +45,6 @@ public class SpriteAnimator : MonoBehaviour
     }
     private void Start()
     {
-        
         // reset the animation
         Reset();
         playing = playOnStart;
@@ -158,7 +157,6 @@ public class SpriteAnimator : MonoBehaviour
             }
             if(!minReached && totalTime >= currentAnimation.minDuration)
             {
-                Debug.Log("interrupted: " + totalTime + ">=" + currentAnimation.minDuration);
                 minReached = true;
                 // inform that the animation can be interrupted now
                 if (OnAnimationMinDurationReached != null)
