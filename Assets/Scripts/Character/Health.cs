@@ -74,7 +74,7 @@ public class Health : MonoBehaviour
             p.position = source.transform.position;
             for (int i = 0; i < 5* amount; ++i)
             {
-                p.velocity = (this.transform.position - source.transform.position).normalized * Random.Range(1f, 5f) + new Vector3(Random.RandomRange(-0.5f, 0.5f), Random.RandomRange(-0.5f, 0.5f), 0);
+                p.velocity = (this.transform.position - source.transform.position).normalized * Random.Range(1f, 5f) + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
                 blood.Emit(p, 1);
             }
         }
