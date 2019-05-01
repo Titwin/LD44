@@ -175,7 +175,10 @@ public class SpriteAnimator : MonoBehaviour
             return true;
         }
         else
+        {
+            Debug.LogWarning(this.name + " has no indexed animation matching the request.");
             return false;
+        }
     }
     public static int GetAnimationHash(SpriteAnimation animation)
     {
