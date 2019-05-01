@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController2D))]
 public class Player : Character
 {
-    public CharacterController2D Controller { get; private set; }
+    //public CharacterController2D Controller { get; private set; }
     [SerializeField] Weapon[] weapons;
     private Dictionary<AnimationController.Weapon, AnimationController> animationControllers = new Dictionary<AnimationController.Weapon, AnimationController>();
     //private Dictionary<Weapon.Type, Weapon> weaponDictionary = new Dictionary<Weapon.Type, Weapon>();
@@ -22,9 +22,10 @@ public class Player : Character
     public AudioClip pickUpClip;
     public AudioClip pickUpWeaponClip;
 
-    protected void Awake()
+    protected override void Awake()
     {
-        Controller = GetComponent<CharacterController2D>();
+        base.Awake();
+       // Controller = GetComponent<CharacterController2D>();
         thePlayer = this;
 
         AnimationController[] aclist = GetComponents<AnimationController>();

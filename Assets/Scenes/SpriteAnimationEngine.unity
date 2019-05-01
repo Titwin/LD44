@@ -121,14 +121,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 379825780}
+  - component: {fileID: 379825784}
+  - component: {fileID: 379825783}
   - component: {fileID: 379825779}
   - component: {fileID: 379825781}
   - component: {fileID: 379825778}
   - component: {fileID: 379825782}
-  - component: {fileID: 379825784}
-  - component: {fileID: 379825783}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player-v2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,19 +246,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 379825777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99fce8b0415f46d49a51941ca114b4bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 91f0d62a022f2e04aa480463b7cc8a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 379825778}
-  rb2D: {fileID: 379825784}
-  speed: {x: 2, y: 3}
-  direction: 0
-  waiting: 0
-  reset: 1
-  ducking: 0
-  grounded: 1
   previousAnimation: 
   currentAnimation: 
+  waiting: 0
+  reset: 1
+  rb2D: {fileID: 379825784}
+  speed: {x: 2.4, y: 4}
+  direction: 0
+  ducking: 0
+  grounded: 1
 --- !u!70 &379825783
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 777203655}
   - component: {fileID: 777203654}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

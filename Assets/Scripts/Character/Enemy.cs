@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController2D))]
 public class Enemy : Character
 {
-    [SerializeField] CharacterController2D controller;
     [Header("Type parameters")]
     //[SerializeField] bool speed = false;
     //[SerializeField] bool floating = false;
@@ -38,6 +37,11 @@ public class Enemy : Character
     [SerializeField] Vector3 startPoint;
     [SerializeField] int patrolDirection;
     [SerializeField] float t;
+    
+    new protected void Awake()
+    {
+        base.Awake();
+    }
     // Start is called before the first frame update
     new protected void Start()
     {
@@ -62,7 +66,7 @@ public class Enemy : Character
         {
             weapon.DoAttack();
         }
-        controller.Move(currentDX, doJump, doAttack, false);
+        Controller.Move(currentDX, doJump, doAttack, false);
     }
 
     void Think()
@@ -104,7 +108,7 @@ public class Enemy : Character
 
                     // pursuit
                     nextState = AIState.pursuit;
-                    doJump = Player.thePlayer.transform.position.y-Player.thePlayer.Controller.size.y/2 > this.transform.position.x - this.controller.size.y / 2 && Random.value < jumpiness;
+                    doJump = Player.thePlayer.transform.position.y-Player.thePlayer.Controller.size.y/2 > this.transform.position.x - this.Controller.size.y / 2 && Random.value < jumpiness;
                     dx = Mathf.Sign(signedDistanceX);
                 }
             }
@@ -123,7 +127,7 @@ public class Enemy : Character
                 }
                 dx = patrolDirection;
             }
-            doJump |= controller.IsBlocked((int)Mathf.Sign(dx));
+            doJump |= Controller.IsBlocked((int)Mathf.Sign(dx));
             dx *= Random.Range(0.8f, 1.2f);
        
 

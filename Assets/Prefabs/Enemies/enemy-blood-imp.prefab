@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 2643653521363503399}
+  canFade: 1
+  canBlink: 1
 --- !u!70 &8391064439834085293
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -206,9 +208,7 @@ MonoBehaviour:
   speed: 3.5
   jumpSpeed: 5
   canAttack: 1
-  isInteracting: 0
   attackCooldownTime: 1
-  interactable: {fileID: 0}
   contactDown: 0
   contactUp: 0
   contactLeft: 0
@@ -243,7 +243,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f1996017876ece948b7cb9ead6a534a5, type: 3}
   - {fileID: 8300000, guid: 4cf81cd4fa7c3af4ba3e5718a4dfd565, type: 3}
   - {fileID: 8300000, guid: 2dce34849b20b94468e14cd559be19c9, type: 3}
-  controller: {fileID: 7523213993654582332}
   jumpiness: 0.25
   thinkTime: 0.5
   pursuitRange: 5
@@ -306,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995fd6ca5a3611546b3754c69e5472a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 0}
   weapon: 0
   timeIdle: 0.1
   animationIdle:
@@ -552,10 +552,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.5
-  MaxDistance: 500
+  MinDistance: 1
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -563,23 +563,50 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -10.0039835
+      outSlope: -10.0039835
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2
+      value: 0.5
+      inSlope: -2.5009959
+      outSlope: -2.5009959
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.34926453
+      value: 0.18164062
+      inSlope: -0.62524897
+      outSlope: -0.62524897
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.63932496
+      value: 0.04421997
+      inSlope: -0.15631224
+      outSlope: -0.15631224
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.00057373196
+      inSlope: -0.10003988
+      outSlope: -0.10003988
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -588,7 +615,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -635,20 +662,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2643653521363503398}
     m_Modifications:
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+    - target: {fileID: 3161829659025088983, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
-        type: 3}
-      propertyPath: CollisionModule.collidesWith.m_Bits
-      value: 311
+      propertyPath: m_Name
+      value: bleeding
       objectReference: {fileID: 0}
     - target: {fileID: 3161829659025088980, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
@@ -705,10 +722,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3161829659025088983, guid: 354cdea73841b0649a9d8ef282435dbc,
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
         type: 3}
-      propertyPath: m_Name
-      value: bleeding
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3161829659025088978, guid: 354cdea73841b0649a9d8ef282435dbc,
+        type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 311
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 354cdea73841b0649a9d8ef282435dbc, type: 3}

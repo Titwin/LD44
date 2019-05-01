@@ -65,7 +65,7 @@ public class Game : MonoBehaviour
         instanciatedPlayer = Instantiate(player.gameObject);
         instanciatedPlayer.SetActive(true);
 
-        camera.target = instanciatedPlayer.transform;
+        camera.SetTarget(instanciatedPlayer.GetComponent<Player>());
         hud.player = instanciatedPlayer.GetComponent<Player>();
     }
 

@@ -140,7 +140,9 @@ public class AnimationController : MonoBehaviour
             sr.flipX = flipped;
         }
         animationTime += Time.deltaTime;
-
-        characterController.attackCooldownTime = animationAttack.Length * timeAttack;
+        if (characterController)
+        {
+            characterController.attackCooldownTime = animationAttack.Length * timeAttack;
+        }
     }
 }

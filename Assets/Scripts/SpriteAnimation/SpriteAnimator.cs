@@ -157,7 +157,7 @@ public class SpriteAnimator : MonoBehaviour
                         }
                     }
                 }
-                if (!minReached && totalTime >= currentAnimation.minDuration)
+                if (!minReached && totalTime >= currentAnimation.minDuration/ animationSpeed)
                 {
                     minReached = true;
                     // inform that the animation can be interrupted now

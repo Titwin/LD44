@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class CharacterController2D : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public Rigidbody2D rb2D { get; private set; }
     public AnimationController ac;
 
     public Vector2 size;
@@ -16,7 +16,7 @@ public class CharacterController2D : MonoBehaviour
     public float attackCooldownTime = 1;
     private IEnumerator cooldownCoroutine;
 
-    int jumpFrames = -1;
+    float jumpFrames = -1;
     int groundedFilter = 0;
 
     int contactCount = 0;
@@ -39,13 +39,13 @@ public class CharacterController2D : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
     }
     private void LateUpdate()
     {
         CheckContacts();
         float dx = movementX * speed;
-        float dy = rb.velocity.y;
+        float dy = rb2D.velocity.y;
         bool grounded = IsGrounded();
 
         if (!ac) return;
@@ -87,18 +87,21 @@ public class CharacterController2D : MonoBehaviour
                 // JUMP PREPARE
                 if (jumpFrames > 0)
                 {
-                    jumpFrames--;
-                    ac.playAnimation(AnimationController.AnimationType.JUMPPREPARE);
-                }
-                else if (jumpFrames == 0)
-                {
-                    dy = jumpSpeed;
-                    jumpFrames--;
-                    ac.playAnimation(AnimationController.AnimationType.JUMPPREPARE);
+                    jumpFrames -= Time.deltaTime;
+                    if (jumpFrames <= 0)
+                    {
+                        dy = jumpSpeed;
+                        
+                        ac.playAnimation(AnimationController.AnimationType.JUMPPREPARE);
+                    }
+                    else
+                    {
+                        ac.playAnimation(AnimationController.AnimationType.JUMPPREPARE);
+                    }
                 }
                 else if (jump)
                 {
-                    jumpFrames = 3;
+                    jumpFrames = 0.02f;
                     ac.playAnimation(AnimationController.AnimationType.JUMPPREPARE);
                 }
 
@@ -124,7 +127,7 @@ public class CharacterController2D : MonoBehaviour
             else
             {
                 //  JUMP
-                if (rb.velocity.y > 0)
+                if (rb2D.velocity.y > 0)
                 {
                     ac.playAnimation(AnimationController.AnimationType.JUMPING);
                 }
@@ -146,8 +149,8 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        rb.velocity = new Vector2(dx, dy);
 
+        rb2D.AddForce(new Vector2(dx, dy) - rb2D.velocity, ForceMode2D.Impulse);
         // reset controls
         movementX = 0;
         jump = false;
@@ -162,6 +165,11 @@ public class CharacterController2D : MonoBehaviour
         this.attack = attack;
         this.duck = duck;
     }
+    public void Push(Vector2 force)
+    {
+        rb2D.AddForce(force, ForceMode2D.Impulse);
+    }
+
     void CheckContacts()
     {
         contactDown = false;
@@ -169,7 +177,7 @@ public class CharacterController2D : MonoBehaviour
         contactLeft = false;
         contactRight = false;
 
-        contactCount = rb.GetContacts(contacts);
+        contactCount = rb2D.GetContacts(contacts);
         for (int c = 0; c < contactCount; ++c)
         {
             if (contacts[c].collider.gameObject != this.gameObject && !contacts[c].collider.isTrigger)
@@ -217,33 +225,37 @@ public class CharacterController2D : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        
         Gizmos.color = Color.gray;
         Gizmos.DrawWireCube(this.transform.position, size);
         Gizmos.color = Color.green;
-        for (int c = 0; c < contactCount; ++c)
+        if (contacts != null)
         {
-            if (contacts[c].collider.gameObject != this.gameObject)
+            for (int c = 0; c < contactCount; ++c)
             {
-                Gizmos.DrawSphere(contacts[c].point, 0.1f);
-                // Gizmos.DrawLine(contacts[c].collider.transform.position, this.transform.position);
+                if (contacts[c].collider!=null && contacts[c].collider.gameObject != this.gameObject)
+                {
+                    Gizmos.DrawSphere(contacts[c].point, 0.1f);
+                    // Gizmos.DrawLine(contacts[c].collider.transform.position, this.transform.position);
+                }
             }
-        }
-        Gizmos.color = Color.red;
-        if (contactDown)
-        {
-            Gizmos.DrawSphere(this.transform.position - new Vector3(0, 0.5f, 0), 0.1f);
-        }
-        if (contactUp)
-        {
-            Gizmos.DrawSphere(this.transform.position + new Vector3(0, 0.5f, 0), 0.1f);
-        }
-        if (contactRight)
-        {
-            Gizmos.DrawSphere(this.transform.position + new Vector3(0.5f, 0, 0), 0.1f);
-        }
-        if (contactLeft)
-        {
-            Gizmos.DrawSphere(this.transform.position - new Vector3(0.5f, 0, 0), 0.1f);
+            Gizmos.color = Color.red;
+            if (contactDown)
+            {
+                Gizmos.DrawSphere(this.transform.position - new Vector3(0, 0.5f, 0), 0.1f);
+            }
+            if (contactUp)
+            {
+                Gizmos.DrawSphere(this.transform.position + new Vector3(0, 0.5f, 0), 0.1f);
+            }
+            if (contactRight)
+            {
+                Gizmos.DrawSphere(this.transform.position + new Vector3(0.5f, 0, 0), 0.1f);
+            }
+            if (contactLeft)
+            {
+                Gizmos.DrawSphere(this.transform.position - new Vector3(0.5f, 0, 0), 0.1f);
+            }
         }
     }
 }
