@@ -104,7 +104,7 @@ public class SpriteAnimator : MonoBehaviour
     {
         this.currentAnimation = animation;
         Reset();
-        localTime = timeOffset;
+        localTime = timeOffset%this.currentAnimation.animationDuration;
         playing = true;
     }
     void Tick()
@@ -129,44 +129,48 @@ public class SpriteAnimator : MonoBehaviour
                     OnAnimationStart(currentAnimation);
                 }
             }
-            if (frame >= currentAnimation.frames.Length)
+            if (frameRate > 0)
             {
-                if (currentAnimation.loop)
+                if (frame >= currentAnimation.frames.Length)
                 {
-                    ++loops;
-                    frame = 0;
-                    localTime = 0;
-
-                    // animator callback
-                    if (OnAnimationLoop != null)
+                    if (currentAnimation.loop)
                     {
-                        OnAnimationLoop(currentAnimation);
+                        ++loops;
+                        frame = 0;
+                        localTime = 0;
+
+                        // animator callback
+                        if (OnAnimationLoop != null)
+                        {
+                            OnAnimationLoop(currentAnimation);
+                        }
+                    }
+                    else
+                    {
+                        frame = currentAnimation.frames.Length - 1;
+                        over = true;
+
+                        // animator callback
+                        if (OnAnimationEnd != null)
+                        {
+                            OnAnimationEnd(currentAnimation);
+                        }
                     }
                 }
-                else
+                if (!minReached && totalTime >= currentAnimation.minDuration)
                 {
-                    frame = currentAnimation.frames.Length - 1;
-                    over = true;
-
-                    // animator callback
-                    if (OnAnimationEnd != null)
+                    minReached = true;
+                    // inform that the animation can be interrupted now
+                    if (OnAnimationMinDurationReached != null)
                     {
-                        OnAnimationEnd(currentAnimation);
+                        OnAnimationMinDurationReached(currentAnimation);
                     }
                 }
-            }
-            if(!minReached && totalTime >= currentAnimation.minDuration)
-            {
-                minReached = true;
-                // inform that the animation can be interrupted now
-                if (OnAnimationMinDurationReached != null)
-                {
-                    OnAnimationMinDurationReached(currentAnimation);
-                }
-            }
 
-            currentFrame = frame;
-            spriteRenderer.sprite = currentAnimation.frames[currentFrame];
+                currentFrame = frame;
+
+                spriteRenderer.sprite = currentAnimation.frames[currentFrame];
+            }
         }
     }
     #endregion

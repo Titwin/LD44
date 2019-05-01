@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f09bba90f84407347ac7589ab376e821, type: 3}
-  m_Name: player-jump1
+  m_Name: player-land
   m_EditorClassIdentifier: 
-  name: jump1
+  name: land
   frames:
   - {fileID: 21300048, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
-  - {fileID: 21300032, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
-  - {fileID: 21300032, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
-  animationDuration: 0.3
+  animationDuration: 0.2
   loop: 0
-  minDuration: 0.3
+  minDuration: 0.2
