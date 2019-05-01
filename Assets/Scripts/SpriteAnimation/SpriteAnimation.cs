@@ -8,5 +8,5 @@ public class SpriteAnimation : ScriptableObject
     [SerializeField] public Sprite[] frames;
     [SerializeField] public float animationDuration;
     [SerializeField] public bool loop = true;
-    //[SerializeField] public int minDuration = 0;
+    [SerializeField] public float minDuration = 0;
 }

@@ -9,6 +9,7 @@ public class SpriteAnimatorController : MonoBehaviour
     private void OnEnable()
     {
         animator.OnAnimationStart += this.OnAnimationStart;
+        animator.OnAnimationMinDurationReached += this.OnAnimationMinDurationReached;
         animator.OnAnimationLoop += this.OnAnimationLoop;
         animator.OnAnimationEnd += this.OnAnimationEnd;
     }
@@ -21,27 +22,66 @@ public class SpriteAnimatorController : MonoBehaviour
 
     public virtual void OnAnimationStart(SpriteAnimation animation)
     {
-        Debug.Log("animation started:" + animation.name);
+    }
+    public virtual void OnAnimationMinDurationReached(SpriteAnimation animation)
+    {
+        waiting = false;
     }
     public virtual void OnAnimationLoop(SpriteAnimation animation)
     {
-        Debug.Log("animation looped:" + animation.name);
+        waiting = false;
+        reset = true;
+       
     }
     public virtual void OnAnimationEnd(SpriteAnimation animation)
     {
-        Debug.Log("animation ended:" + animation.name);
+        waiting = false;
+        reset = true;
     }
 
-    //Example action using the controller
-    int idx = 0;
-    public SpriteAnimation[] animationsToCycle;
+    private void Start()
+    {
+        animator.PlayAnimationIndexed("idle");
+    }
+    public int direction=0;
+    public bool waiting = false;
+
+    bool reset = true;
+
     private void Update()
     {
-        if (Input.anyKeyDown)
+        
+        if (!waiting)
         {
-            idx = (++idx)%animationsToCycle.Length;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                animator.PlayAnimationIndexed("attack1");
+                waiting = true;
+            }
+            float dxInput = Input.GetAxis("Horizontal");
+            int dx = 0;
+            if (dxInput != 0) dx = (int)Mathf.Sign(dxInput);
+            if (reset || dx != direction)
+            {
+                if (dx > 0)
+                {
+                    animator.PlayAnimationIndexed("run");
+                    animator.spriteRenderer.flipX = false;
+                }
+                else if (dx < 0)
+                {
+                    animator.PlayAnimationIndexed("run");
+                    animator.spriteRenderer.flipX = true;
+                }
+                else
+                {
+                    animator.PlayAnimationIndexed("idle");
+                }
+                direction = dx;
+            }
+            float dy = Input.GetAxis("Vertical");
             
-            animator.PlayAnimation(animationsToCycle[idx]);
+            reset = false;
         }
     }
 }

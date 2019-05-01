@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SpriteAnimator : MonoBehaviour
 {
-    [Header("Connections")]
-    [SerializeField] SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer { get; private set;}
 
     [Header("Animations")]
     [SerializeField] SpriteAnimation currentAnimation;
@@ -20,6 +19,7 @@ public class SpriteAnimator : MonoBehaviour
     // Delegate callbacks
     public delegate void AnimatorCallback(SpriteAnimation current);
     public AnimatorCallback OnAnimationStart;
+    public AnimatorCallback OnAnimationMinDurationReached;
     public AnimatorCallback OnAnimationLoop;
     public AnimatorCallback OnAnimationEnd;
 
@@ -32,21 +32,26 @@ public class SpriteAnimator : MonoBehaviour
     private bool playing;
     private bool over = false;
     private bool firstFrame = true;
+    private bool minReached = false;
     #endregion
-
-    private void Start()
+    private void Awake()
     {
         // index the animations based on name for easy access
         foreach (SpriteAnimation animation in animations)
         {
             animationDictionary[GetAnimationHash(animation)] = animation;
         }
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    private void Start()
+    {
+        
         // reset the animation
         Reset();
         playing = playOnStart;
     }
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (playing && !over)
         {
@@ -77,18 +82,22 @@ public class SpriteAnimator : MonoBehaviour
         loops = 0;
         firstFrame = true;
         over = false;
+        minReached = false;
         currentFrame = 0;
         totalTime = 0;
         localTime = 0;
 
-        spriteRenderer.sprite = currentAnimation.frames[0];
-        if (currentAnimation.animationDuration > 0)
+        if (currentAnimation != null)
         {
-            frameRate = currentAnimation.frames.Length / currentAnimation.animationDuration;
-        }
-        else
-        {
-            frameRate = 0;
+            spriteRenderer.sprite = currentAnimation.frames[0];
+            if (currentAnimation.animationDuration > 0)
+            {
+                frameRate = currentAnimation.frames.Length / currentAnimation.animationDuration;
+            }
+            else
+            {
+                frameRate = 0;
+            }
         }
     }
 
@@ -105,7 +114,7 @@ public class SpriteAnimator : MonoBehaviour
         if (frameRate > 0)
         {
             float deltaTime = Time.deltaTime * animationSpeed * frameRate;
-            totalTime += deltaTime;
+            totalTime += Time.deltaTime;
             localTime += deltaTime;
             frame = (int)localTime;
         }
@@ -147,12 +156,23 @@ public class SpriteAnimator : MonoBehaviour
                     }
                 }
             }
-            currentFrame = frame;
+            if(!minReached && totalTime >= currentAnimation.minDuration)
+            {
+                Debug.Log("interrupted: " + totalTime + ">=" + currentAnimation.minDuration);
+                minReached = true;
+                // inform that the animation can be interrupted now
+                if (OnAnimationMinDurationReached != null)
+                {
+                    OnAnimationMinDurationReached(currentAnimation);
+                }
+            }
 
+            currentFrame = frame;
             spriteRenderer.sprite = currentAnimation.frames[currentFrame];
         }
     }
     #endregion
+
     #region indexed animations
     public bool HasAnimationIndexed(string animationName)
     {
@@ -165,7 +185,9 @@ public class SpriteAnimator : MonoBehaviour
     }
     public bool PlayAnimationIndexed(string animationName, float timeOffset = 0)
     {
-        return PlayAnimationIndexed(GetAnimationHash(animationName), timeOffset);
+        bool success = PlayAnimationIndexed(GetAnimationHash(animationName), timeOffset);
+        if(!success) Debug.LogWarning(this.name + " has no indexed animation matching "+animationName);
+        return success;
     }
     public bool PlayAnimationIndexed(int animationNameHash, float timeOffset = 0)
     {
@@ -176,7 +198,6 @@ public class SpriteAnimator : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning(this.name + " has no indexed animation matching the request.");
             return false;
         }
     }

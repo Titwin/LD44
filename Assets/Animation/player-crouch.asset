@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09bba90f84407347ac7589ab376e821, type: 3}
   m_Name: player-crouch
   m_EditorClassIdentifier: 
-  name: player-crouch
+  name: crouch
   frames:
   - {fileID: 21300048, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
   animationDuration: 0
