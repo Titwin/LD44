@@ -21,17 +21,18 @@ public class SpriteAnimatorController : MonoBehaviour
 
     public virtual void OnAnimationStart(SpriteAnimation animation)
     {
-
+        Debug.Log("animation started:" + animation.name);
     }
     public virtual void OnAnimationLoop(SpriteAnimation animation)
     {
-
+        Debug.Log("animation looped:" + animation.name);
     }
     public virtual void OnAnimationEnd(SpriteAnimation animation)
     {
-
+        Debug.Log("animation ended:" + animation.name);
     }
 
+    //Example action using the controller
     int idx = 0;
     public SpriteAnimation[] animationsToCycle;
     private void Update()

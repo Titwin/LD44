@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f09bba90f84407347ac7589ab376e821, type: 3}
-  m_Name: New SpriteAnimation
+  m_Name: player-attack2
   m_EditorClassIdentifier: 
-  name: 
-  frames: []
-  animationDuration: 0
+  name: player-attack2
+  frames:
+  - {fileID: 21300082, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300086, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300088, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300090, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300092, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300094, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  animationDuration: 0.5
   loop: 1
