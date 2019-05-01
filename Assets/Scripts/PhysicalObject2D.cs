@@ -83,4 +83,40 @@ public class PhysicalObject2D : MonoBehaviour
         else if (direction == -1) return contactDown;
         else return false;
     }
+
+    private void OnDrawGizmos()
+    {
+
+        Gizmos.color = Color.gray;
+        Gizmos.DrawWireCube(this.transform.position, size);
+        Gizmos.color = Color.green;
+        if (contacts != null)
+        {
+            for (int c = 0; c < contactCount; ++c)
+            {
+                if (contacts[c].collider != null && contacts[c].collider.gameObject != this.gameObject)
+                {
+                    Gizmos.DrawSphere(contacts[c].point, 0.1f);
+                    // Gizmos.DrawLine(contacts[c].collider.transform.position, this.transform.position);
+                }
+            }
+            Gizmos.color = Color.red;
+            if (contactDown)
+            {
+                Gizmos.DrawSphere(this.transform.position - new Vector3(0, 0.5f, 0), 0.1f);
+            }
+            if (contactUp)
+            {
+                Gizmos.DrawSphere(this.transform.position + new Vector3(0, 0.5f, 0), 0.1f);
+            }
+            if (contactRight)
+            {
+                Gizmos.DrawSphere(this.transform.position + new Vector3(0.5f, 0, 0), 0.1f);
+            }
+            if (contactLeft)
+            {
+                Gizmos.DrawSphere(this.transform.position - new Vector3(0.5f, 0, 0), 0.1f);
+            }
+        }
+    }
 }
