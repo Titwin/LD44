@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterSpriteController : SpriteAnimatorController
 {
-    [SerializeField] Rigidbody2D rb2D;
+    [SerializeField] PhysicalObject2D PO2D;
     #region state variables
     [SerializeField] Vector2 speed = Vector2.one;
     [SerializeField] int direction = 0;
@@ -25,15 +25,16 @@ public class CharacterSpriteController : SpriteAnimatorController
         bool jump = Input.GetButton("Jump");
         bool crouch = Input.GetButton("Duck");
         if (crouch) dx = 0;
-        bool nowGrunded = rb2D.velocity.y == 0;//hack
-        UpdateStateMachine(dx, jump, attack, crouch, nowGrunded);
+        bool nowGrunded = PO2D.rb2D.velocity.y == 0;//hack
+        UpdateStateMachine(dx, jump, attack, crouch, PO2D.IsGrounded());
     }
 
     private void UpdateStateMachine(float dxInput, bool jump, bool attack, bool crouch, bool nowGrunded)
     {
-        Vector2 velocity = rb2D.velocity;
+        Vector2 velocity = PO2D.rb2D.velocity;
         int dx = 0;
         if (dxInput != 0) dx = (int)Mathf.Sign(dxInput);
+        if (PO2D.IsBlockedX(dx)) dx = 0;
         if (!this.Waiting)
         {
             // attack has priority over everything
@@ -47,7 +48,7 @@ public class CharacterSpriteController : SpriteAnimatorController
             {   // then nongrounded actions, falling and flying
                 if (!nowGrunded)
                 {
-                    if (rb2D.velocity.y > 0)
+                    if (PO2D.rb2D.velocity.y > 0)
                     {
                         SetActiveAnimation("jump2");
                     }
@@ -121,10 +122,10 @@ public class CharacterSpriteController : SpriteAnimatorController
                 }
             }
             this.grounded = nowGrunded;
-            if (rb2D.velocity != velocity)
+            if (PO2D.rb2D.velocity != velocity)
             {
-                Vector2 delta = (velocity - rb2D.velocity);
-                rb2D.AddForce(delta, ForceMode2D.Impulse);
+                Vector2 delta = (velocity - PO2D.rb2D.velocity);
+                PO2D.rb2D.AddForce(delta, ForceMode2D.Impulse);
             }
             this.Reset = false;
         }

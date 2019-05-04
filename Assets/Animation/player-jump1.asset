@@ -17,6 +17,6 @@ MonoBehaviour:
   - {fileID: 21300048, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
   - {fileID: 21300032, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
   - {fileID: 21300032, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
-  animationDuration: 0.3
+  animationDuration: 0.1
   loop: 0
-  minDuration: 0.3
+  minDuration: 0.1

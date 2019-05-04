@@ -7,7 +7,7 @@ public class PhysicalObject2D : MonoBehaviour
 {
     private static readonly int MinGroundedTime = 5;
     
-    [SerializeField] Rigidbody2D rb2D;
+    [SerializeField] public Rigidbody2D rb2D { get; private set; }
     [SerializeField] Vector2 size = Vector2.one;
     
     [Header("State flags")]
