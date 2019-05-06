@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController2D))]
 public class Player : Character
 {
-    public CharacterController2D Controller { get; private set; }
+    //public CharacterController2D Controller { get; private set; }
     [SerializeField] Weapon[] weapons;
     private Dictionary<AnimationController.Weapon, AnimationController> animationControllers = new Dictionary<AnimationController.Weapon, AnimationController>();
     //private Dictionary<Weapon.Type, Weapon> weaponDictionary = new Dictionary<Weapon.Type, Weapon>();
@@ -16,15 +16,16 @@ public class Player : Character
     public bool GoesThroughOnDeath { get; protected set; }
 
     public Interactable Interactable { get; set; }
-
+    private bool dying = false;
     public bool IsInteracting { get; protected set; }
 
     public AudioClip pickUpClip;
     public AudioClip pickUpWeaponClip;
 
-    protected void Awake()
+    protected override void Awake()
     {
-        Controller = GetComponent<CharacterController2D>();
+        base.Awake();
+       // Controller = GetComponent<CharacterController2D>();
         thePlayer = this;
 
         AnimationController[] aclist = GetComponents<AnimationController>();
@@ -91,10 +92,11 @@ public class Player : Character
     protected virtual void SetWeapon(Weapon weapon)
     {
         this.weapon.damages = weapon.damages;
-        int delta = weapon.healthModifier - this.weapon.healthModifier;
-        delta = Mathf.Min(health.Value - 1, delta);
-        if (delta>0) health.Heal(weapon.gameObject,delta);
-        else if (delta < 0) health.Hurt(weapon.gameObject, delta);
+        //int delta = weapon.healthModifier - this.weapon.healthModifier;
+        int delta = Mathf.Min(health.Value - 1, 2);
+        //if (delta>0) health.Heal(weapon.gameObject,delta);
+        //else if (delta < 0)
+            health.Hurt(weapon.gameObject, delta);
 
         foreach(Weapon w in weapons)
         {
@@ -125,14 +127,29 @@ public class Player : Character
 
     internal override void OnDeath(GameObject source)
     {
-        base.OnDeath(source);
+        if (dying) return;
+
+        audioSource.PlayOneShot(deathClip);
 
         GoesThroughOnDeath = true;
 
         thePlayer = null;
-        Controller.ac.playAnimation(AnimationController.AnimationType.DYING);
+        StartCoroutine(DeathAnimation());
+        dying = true;
     }
-
+    internal override void OnHurt(GameObject source)
+    {
+        if (dying) return;
+        base.OnHurt(source);
+    }
+    protected virtual IEnumerator DeathAnimation()
+    {
+        foreach (Sprite s in Controller.ac.animationDying)
+        {
+            Controller.ac.sr.sprite = s;
+            yield return new WaitForSeconds(Controller.ac.timeDying);
+        }
+    }
     protected virtual IEnumerator Interact()
     {
         if (!IsInteracting)

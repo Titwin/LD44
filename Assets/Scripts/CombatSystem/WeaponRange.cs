@@ -19,8 +19,7 @@ public class WeaponRange : Weapon
     {
         if (CanAttack())
         {
-            delayCoroutine = launchProjectile();
-            StartCoroutine(delayCoroutine);
+            StartCoroutine(launchProjectile());
 
             /*base.DoAttack();
             Projectile projectile = GameObject.Instantiate<Projectile>(projectileTemplate);
@@ -37,8 +36,6 @@ public class WeaponRange : Weapon
 
     private IEnumerator launchProjectile()
     {
-        yield return new WaitForSeconds(delay);
-
         base.DoAttack();
         Projectile projectile = GameObject.Instantiate<Projectile>(projectileTemplate);
         projectile.owner = this.owner;
@@ -47,6 +44,8 @@ public class WeaponRange : Weapon
         pt.transform.rotation = projectileTemplate.transform.rotation;
 
         pt.gameObject.SetActive(true);
+        yield return new WaitForSeconds(delay);
         projectile.rb.velocity = this.transform.TransformVector(orientation * speed);
+        Debug.DrawLine(projectile.transform.position, projectile.transform.position + new Vector3(projectile.rb.velocity.x, projectile.rb.velocity.y)*0.1f);
     }
 }

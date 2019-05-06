@@ -5,7 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class AnimationController : MonoBehaviour
 {
-    private SpriteRenderer sr;
+    [HideInInspector]
+    public SpriteRenderer sr;
+
     private int animationIndex;
     private float animationTime;
     private AnimationType lastAnimation;
@@ -138,7 +140,9 @@ public class AnimationController : MonoBehaviour
             sr.flipX = flipped;
         }
         animationTime += Time.deltaTime;
-
-        characterController.attackCooldownTime = animationAttack.Length * timeAttack;
+        if (characterController)
+        {
+            characterController.attackCooldownTime = animationAttack.Length * timeAttack;
+        }
     }
 }

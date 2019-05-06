@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class InteractableBody : Interactable
 {
-    [SerializeField] SpriteEffect effect;
+    //[SerializeField] SpriteEffect effect;
     [SerializeField] int health = 1;
     //bool enabled = true;
+    public float perFrameTime;
+    public Sprite[] animations;
+    private SpriteRenderer sr;
 
     public override bool CanInteract(Character character)
     {
@@ -23,8 +26,12 @@ public class InteractableBody : Interactable
 
     IEnumerator DoSlowDestroy(float time)
     {
-        effect.Fade(time);
-        yield return new WaitForSeconds(time);
+        //effect.Fade(time);
+        foreach(Sprite s in animations)
+        {
+            GetComponent<SpriteRenderer>().sprite = s;
+            yield return new WaitForSeconds(perFrameTime);
+        }
         Destroy(this.gameObject);
     }
 }

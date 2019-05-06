@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09bba90f84407347ac7589ab376e821, type: 3}
+  m_Name: player-attack2
+  m_EditorClassIdentifier: 
+  name: attack2
+  frames:
+  - {fileID: 21300082, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300086, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300088, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300090, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300092, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  - {fileID: 21300094, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
+  animationDuration: 0.5
+  loop: 0

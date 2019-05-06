@@ -76,6 +76,11 @@ public class BloodCounter : Interactable
             {
                 StartCoroutine(DoDrip(max));
                 character.health.Suck(this.gameObject, damage);
+                // hack to poke the death system
+                if (character.health.Value<= 0)
+                {
+                    character.DoDamage(this.gameObject, 0);
+                }
                 if (activatedObject != null) activatedObject.SetActive(true);
             }
             else

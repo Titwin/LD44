@@ -27,14 +27,16 @@ public class Health : MonoBehaviour
     {
         Value -= amount;
         unhurtTime = 0;
+        
         if (blood != null)
         {
             ParticleSystem.EmitParams p = new ParticleSystem.EmitParams();
+            Vector3 sourcePosition = source != null ? source.transform.position : this.transform.position - new Vector3(0, 6f, 0);
             p.position = this.transform.position;
             for (int i = 0; i < 10* amount; ++i)
             {
-                p.velocity = (this.transform.position - source.transform.position).normalized * Random.Range(1f, 2f) + new Vector3(Random.RandomRange(-0.5f,0.5f), Random.RandomRange(-0.5f, 0.5f),0);
-                blood.Emit(p, 1);
+                p.velocity = (this.transform.position - sourcePosition).normalized * Random.Range(1f, 2f)*(source==null?2:1) + new Vector3(Random.RandomRange(-0.5f,0.5f), Random.RandomRange(-0.5f, 0.5f),0);
+                blood.Emit(p, (source == null ? 5: 1));
             }
         }
         else
@@ -72,7 +74,7 @@ public class Health : MonoBehaviour
             p.position = source.transform.position;
             for (int i = 0; i < 5* amount; ++i)
             {
-                p.velocity = (this.transform.position - source.transform.position).normalized * Random.Range(1f, 5f) + new Vector3(Random.RandomRange(-0.5f, 0.5f), Random.RandomRange(-0.5f, 0.5f), 0);
+                p.velocity = (this.transform.position - source.transform.position).normalized * Random.Range(1f, 5f) + new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
                 blood.Emit(p, 1);
             }
         }
@@ -90,7 +92,7 @@ public class Health : MonoBehaviour
             lastDecrementDuration += Time.deltaTime;
             if (lastDecrementDuration >= secondsToDecrement)
             {
-                Value--;
+                this.Hurt(null,1);
                 lastDecrementDuration = 0;
             }
         }

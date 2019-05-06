@@ -9,9 +9,15 @@ public abstract class Character : Attackable
     [SerializeField] GameObject bodyTemplate;
 
     public List<AudioClip> attackClips;
+    public CharacterController2D Controller { get; private set; }
 
+    protected virtual void Awake()
+    {
+        Controller = GetComponent<CharacterController2D>();
+    }
     protected virtual void Start()
     {
+
         if (health == null)
         {
             Debug.LogError(name + " has no health");
@@ -35,6 +41,14 @@ public abstract class Character : Attackable
         else { return false; }
     }
 
+   /* internal override void OnHurt(GameObject source)
+    {
+        Vector3 d = (this.transform.position - source.transform.position);
+        //d.y =1;
+        d = d.normalized * 10;
+        this.Controller.Push(d);
+        Debug.DrawLine(this.transform.position, this.transform.position + d);
+    }*/
     internal override void OnDeath(GameObject source)
     {
         base.OnDeath(source);
