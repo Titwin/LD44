@@ -15,6 +15,6 @@ MonoBehaviour:
   name: land
   frames:
   - {fileID: 21300048, guid: f5d9633e88bb7af43aa8f084d1a69972, type: 3}
-  animationDuration: 0.2
+  animationDuration: 0.1
   loop: 0
-  minDuration: 0.2
+  minDuration: 0.05
